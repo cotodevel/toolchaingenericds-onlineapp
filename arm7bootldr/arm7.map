@@ -1,0 +1,1345 @@
+Archive member included because of file (symbol)
+
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                              build/main.o (installWifiFIFO)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+                              build/main.o (isArm7ClosedLid)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                              build/Interrupts_app7.o (TurnOnScreens)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                              ./build/nds_arm_ld_crt0.o (exception_sysexit)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+                              ./build/nds_arm_ld_crt0.o (initHardware)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o) (writeDebugBuffer7)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o) (setBacklight)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+                              build/main.o (dmaTransferWord)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                              build/main.o (SendFIFOWords)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o) (powerON)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o) (readFirmwareSPI)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o) (LoadFirmwareSettingsFromFlash)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spinlockTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o) (SLasm_Acquire)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSAsm.o)
+                              build/main.o (swiDelay)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDSasm.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o) (DebugException)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_s.o)
+                              build/main.o (IRQWait)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o) (initSound)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o) (IRQInit)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o) (XmemSetup)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o) (performARM7MP2FSTestCase)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o) (DeInitWIFI)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o) (SPICSHIGH)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o) (doSPIARM7IO)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o) (nds_get_time7)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o) (__aeabi_idiv)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o) (__aeabi_uidiv)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o) (__udivmodsi4)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o) (memset)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o) (strlen)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idivmod.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o) (__aeabi_idivmod)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidivmod.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o) (__aeabi_uidivmod)
+c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(arm-asm-memcpy.o)
+                              c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o) (memcpy)
+
+Allocating common symbols
+Common symbol       size              file
+
+arm7q               0x800             c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+xmem_table          0x4               c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+FlashData           0x200             c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+xmem_blocks         0x4               c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+IWRAMBOOTCODE    0x023cc000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x023cc000                _iwram_start = ORIGIN (IWRAMBOOTCODE)
+                0x023dc000                _iwram_end = (ORIGIN (IWRAMBOOTCODE) + 0x10000)
+                0x03fffff8                _arm7_irqcheckbits = 0x3fffff8
+                0x03fffffc                _arm7_irqhandler = 0x3fffffc
+                0x023dbe00                sp_SVC = (_iwram_end - 0x200)
+                0x023dbc00                sp_IRQ = (sp_SVC - 0x200)
+                0x023dba00                sp_FIQ = (sp_IRQ - 0x200)
+                0x023db800                sp_ABT = (sp_FIQ - 0x200)
+                0x023db600                sp_UND = (sp_ABT - 0x200)
+                0x023db400                sp_USR = (sp_UND - 0x200)
+                0x023db200                sp_SYS = (sp_USR - 0x200)
+
+.init           0x023cc000       0xc4
+                0x023cc000                __init_start__ = .
+ *(.init*)
+ .init          0x023cc000       0xa8 ./build/nds_arm_ld_crt0.o
+                0x023cc000                _start
+ .init          0x023cc0a8        0xc c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+                0x023cc0a8                _init
+ .init_array    0x023cc0b4        0x4 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .init          0x023cc0b8        0xc c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+                0x023cc0c4                . = ALIGN (0x4)
+                0x023cc0c4                __init_end__ = .
+                0x023cc0c4                __preinit_array_start__ = .
+
+.preinit_array  0x023cc0c4        0x0
+ *(.preinit_array*)
+                0x023cc0c4                . = ALIGN (0x4)
+                0x023cc0c4                __preinit_array_end__ = .
+                0x023cc0c4                __init_array_start__ = .
+
+.init_array     0x023cc0c4        0x0
+ *(.init_array*)
+                0x023cc0c4                . = ALIGN (0x4)
+                0x023cc0c4                init_array_end__ = .
+                0x023cc0c4                __fini_array_start__ = .
+
+.fini_array     0x023cc0c4        0x4
+ *(.fini_array*)
+ .fini_array    0x023cc0c4        0x4 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+                0x023cc0c8                . = ALIGN (0x4)
+                0x023cc0c8                __fini_array_end__ = .
+                0x023cc0c8                __text_start__ = .
+
+.text           0x023cc0d0     0x6f58
+ *(.text)
+ .text          0x023cc0d0        0x0 ./build/nds_arm_ld_crt0.o
+ .text          0x023cc0d0        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+ .text          0x023cc0d0      0x108 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .text          0x023cc1d8        0x0 build/main.o
+ .text          0x023cc1d8        0x0 build/Interrupts_app7.o
+ .text          0x023cc1d8        0x0 build/dswnifi.o
+ .text          0x023cc1d8        0x0 build/ipcfifoTGDSUser.o
+ .text          0x023cc1d8        0x0 build/loader.o
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+ .text          0x023cc1d8        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+ .text          0x023cc1d8       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spinlockTGDS.o)
+                0x023cc1d8                SLasm_Acquire
+                0x023cc20c                SLasm_Release
+ *fill*         0x023cc234        0xc ff
+ .text          0x023cc240       0xd0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSAsm.o)
+                0x023cc240                swiDelay
+                0x023cc248                swiCRC16
+                0x023cc250                swiSleep
+                0x023cc258                swiIsDebugger
+                0x023cc260                swiDivide
+                0x023cc268                swiRemainder
+                0x023cc274                swiDivMod
+                0x023cc28c                swiSqrt
+                0x023cc294                swiHalt
+                0x023cc29c                swiGetSineTable
+                0x023cc2a4                swiGetPitchTable
+                0x023cc2ac                swiGetVolumeTable
+                0x023cc2b4                swiSetHaltCR
+                0x023cc2c0                swiChangeSoundBias
+                0x023cc2c8                swiSoftReset
+                0x023cc2d4                swiSoftResetByAddress
+                0x023cc2f0                swiDecompressLZSSWram
+                0x023cc2f8                swiDecompressLZSSVramByCallback
+ .text          0x023cc310      0x124 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDSasm.o)
+                0x023cc310                DebugException
+                0x023cc390                CustomDebugException
+                0x023cc414                LeaveExceptionMode
+ *fill*         0x023cc434        0xc ff
+ .text          0x023cc440       0x60 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_s.o)
+                0x023cc440                IRQWait
+                0x023cc47c                IRQVBlankWait
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+ .text          0x023cc4a0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+ .text          0x023cc4a0       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idivmod.o)
+                0x023cc4a0                __aeabi_idivmod
+ .text          0x023cc4c0       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidivmod.o)
+                0x023cc4c0                __aeabi_uidivmod
+ .text          0x023cc4e0      0x48c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(arm-asm-memcpy.o)
+                0x023cc4e0                memcpy
+ .text          0x023cc96c        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+ .text          0x023cc96c        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+ *(.text*)
+ .text.startup.main
+                0x023cc96c       0xd0 build/main.o
+                0x023cc96c                main
+ .text.IpcSynchandlerUser
+                0x023cca3c        0x4 build/Interrupts_app7.o
+                0x023cca3c                IpcSynchandlerUser
+ .text.Timer0handlerUser
+                0x023cca40        0x4 build/Interrupts_app7.o
+                0x023cca40                Timer0handlerUser
+ .text.Timer1handlerUser
+                0x023cca44        0x4 build/Interrupts_app7.o
+                0x023cca44                Timer1handlerUser
+ .text.Timer2handlerUser
+                0x023cca48        0x4 build/Interrupts_app7.o
+                0x023cca48                Timer2handlerUser
+ .text.Timer3handlerUser
+                0x023cca4c        0x4 build/Interrupts_app7.o
+                0x023cca4c                Timer3handlerUser
+ .text.HblankUser
+                0x023cca50        0x4 build/Interrupts_app7.o
+                0x023cca50                HblankUser
+ .text.VblankUser
+                0x023cca54       0x24 build/Interrupts_app7.o
+                0x023cca54                VblankUser
+ .text.VcounterUser
+                0x023cca78        0x4 build/Interrupts_app7.o
+                0x023cca78                VcounterUser
+ .text.screenLidHasOpenedhandlerUser
+                0x023cca7c       0x10 build/Interrupts_app7.o
+                0x023cca7c                screenLidHasOpenedhandlerUser
+ .text.screenLidHasClosedhandlerUser
+                0x023cca8c       0x10 build/Interrupts_app7.o
+                0x023cca8c                screenLidHasClosedhandlerUser
+ .text.getsIPCSharedTGDSSpecific
+                0x023cca9c        0xc build/ipcfifoTGDSUser.o
+                0x023cca9c                getsIPCSharedTGDSSpecific
+ .text.HandleFifoNotEmptyWeakRef
+                0x023ccaa8       0x44 build/ipcfifoTGDSUser.o
+                0x023ccaa8                HandleFifoNotEmptyWeakRef
+ .text.HandleFifoEmptyWeakRef
+                0x023ccaec        0x4 build/ipcfifoTGDSUser.o
+                0x023ccaec                HandleFifoEmptyWeakRef
+ .text.EWRAMPrioToARM7
+                0x023ccaf0       0x1c build/ipcfifoTGDSUser.o
+                0x023ccaf0                EWRAMPrioToARM7
+ .text.EWRAMPrioToARM9
+                0x023ccb0c       0x18 build/ipcfifoTGDSUser.o
+                0x023ccb0c                EWRAMPrioToARM9
+ .text.waitWhileNotSetStatus
+                0x023ccb24       0x30 build/loader.o
+                0x023ccb24                waitWhileNotSetStatus
+ .text.setNDSLoaderInitStatus
+                0x023ccb54       0x10 build/loader.o
+                0x023ccb54                setNDSLoaderInitStatus
+ .text.arm7_synctoarm9
+                0x023ccb64       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccb64                arm7_synctoarm9
+ .text.InitFlashData
+                0x023ccb80       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccb80                InitFlashData
+ .text.DeInitFlashData
+                0x023ccba0       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccba0                DeInitFlashData
+ .text.ReadFlashByte
+                0x023ccbc0       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccbc0                ReadFlashByte
+ .text.ReadFlashBytes
+                0x023ccbd8       0x54 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccbd8                ReadFlashBytes
+ .text.ReadFlashHWord
+                0x023ccc2c       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccc2c                ReadFlashHWord
+ .text.crc16_slow
+                0x023ccc48       0x48 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccc48                crc16_slow
+ .text.GetWfcSettings
+                0x023ccc90      0x1a8 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ccc90                GetWfcSettings
+ .text.Wifi_BBRead
+                0x023cce38       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cce38                Wifi_BBRead
+ .text.Wifi_BBWrite
+                0x023cce78       0x74 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cce78                Wifi_BBWrite
+ .text.Wifi_RFWrite
+                0x023cceec       0x3c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cceec                Wifi_RFWrite
+ .text.Wifi_SetChannel.part.4
+                0x023ccf28      0x1b0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .text.PowerChip_ReadWrite
+                0x023cd0d8       0x80 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd0d8                PowerChip_ReadWrite
+ .text.SetLedState
+                0x023cd158       0x48 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd158                SetLedState
+ .text.ProxySetLedState
+                0x023cd1a0       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd1a0                ProxySetLedState
+ .text.Wifi_RFInit
+                0x023cd1bc      0x124 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd1bc                Wifi_RFInit
+ .text.Wifi_BBInit
+                0x023cd2e0       0x44 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd2e0                Wifi_BBInit
+ .text.Wifi_MacInit
+                0x023cd324       0x38 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd324                Wifi_MacInit
+ .text.Wifi_TxSetup
+                0x023cd35c       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd35c                Wifi_TxSetup
+ .text.Wifi_RxSetup
+                0x023cd370       0x58 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd370                Wifi_RxSetup
+ .text.Wifi_WakeUp
+                0x023cd3c8       0x64 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd3c8                Wifi_WakeUp
+ .text.Wifi_Shutdown
+                0x023cd42c       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd42c                Wifi_Shutdown
+ .text.Wifi_CopyMacAddr
+                0x023cd488       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd488                Wifi_CopyMacAddr
+ .text.Wifi_CmpMacAddr
+                0x023cd4a4       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd4a4                Wifi_CmpMacAddr
+ .text.Wifi_MACRead
+                0x023cd4e4       0x50 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd4e4                Wifi_MACRead
+ .text.Wifi_MACCopy
+                0x023cd534       0x94 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd534                Wifi_MACCopy
+ .text.Wifi_MACWrite
+                0x023cd5c8       0x9c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd5c8                Wifi_MACWrite
+ .text.Wifi_QueueRxMacData
+                0x023cd664       0xfc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd664                Wifi_QueueRxMacData
+ .text.Wifi_CheckTxBuf
+                0x023cd760       0x34 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd760                Wifi_CheckTxBuf
+ .text.Wifi_CopyFirstTxData
+                0x023cd794       0xf0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd794                Wifi_CopyFirstTxData
+ .text.Wifi_TxRaw
+                0x023cd884       0x68 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd884                Wifi_TxRaw
+ .text.Wifi_TxCheck
+                0x023cd8ec       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd8ec                Wifi_TxCheck
+ .text.Wifi_Intr_CntOverflow
+                0x023cd904       0x74 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd904                Wifi_Intr_CntOverflow
+ .text.Wifi_Intr_StartTx
+                0x023cd978       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd978                Wifi_Intr_StartTx
+ .text.Wifi_Intr_TxEnd
+                0x023cd98c      0x128 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cd98c                Wifi_Intr_TxEnd
+ .text.Wifi_Intr_TBTT
+                0x023cdab4       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cdab4                Wifi_Intr_TBTT
+ .text.Wifi_Intr_DoNothing
+                0x023cdacc        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cdacc                Wifi_Intr_DoNothing
+ .text.Wifi_Interrupt
+                0x023cdad0      0x124 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cdad0                Wifi_Interrupt
+ .text.Wifi_Update
+                0x023cdbf4      0x574 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cdbf4                Wifi_Update
+ .text.erasemem
+                0x023ce168       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce168                erasemem
+ .text.Wifi_Stop
+                0x023ce184       0x4c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce184                Wifi_Stop
+ .text.Wifi_Deinit
+                0x023ce1d0       0x2c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce1d0                Wifi_Deinit
+ .text.Wifi_Init
+                0x023ce1fc      0x1ac c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce1fc                Wifi_Init
+ .text.Wifi_SetChannel
+                0x023ce3a8       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce3a8                Wifi_SetChannel
+ .text.Wifi_SetWepKey
+                0x023ce3b8       0x44 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce3b8                Wifi_SetWepKey
+ .text.Wifi_SetWepMode
+                0x023ce3fc       0x3c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce3fc                Wifi_SetWepMode
+ .text.Wifi_SetBeaconPeriod
+                0x023ce438       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce438                Wifi_SetBeaconPeriod
+ .text.Wifi_SetMode
+                0x023ce454       0x28 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce454                Wifi_SetMode
+ .text.Wifi_SetPreambleType
+                0x023ce47c       0x2c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce47c                Wifi_SetPreambleType
+ .text.Wifi_DisableTempPowerSave
+                0x023ce4a8       0x28 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce4a8                Wifi_DisableTempPowerSave
+ .text.Wifi_Start
+                0x023ce4d0      0x100 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce4d0                Wifi_Start
+ .text.Wifi_TxQueue
+                0x023ce5d0       0xe4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce5d0                Wifi_TxQueue
+ .text.Wifi_GenMgtHeader
+                0x023ce6b4       0xd0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce6b4                Wifi_GenMgtHeader
+ .text.Wifi_SendOpenSystemAuthPacket
+                0x023ce784       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce784                Wifi_SendOpenSystemAuthPacket
+ .text.Wifi_SendSharedKeyAuthPacket
+                0x023ce7e0       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce7e0                Wifi_SendSharedKeyAuthPacket
+ .text.Wifi_SendSharedKeyAuthPacket2
+                0x023ce83c       0xa4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce83c                Wifi_SendSharedKeyAuthPacket2
+ .text.Wifi_SendAssocPacket
+                0x023ce8e0      0x1b8 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ce8e0                Wifi_SendAssocPacket
+ .text.Wifi_SendNullFrame
+                0x023cea98       0x8c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cea98                Wifi_SendNullFrame
+ .text.Wifi_SendPSPollFrame
+                0x023ceb24       0x9c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023ceb24                Wifi_SendPSPollFrame
+ .text.Wifi_ProcessReceivedFrame
+                0x023cebc0      0xccc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cebc0                Wifi_ProcessReceivedFrame
+ .text.Wifi_Intr_RxEnd
+                0x023cf88c      0x110 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cf88c                Wifi_Intr_RxEnd
+ .text.Wifi_CreateTxFrame
+                0x023cf99c        0x8 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cf99c                Wifi_CreateTxFrame
+ .text.Wifi_Sync
+                0x023cf9a4      0x574 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cf9a4                Wifi_Sync
+ .text.Wifi_SetSyncHandler
+                0x023cff18       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cff18                Wifi_SetSyncHandler
+ .text.wifiAddressHandler
+                0x023cff28       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cff28                wifiAddressHandler
+ .text.installWifiFIFO
+                0x023cff44       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023cff44                installWifiFIFO
+ .text.swiFastCopy
+                0x023cff5c      0x124 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+                0x023cff5c                swiFastCopy
+ .text.handleARM7InitSVC
+                0x023d0080        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+                0x023d0080                handleARM7InitSVC
+ .text.getTurnOffScreensTimeout
+                0x023d0084       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0084                getTurnOffScreensTimeout
+ .text.enableTGDSEventHandling
+                0x023d0094       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0094                enableTGDSEventHandling
+ .text.TGDSSetEvent
+                0x023d00a8       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d00a8                TGDSSetEvent
+ .text.disableTGDSEventHandling
+                0x023d00b8       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d00b8                disableTGDSEventHandling
+ .text.setTurnOffScreensTimeout
+                0x023d00cc       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d00cc                setTurnOffScreensTimeout
+ .text.TurnOnScreens
+                0x023d00dc       0x38 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d00dc                TurnOnScreens
+ .text.TurnOffScreens
+                0x023d0114       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0114                TurnOffScreens
+ .text.setAndEnableSleepModeInSeconds
+                0x023d0130       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0130                setAndEnableSleepModeInSeconds
+ .text.enableSleepMode
+                0x023d0170       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0170                enableSleepMode
+ .text.disableSleepMode
+                0x023d0184       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d0184                disableSleepMode
+ .text.setupDefaultExceptionHandler
+                0x023d0198       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d0198                setupDefaultExceptionHandler
+ .text.setupCustomExceptionHandler
+                0x023d01b0       0x24 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d01b0                setupCustomExceptionHandler
+ .text.exception_sysexit
+                0x023d01d4       0x4c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d01d4                exception_sysexit
+ .text.generalARMExceptionHandler
+                0x023d0220       0x48 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d0220                generalARMExceptionHandler
+ .text.resetMemory_ARMCores
+                0x023d0268       0x74 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+                0x023d0268                resetMemory_ARMCores
+ .text.initHardware
+                0x023d02dc       0x60 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+                0x023d02dc                initHardware
+ .text.get_iwram_start
+                0x023d033c        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d033c                get_iwram_start
+ .text.get_iwram_size
+                0x023d0348       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0348                get_iwram_size
+ .text.get_iwram_end
+                0x023d0360        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0360                get_iwram_end
+ .text.get_lma_libend
+                0x023d036c        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d036c                get_lma_libend
+ .text.get_lma_wramend
+                0x023d0378        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0378                get_lma_wramend
+ .text.printf7  0x023d0384       0xdc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0384                printf7
+ .text.writeDebugBuffer7
+                0x023d0460       0xb4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0460                writeDebugBuffer7
+ .text.setTGDSARM7MallocBaseAddress
+                0x023d0514       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0514                setTGDSARM7MallocBaseAddress
+ .text.getTGDSARM7MallocBaseAddress
+                0x023d0524       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0524                getTGDSARM7MallocBaseAddress
+ .text.initARM7Malloc
+                0x023d0534       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d0534                initARM7Malloc
+ .text.ucs2tombs
+                0x023d0590      0x1d8 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+                0x023d0590                ucs2tombs
+ .text.shutdownNDSHardware
+                0x023d0768       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+                0x023d0768                shutdownNDSHardware
+ .text.setBacklight
+                0x023d0788       0x30 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+                0x023d0788                setBacklight
+ .text.dmaFillWord
+                0x023d07b8       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+                0x023d07b8                dmaFillWord
+ .text.dmaFillHalfWord
+                0x023d07f8       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+                0x023d07f8                dmaFillHalfWord
+ .text.dmaTransferHalfWord
+                0x023d0838       0x34 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+                0x023d0838                dmaTransferHalfWord
+ .text.dmaTransferWord
+                0x023d086c       0x34 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+                0x023d086c                dmaTransferWord
+ .text.checkClipping
+                0x023d08a0       0x30 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .text.Write8bitAddrExtArm
+                0x023d08d0       0x30 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d08d0                Write8bitAddrExtArm
+ .text.Write16bitAddrExtArm
+                0x023d0900       0x30 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d0900                Write16bitAddrExtArm
+ .text.Write32bitAddrExtArm
+                0x023d0930       0x30 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d0930                Write32bitAddrExtArm
+ .text.SendFIFOWords
+                0x023d0960       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d0960                SendFIFOWords
+ .text.HandleFifoEmpty
+                0x023d0970       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d0970                HandleFifoEmpty
+ .text.HandleFifoNotEmpty
+                0x023d0988      0xa14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d0988                HandleFifoNotEmpty
+ .text.ReadMemoryExt
+                0x023d139c       0x84 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d139c                ReadMemoryExt
+ .text.SaveMemoryExt
+                0x023d1420       0x64 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d1420                SaveMemoryExt
+ .text.ReadFirmwareARM7Ext
+                0x023d1484       0x6c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+                0x023d1484                ReadFirmwareARM7Ext
+ .text.powerON  0x023d14f0       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+                0x023d14f0                powerON
+ .text.powerOFF
+                0x023d1510       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+                0x023d1510                powerOFF
+ .text.SoundPowerON
+                0x023d1528       0x44 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+                0x023d1528                SoundPowerON
+ .text.readFirmwareSPI
+                0x023d156c       0x84 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+                0x023d156c                readFirmwareSPI
+ .text.PowerManagementDeviceWrite
+                0x023d15f0       0x78 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+                0x023d15f0                PowerManagementDeviceWrite
+ .text.PowerManagementDeviceRead
+                0x023d1668        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+                0x023d1668                PowerManagementDeviceRead
+ .text.ParseFWSettings
+                0x023d1674       0x74 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+                0x023d1674                ParseFWSettings
+ .text.LoadFirmwareSettingsFromFlash
+                0x023d16e8       0xd4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+                0x023d16e8                LoadFirmwareSettingsFromFlash
+ .text.getLanguage
+                0x023d17bc       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+                0x023d17bc                getLanguage
+ .text.initSound
+                0x023d17d0       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d17d0                initSound
+ .text.startSoundSample
+                0x023d17e4      0x10c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d17e4                startSoundSample
+ .text.getsoundSampleContextByIndex
+                0x023d18f0       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d18f0                getsoundSampleContextByIndex
+ .text.freesoundSampleContext
+                0x023d1910       0x58 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1910                freesoundSampleContext
+ .text.initSoundSampleContext
+                0x023d1968       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1968                initSoundSampleContext
+ .text.getFreeSoundSampleContext
+                0x023d19a8       0x50 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d19a8                getFreeSoundSampleContext
+ .text.EnableSoundSampleContext
+                0x023d19f8       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d19f8                EnableSoundSampleContext
+ .text.DisableSoundSampleContext
+                0x023d1a08       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1a08                DisableSoundSampleContext
+ .text.mallocData
+                0x023d1a1c       0x84 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1a1c                mallocData
+ .text._Z8freeDatav
+                0x023d1aa0        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1aa0                _Z8freeDatav
+ .text._Z14setSwapChannelv
+                0x023d1aa4       0x9c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1aa4                _Z14setSwapChannelv
+ .text.setupSound
+                0x023d1b40      0x178 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1b40                setupSound
+ .text.stopSound
+                0x023d1cb8       0x44 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d1cb8                stopSound
+ .text.NDS_IRQHandler
+                0x023d1cfc      0x3a0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+                0x023d1cfc                NDS_IRQHandler
+ .text.IRQInit  0x023d209c       0xac c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+                0x023d209c                IRQInit
+ .text.EnableIrq
+                0x023d2148       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+                0x023d2148                EnableIrq
+ .text.DisableIrq
+                0x023d215c       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+                0x023d215c                DisableIrq
+ .text.XmemSetup
+                0x023d2170       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d2170                XmemSetup
+ .text.XmemInit
+                0x023d218c       0xc0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d218c                XmemInit
+ .text.Xfree    0x023d224c       0x8c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d224c                Xfree
+ .text.XMEM_FreeMem
+                0x023d22d8       0x4c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d22d8                XMEM_FreeMem
+ .text.Xmalloc  0x023d2324      0x130 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d2324                Xmalloc
+ .text.Xcalloc  0x023d2454       0x48 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d2454                Xcalloc
+ .text.ARM7FS_GetFileSize
+                0x023d249c       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d249c                ARM7FS_GetFileSize
+ .text.ARM7FS_BufferReadByIRQ
+                0x023d24ac       0xa4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d24ac                ARM7FS_BufferReadByIRQ
+ .text.ARM7FS_BufferSaveByIRQ
+                0x023d2550       0x98 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d2550                ARM7FS_BufferSaveByIRQ
+ .text.performARM7MP2FSTestCase
+                0x023d25e8      0x13c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d25e8                performARM7MP2FSTestCase
+ .text.initARM7FS
+                0x023d2724       0x28 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d2724                initARM7FS
+ .text.deinitARM7FS
+                0x023d274c        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d274c                deinitARM7FS
+ .text.DeInitWIFI
+                0x023d2750       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+                0x023d2750                DeInitWIFI
+ .text.SPICSHIGH
+                0x023d2760       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+                0x023d2760                SPICSHIGH
+ .text.SPIWAITCNT
+                0x023d2774       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+                0x023d2774                SPIWAITCNT
+ .text.RWSPICNT
+                0x023d278c       0x24 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+                0x023d278c                RWSPICNT
+ .text.doSPIARM7IO
+                0x023d27b0       0x88 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+                0x023d27b0                doSPIARM7IO
+ .text.penIRQread
+                0x023d2838       0x1c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+                0x023d2838                penIRQread
+ .text.XYReadPos
+                0x023d2854      0x194 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+                0x023d2854                XYReadPos
+ .text.XYReadScrPos
+                0x023d29e8       0x48 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+                0x023d29e8                XYReadScrPos
+ .text.rtcTransaction
+                0x023d2a30      0x144 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2a30                rtcTransaction
+ .text.BCDToInt
+                0x023d2b74       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2b74                BCDToInt
+ .text.yrsize   0x023d2b8c       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2b8c                yrsize
+ .text.tm2sec   0x023d2be8       0xa0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2be8                tm2sec
+ .text.get_nds_seconds
+                0x023d2c88       0xcc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2c88                get_nds_seconds
+ .text.nds_get_time7
+                0x023d2d54       0x5c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2d54                nds_get_time7
+ .text.sec2tm   0x023d2db0       0xbc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2db0                sec2tm
+ .text.nds_set_time7
+                0x023d2e6c       0x6c c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2e6c                nds_set_time7
+ .text.getNDSRTCInSeconds
+                0x023d2ed8       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2ed8                getNDSRTCInSeconds
+ .text.getTime  0x023d2ee8        0xc c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2ee8                getTime
+ .text.TGDSgetDayOfWeek
+                0x023d2ef4       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2ef4                TGDSgetDayOfWeek
+ .text.TGDSsetDayOfWeek
+                0x023d2f04       0x10 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+                0x023d2f04                TGDSsetDayOfWeek
+ .text.__aeabi_idiv
+                0x023d2f14       0x70 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+                0x023d2f14                __aeabi_idiv
+ .text.__aeabi_uidiv
+                0x023d2f84       0x14 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+                0x023d2f84                __aeabi_uidiv
+ .text.__udivmodsi4
+                0x023d2f98       0x58 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+                0x023d2f98                __udivmodsi4
+ .text.memset   0x023d2ff0       0x18 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+                0x023d2ff0                memset
+ .text.strlen   0x023d3008       0x20 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+                0x023d3008                strlen
+ *(.gnu.linkonce.t*)
+                0x023d3028                . = ALIGN (0x4)
+                0x023d3028                __text_end__ = .
+                0x023d3028                __bss_vma_start = .
+
+.glue_7         0x023d3028        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x023d3028        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.bss            0x023d3028      0xa24
+ *(.dynbss*)
+ *(.bss)
+ .bss           0x023d3028        0x0 ./build/nds_arm_ld_crt0.o
+ .bss           0x023d3028        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+ .bss           0x023d3028       0x1c c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .bss           0x023d3044        0x0 build/main.o
+ .bss           0x023d3044        0x0 build/Interrupts_app7.o
+ .bss           0x023d3044        0x0 build/dswnifi.o
+ .bss           0x023d3044        0x0 build/ipcfifoTGDSUser.o
+ .bss           0x023d3044        0x0 build/loader.o
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spinlockTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSAsm.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDSasm.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_s.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idivmod.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidivmod.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(arm-asm-memcpy.o)
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+ .bss           0x023d3044        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+ *(.gnu.linkonce.b*.)
+ *(COMMON)
+ COMMON         0x023d3044      0xa00 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3044                arm7q
+                0x023d3844                FlashData
+ COMMON         0x023d3a44        0x8 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d3a44                xmem_table
+                0x023d3a48                xmem_blocks
+                0x023d3a4c                . = ALIGN (0x4)
+                0x023d3a4c                __bss_vma_end = .
+                0x023d3a4c                __sbss_start__ = .
+
+.bss.arm7qlen   0x023d3a4c        0x2
+ .bss.arm7qlen  0x023d3a4c        0x2 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a4c                arm7qlen
+
+.bss.led_state  0x023d3a50        0x4
+ .bss.led_state
+                0x023d3a50        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a50                led_state
+
+.bss.chdata_save5
+                0x023d3a54        0x4
+ .bss.chdata_save5
+                0x023d3a54        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a54                chdata_save5
+
+.bss.synchandler
+                0x023d3a58        0x4
+ .bss.synchandler
+                0x023d3a58        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a58                synchandler
+
+.bss.WifiData   0x023d3a5c        0x4
+ .bss.WifiData  0x023d3a5c        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a5c                WifiData
+
+.bss.keepalive_time
+                0x023d3a60        0x4
+ .bss.keepalive_time
+                0x023d3a60        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3a60                keepalive_time
+
+.bss.isArm7ClosedLid
+                0x023d3a64        0x1
+ .bss.isArm7ClosedLid
+                0x023d3a64        0x1 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+                0x023d3a64                isArm7ClosedLid
+
+.bss.sleepModeEnabled
+                0x023d3a65        0x1
+ .bss.sleepModeEnabled
+                0x023d3a65        0x1 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3a65                sleepModeEnabled
+
+.bss.dsvcount   0x023d3a68        0x4
+ .bss.dsvcount  0x023d3a68        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3a68                dsvcount
+
+.bss.eventsTGDSActive
+                0x023d3a6c        0x1
+ .bss.eventsTGDSActive
+                0x023d3a6c        0x1 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3a6c                eventsTGDSActive
+
+.bss.sleepModeTimeout
+                0x023d3a70        0x4
+ .bss.sleepModeTimeout
+                0x023d3a70        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3a70                sleepModeTimeout
+
+.bss.secondsPassed
+                0x023d3a74        0x4
+ .bss.secondsPassed
+                0x023d3a74        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3a74                secondsPassed
+
+.bss.CustomHandler
+                0x023d3a78        0x4
+ .bss.CustomHandler
+                0x023d3a78        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d3a78                CustomHandler
+
+.bss.exceptionArmRegsShared
+                0x023d3a7c        0x4
+ .bss.exceptionArmRegsShared
+                0x023d3a7c        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+                0x023d3a7c                exceptionArmRegsShared
+
+.bss.arm7ARGVDebugBufferShared
+                0x023d3a80        0x4
+ .bss.arm7ARGVDebugBufferShared
+                0x023d3a80        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a80                arm7ARGVDebugBufferShared
+
+.bss.arm7debugBufferShared
+                0x023d3a84        0x4
+ .bss.arm7debugBufferShared
+                0x023d3a84        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a84                arm7debugBufferShared
+
+.bss.ARM7MallocTop
+                0x023d3a88        0x4
+ .bss.ARM7MallocTop
+                0x023d3a88        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a88                ARM7MallocTop
+
+.bss.arm7ARGVBufferShared
+                0x023d3a8c        0x4
+ .bss.arm7ARGVBufferShared
+                0x023d3a8c        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a8c                arm7ARGVBufferShared
+
+.bss.ARM7MallocBaseAddress
+                0x023d3a90        0x4
+ .bss.ARM7MallocBaseAddress
+                0x023d3a90        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a90                ARM7MallocBaseAddress
+
+.bss.printfBufferShared
+                0x023d3a94        0x4
+ .bss.printfBufferShared
+                0x023d3a94        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+                0x023d3a94                printfBufferShared
+
+.bss.lastL      0x023d3a98        0x4
+ .bss.lastL     0x023d3a98        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3a98                lastL
+
+.bss.SoundTGDSCurChannel
+                0x023d3a9c        0x4
+ .bss.SoundTGDSCurChannel
+                0x023d3a9c        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3a9c                SoundTGDSCurChannel
+
+.bss.lastR      0x023d3aa0        0x4
+ .bss.lastR     0x023d3aa0        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3aa0                lastR
+
+.bss.strpcmR1   0x023d3aa4        0x4
+ .bss.strpcmR1  0x023d3aa4        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3aa4                strpcmR1
+
+.bss.sndRate    0x023d3aa8        0x4
+ .bss.sndRate   0x023d3aa8        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3aa8                sndRate
+
+.bss.strpcmR0   0x023d3aac        0x4
+ .bss.strpcmR0  0x023d3aac        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3aac                strpcmR0
+
+.bss.strpcmL0   0x023d3ab0        0x4
+ .bss.strpcmL0  0x023d3ab0        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3ab0                strpcmL0
+
+.bss.strpcmL1   0x023d3ab4        0x4
+ .bss.strpcmL1  0x023d3ab4        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3ab4                strpcmL1
+
+.bss.soundSampleContextCurrentMode
+                0x023d3ab8        0x4
+ .bss.soundSampleContextCurrentMode
+                0x023d3ab8        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3ab8                soundSampleContextCurrentMode
+
+.bss.sndCursor  0x023d3abc        0x4
+ .bss.sndCursor
+                0x023d3abc        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3abc                sndCursor
+
+.bss.sampleLen  0x023d3ac0        0x4
+ .bss.sampleLen
+                0x023d3ac0        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3ac0                sampleLen
+
+.bss.micBufLoc  0x023d3ac4        0x4
+ .bss.micBufLoc
+                0x023d3ac4        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3ac4                micBufLoc
+
+.bss.XMEM_TABLESIZE
+                0x023d3ac8        0x4
+ .bss.XMEM_TABLESIZE
+                0x023d3ac8        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d3ac8                XMEM_TABLESIZE
+
+.bss.XMEM_BLOCKCOUNT
+                0x023d3acc        0x4
+ .bss.XMEM_BLOCKCOUNT
+                0x023d3acc        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d3acc                XMEM_BLOCKCOUNT
+
+.bss.ARM7FS_HandleMethod
+                0x023d3ad0        0x4
+ .bss.ARM7FS_HandleMethod
+                0x023d3ad0        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+                0x023d3ad0                ARM7FS_HandleMethod
+
+.bss.LastTSCPosX
+                0x023d3ad4        0x4
+ .bss.LastTSCPosX
+                0x023d3ad4        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+
+.bss.LastTSCPosY
+                0x023d3ad8        0x4
+ .bss.LastTSCPosY
+                0x023d3ad8        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+
+.sbss           0x023d3adc        0x0
+ *(.sbss*)
+                0x023d3adc                . = ALIGN (0x4)
+                0x023d3adc                __sbss_vma_end = .
+                0x023d3adc                __data_start__ = .
+
+.data           0x023d3adc      0x194
+ *(.data)
+ .data          0x023d3adc        0x0 ./build/nds_arm_ld_crt0.o
+ .data          0x023d3adc        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+ .data          0x023d3adc        0x4 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+                0x023d3adc                __dso_handle
+ .data          0x023d3ae0        0x0 build/main.o
+ .data          0x023d3ae0        0x0 build/Interrupts_app7.o
+ .data          0x023d3ae0        0x0 build/dswnifi.o
+ .data          0x023d3ae0        0x0 build/ipcfifoTGDSUser.o
+ .data          0x023d3ae0        0x0 build/loader.o
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spinlockTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSAsm.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDSasm.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_s.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idivmod.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidivmod.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(arm-asm-memcpy.o)
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+ .data          0x023d3ae0        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+ *(.data.*)
+ .data.count_ofs_list
+                0x023d3ae0       0x24 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3ae0                count_ofs_list
+ .data.MAC_Vallist
+                0x023d3b04       0x58 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3b04                MAC_Vallist
+ .data.RF_Reglist
+                0x023d3b5c       0x40 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3b5c                RF_Reglist
+ .data.MAC_Reglist
+                0x023d3b9c       0x58 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+                0x023d3b9c                MAC_Reglist
+ .data.TGDSEvent
+                0x023d3bf4        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+                0x023d3bf4                TGDSEvent
+ .data.pollCount
+                0x023d3bf8        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3bf8                pollCount
+ .data.multRate
+                0x023d3bfc        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+                0x023d3bfc                multRate
+ .data.XMEMTOTALSIZE
+                0x023d3c00        0x4 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d3c00                XMEMTOTALSIZE
+ .data.XMEM_BLOCKSIZE
+                0x023d3c04        0x2 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+                0x023d3c04                XMEM_BLOCKSIZE
+ *fill*         0x023d3c06        0x2 ff
+ .data.ldmsize  0x023d3c08       0x34 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .data.dmsize   0x023d3c3c       0x34 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ *(.gnu.linkonce.d*)
+                0x023d3c70                . = ALIGN (0x4)
+                0x023d3c70                __data_end__ = .
+                0x023d3c70                __rodata_start__ = .
+
+.tm_clone_table
+                0x023d3c70        0x0
+ .tm_clone_table
+                0x023d3c70        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .tm_clone_table
+                0x023d3c70        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+
+.rodata         0x023d3c70       0xa4
+ *(.rdata)
+ *(.rodata)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x023d3c70       0x5f c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .rodata.str1.1
+                0x023d3ccf       0x44 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ *(.gnu.linkonce.r.*)
+                0x023d3d14                . = ALIGN (0x4)
+ *fill*         0x023d3d13        0x1 ff
+                0x023d3d14                __rodata_end__ = .
+                0x023d3d14                __eh_frame_start__ = .
+
+.eh_frame       0x023d3d14        0x4
+ *(.eh_frame*)
+ .eh_frame      0x023d3d14        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .eh_frame      0x023d3d14        0x4 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+                0x023d3d18                . = ALIGN (0x4)
+                0x023d3d18                __eh_frame_end__ = .
+                0x023d3d18                __jcr_start__ = .
+
+.jcr            0x023d3d18        0x4
+ *(.jcr*)
+ .jcr           0x023d3d18        0x0 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .jcr           0x023d3d18        0x4 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+                0x023d3d1c                . = ALIGN (0x4)
+                0x023d3d1c                __jcr_end__ = .
+                0x023d3d1c                __vfp11_veneer_start__ = .
+
+.vfp11_veneer   0x023d3d1c        0x0
+ *(.vfp11_veneer*)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+                0x023d3d1c                . = ALIGN (0x4)
+                0x023d3d1c                __vfp11_veneer_end__ = .
+                0x023d3d1c                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx)
+ *(.ARM.exidx*)
+ *(.gnu.linkonce.armexidx.)
+ *(.gnu.linkonce.armexidx.*)
+                0x023d3d1c                __exidx_end = .
+                0x023d3d1c                __v4_bx_start__ = .
+
+.v4_bx          0x023d3d1c        0x0
+ *(.v4_bx*)
+ .v4_bx         0x00000000        0x0 linker stubs
+                0x023d3d1c                . = ALIGN (0x4)
+                0x023d3d1c                __v4_bx_end__ = .
+                0x023d3d1c                __iplt_start__ = .
+
+.iplt           0x023d3d1c        0x0
+ *(.iplt*)
+ .iplt          0x00000000        0x0 ./build/nds_arm_ld_crt0.o
+                0x023d3d1c                . = ALIGN (0x4)
+                0x023d3d1c                __iplt_end__ = .
+                0x023d3d1c                __igot_plt_start__ = .
+
+.igot.plt       0x023d3d1c        0x0
+ *(.igot.plt*)
+ .igot.plt      0x00000000        0x0 ./build/nds_arm_ld_crt0.o
+                0x023d3d1c                . = ALIGN (0x4)
+                0x023d3d1c                __igot_plt_end__ = .
+                0x023d3d1c                __rel_dyn_start__ = .
+
+.rel.dyn        0x023d3d1c        0x0
+ *(.rel.dyn*)
+                0x023d3d1c                . = ALIGN (0x4)
+ .rel.iplt      0x00000000        0x0 ./build/nds_arm_ld_crt0.o
+                0x023d3d1c                __rel_dyn_end__ = .
+                0x023d3d1c                __fini_start__ = .
+
+.fini           0x023d3d1c       0x18
+ *(.fini*)
+ .fini          0x023d3d1c        0xc c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+                0x023d3d1c                _fini
+ .fini          0x023d3d28        0xc c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+                0x023d3d34                . = ALIGN (0x4)
+                0x023d3d34                __fini_end__ = .
+                0x023d3d34                __lib__end__ = __fini_end__
+                0x023d3d34                __vma_stub_end__ = __lib__end__
+LOAD ./build/nds_arm_ld_crt0.o
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+LOAD build/main.o
+LOAD build/Interrupts_app7.o
+LOAD build/dswnifi.o
+LOAD build/ipcfifoTGDSUser.o
+LOAD build/loader.o
+LOAD c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a
+LOAD c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/\libstdc++.a
+LOAD c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2\libgcc.a
+START GROUP
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2\libgcc.a
+LOAD c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/\libc.a
+END GROUP
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+LOAD c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+OUTPUT(build/arm7-nonstripped.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x20 ./build/nds_arm_ld_crt0.o
+ .ARM.attributes
+                0x00000020       0x16 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crti.o
+ .ARM.attributes
+                0x00000036       0x30 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+ .ARM.attributes
+                0x00000066       0x2a build/main.o
+ .ARM.attributes
+                0x00000090       0x2a build/Interrupts_app7.o
+ .ARM.attributes
+                0x000000ba       0x2a build/dswnifi.o
+ .ARM.attributes
+                0x000000e4       0x2a build/ipcfifoTGDSUser.o
+ .ARM.attributes
+                0x0000010e       0x2a build/loader.o
+ .ARM.attributes
+                0x00000138       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .ARM.attributes
+                0x00000162       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+ .ARM.attributes
+                0x0000018c       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+ .ARM.attributes
+                0x000001b6       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .ARM.attributes
+                0x000001e0       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+ .ARM.attributes
+                0x0000020a       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+ .ARM.attributes
+                0x00000234       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+ .ARM.attributes
+                0x0000025e       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+ .ARM.attributes
+                0x00000288       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .ARM.attributes
+                0x000002b2       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+ .ARM.attributes
+                0x000002dc       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+ .ARM.attributes
+                0x00000306       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+ .ARM.attributes
+                0x00000330       0x21 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spinlockTGDS.o)
+ .ARM.attributes
+                0x00000351       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSAsm.o)
+ .ARM.attributes
+                0x0000036b       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDSasm.o)
+ .ARM.attributes
+                0x00000385       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_s.o)
+ .ARM.attributes
+                0x0000039f       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+ .ARM.attributes
+                0x000003c9       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+ .ARM.attributes
+                0x000003f3       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ .ARM.attributes
+                0x0000041d       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+ .ARM.attributes
+                0x00000447       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+ .ARM.attributes
+                0x00000471       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+ .ARM.attributes
+                0x0000049b       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+ .ARM.attributes
+                0x000004c5       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .ARM.attributes
+                0x000004ef       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+ .ARM.attributes
+                0x00000519       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+ .ARM.attributes
+                0x00000543       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+ .ARM.attributes
+                0x0000056d       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+ .ARM.attributes
+                0x00000597       0x2a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+ .ARM.attributes
+                0x000005c1       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idivmod.o)
+ .ARM.attributes
+                0x000005db       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidivmod.o)
+ .ARM.attributes
+                0x000005f5       0x1a c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(arm-asm-memcpy.o)
+ .ARM.attributes
+                0x0000060f       0x30 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
+ .ARM.attributes
+                0x0000063f       0x18 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtn.o
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtbegin.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 build/main.o
+ .comment       0x00000000       0x12 build/Interrupts_app7.o
+ .comment       0x00000000       0x12 build/dswnifi.o
+ .comment       0x00000000       0x12 build/ipcfifoTGDSUser.o
+ .comment       0x00000000       0x12 build/loader.o
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_arm7.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(biosTGDSC.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(eventsTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(exceptionTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(initNDSTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(posixHandleTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(utilsTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(dmaTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ipcfifoTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(powerTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spifwTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(usrsettingsTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(soundTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(InterruptsARMCores_c.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(xmem.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(ARM7FS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(wifi_shared.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spiTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(spitscTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libtoolchaingen7.a(clockTGDS.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_idiv.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__aeabi_uidiv.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(__udivmodsi4.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(memset.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/arm-eabi/lib/newlib-nano-2.1-nds/\libcnano7.a(strlen.o)
+ .comment       0x00000000       0x12 c:/toolchain_generic/6.2_2016q4/bin/../lib/gcc/arm-eabi/4.9.2/crtend.o
