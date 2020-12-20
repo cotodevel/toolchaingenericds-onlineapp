@@ -42,7 +42,7 @@ extern int k, i, size, srv_len,cli_len, c;
 extern int filehandle;
 extern bool FTPActiveMode;
 
-extern void ftpInit();
+extern void ftpInit(bool isFTPServer);
 
 #ifdef __cplusplus
 }

@@ -92,7 +92,9 @@ export DIRS_ARM9_SRC = data/	\
 			../common/	\
 			../common/templateCode/source/	\
 			../common/templateCode/data/arm9/	\
-			source/ftp/
+			source/FTPServer/	\
+			source/FTPClient/
+			
 			
 export DIRS_ARM9_HEADER = data/	\
 			build/	\
@@ -103,7 +105,8 @@ export DIRS_ARM9_HEADER = data/	\
 			../common/templateCode/source/	\
 			../common/templateCode/data/arm9/	\
 			../$(PosIndCodeDIR_FILENAME)/$(DIR_ARM9)/include/	\
-			source/ftp/
+			source/FTPServer/	\
+			source/FTPClient/
 			
 # Build Target(s)	(both processors here)
 all: $(EXECUTABLE_FNAME)

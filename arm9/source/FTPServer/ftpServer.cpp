@@ -10,6 +10,9 @@
 
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
 
+#include "FTPClientLib.h"
+#include "FTPClientMisc.h"
+
 bool FTPActiveMode = false;
 
 //server ctx for sock1
@@ -37,15 +40,27 @@ int k, size, srv_len, cli_len = 0, c;
 int filehandle;
 bool globaldatasocketEnabled = false;
 
-void ftpInit(){
-	strcpy((char*)CWDFTP,TGDSDirectorySeparator);
-	setFTPState(FTP_SERVER_CLIENT_DISABLED);
+void ftpInit(bool isFTPServer){
+	//FTP Server mode
+	if(isFTPServer == true){
+		strcpy((char*)CWDFTP,TGDSDirectorySeparator);
+		setFTPState(FTP_SERVER_IDLE);
+	}
+	
+	//FTP Client mode
+	else{
+		strcpy((char*)CWDFTP,TGDSDirectorySeparator);
+		setFTPState(FTP_CLIENT_IDLE);
+	}
 }
 
 int FTPServerService(){
 	int curFTPStatus = 0;
-	//handle FTP Server handshake internal cases
+	
+	
 	switch(getFTPState()){
+		
+		//FTP Server handshake 
 		case(FTP_SERVER_IDLE):{
 			switch_dswnifi_mode(dswifi_idlemode);
 			connectDSWIFIAP(DSWNIFI_ENTER_WIFIMODE);
@@ -85,6 +100,8 @@ int FTPServerService(){
 			setFTPState(FTP_SERVER_ACTIVE);
 			curFTPStatus = FTP_SERVER_ACTIVE;
 		}
+		break;
+		
 		case(FTP_SERVER_ACTIVE):{
 			
 			//Actual FTP Service			
@@ -368,6 +385,81 @@ int FTPServerService(){
 			curFTPStatus = FTP_SERVER_ACTIVE;
 		}
 		break;
+		
+		
+		//FTP Client handshake
+		case(FTP_CLIENT_IDLE):{
+			
+			setFTPState(FTP_CLIENT_CONNECTING);
+			curFTPStatus = FTP_CLIENT_ACTIVE;
+		}
+		break;
+		
+		case(FTP_CLIENT_CONNECTING):{
+			
+			printf("FTP Client Start. Init WIFI.");
+			
+			//FTP start
+			switch_dswnifi_mode(dswifi_idlemode);
+			connectDSWIFIAP(DSWNIFI_ENTER_WIFIMODE);
+			if(sock1 != -1){
+				disconnectAsync(sock1);
+			}
+			if(server_datasocket != -1){
+				disconnectAsync(server_datasocket);
+			}
+			
+			char * FTPHostAddress = "ftp.byethost31.com";
+			char * FTPUser = "b31_27241871";
+			char * FTPPass = "Licantropo1";
+			
+			bool connected = false;
+			
+			if( !FtpConnect(FTPHostAddress,&conn))
+			{
+				connected = false;
+				//errorMsg += "ftpcon, ";
+			}
+			else connected = true;
+
+			if(connected && !FtpLogin(FTPUser,FTPPass, conn))
+			{
+				connected = false;
+				//errorMsg += "ftpLogin.";
+			}
+			if( connected )
+			{
+				
+				//Getting the local file listing
+				localDir = get_dir("/");
+				//getFileListing(localDir, localFiles);
+
+				//Getting the remote file listing
+				remoteDir = get_remote_dir(NULL, conn);
+				//getFileListing(remoteDir, remoteFiles);
+				if( FtpPwd(curRemote, 256, conn) )
+				{
+					
+				}
+				printf("FTP Server connect OK!!");
+			}
+			else
+			{
+				printf("Error connecting to FTP Server....");
+			}
+			
+			setFTPState(FTP_CLIENT_ACTIVE);
+			curFTPStatus = FTP_CLIENT_ACTIVE;
+		}
+		break;
+		
+		case(FTP_CLIENT_ACTIVE):{
+			curFTPStatus = FTP_CLIENT_ACTIVE;
+		}
+		break;
+		
+		
+		
 	}
 	return curFTPStatus;
 }

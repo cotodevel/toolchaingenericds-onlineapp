@@ -293,18 +293,18 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	//restoreFBModeMainEngine();
 	
 	menuShow();
-	ftpInit();
+	bool isFTPServer = false;
+	ftpInit(isFTPServer);
 	//fillNDSLoaderContext((char*)"0:/ToolchainGenericDS-multiboot.nds");
 	
 	while (1){
-		sint32 FTP_SERVER_STATUS = FTPServerService();
-		switch(FTP_SERVER_STATUS){
-			//Server Running
+		switch(FTPServerService()){
+			
+			//FTP Server cases
 			case(FTP_SERVER_ACTIVE):{
 				
 			}
 			break;
-			
 			//Server Disconnected/Idle!
 			case(FTP_SERVER_CLIENT_DISCONNECTED):{				
 				/*
@@ -321,6 +321,19 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 				*/
 			}
 			break;
+			
+			
+			//FTP Client cases
+			case(FTP_CLIENT_ACTIVE):{
+				
+			}
+			break;
+			
+			case(FTP_CLIENT_DISCONNECTED_FROM_SERVER):{
+				
+			}
+			break;
+			
 		}
 		
 		scanKeys();

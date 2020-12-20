@@ -60,7 +60,12 @@ class FileDirEntry
 #define FTP_SERVER_CONNECTING (uint32)(0xffff1011)			//FTP Server <--> FTP Client accept and start initial handshake 
 #define FTP_SERVER_ACTIVE (uint32)(0xffff1013)				//FTP Server <--> FTP Client Connected session. If something fails it will disconnect here and status will be the below this one.
 #define FTP_SERVER_CLIENT_DISCONNECTED (sint32)(0)			//FTP Server has just disconnected from FTP Client.
-#define FTP_SERVER_CLIENT_DISABLED (sint32)(-1)			//FTP Server is unused
+
+#define FTP_CLIENT_IDLE (uint32)(0xffff1014)	//FTP Client is idle
+#define FTP_CLIENT_CONNECTING (uint32)(0xffff1015)	//FTP Client <--> FTP Server accept and start initial handshake 
+#define FTP_CLIENT_ACTIVE (uint32)(0xffff1016)	//FTP Client <--> FTP Server Connected session. If something fails it will disconnect here and status will be the below this one.
+#define FTP_CLIENT_DISCONNECTED_FROM_SERVER (uint32)(0xffff1017)	//FTP Client has just disconnected from FTP Server.
+
 
 #define SENDRECVBUF_SIZE (int)(512*1024)
 
