@@ -383,14 +383,9 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 			separateExtension(tmpName, ext);
 			strlwr(ext);
 			if(strncmp(ext,".zip", 4) == 0){
-				//Decompress File and get internal ZIP name for use later
-				//printf("ZIP FILE!!");
 				char unzippedFile[MAX_TGDSFILENAME_LENGTH+1];
 				load_gz((char*)curChosenBrowseFile, (char*)unzippedFile);
 				strcpy(curChosenBrowseFile, unzippedFile);
-				//sbrk(-(1150*1024));
-				//printf("ZIP FILE!! :%s", curChosenBrowseFile);
-				//while(1==1){}
 			}
 			
 			fillNDSLoaderContext(curChosenBrowseFile);
