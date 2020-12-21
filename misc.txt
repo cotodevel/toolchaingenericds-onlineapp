@@ -1,0 +1,2 @@
+since we rely on a non blocking socket, the FTP Client library depends on a blocking socket. Thus, we must adapt the TGDS-FTPServer calls into FTPClient (non blocking).
+That way, re-implementing FTP Client commands as non blocking, should allow me to properly implement a FTPClient. Todo.
