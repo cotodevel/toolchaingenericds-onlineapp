@@ -101,9 +101,7 @@ int FTPServerService(){
 			curFTPStatus = FTP_SERVER_ACTIVE;
 		}
 		break;
-		
 		case(FTP_SERVER_ACTIVE):{
-			
 			//Actual FTP Service			
 			char buffer[MAX_TGDSFILENAME_LENGTH] = {0};
 			int res = recv(sock2, buffer, sizeof(buffer), 0);
@@ -111,70 +109,42 @@ int FTPServerService(){
 			if(res > 0){
 				int len = strlen(buffer);
 				if(len > 3){
-					char command[5] = {0};
-					char Debugcommand[5] = {0};
-					memcpy((uint8*)&command[0], buffer, 4);
-					command[4] = '\0';
-					strcpy (Debugcommand, command);
-					bool isValidcmd = false;
-					
-					//four or less cmds
-					if(!strcmp(command, "USER"))
-					{
+					if(!strncmp(buffer, "USER", 4)){
 						sendResponse = ftp_cmd_USER(sock2, 200, "password ?");
-						isValidcmd = true;
 					}
-					else if(!strcmp(command, "PASS"))
-					{
+					else if(!strncmp(buffer, "PASS", 4)){
 						sendResponse = ftp_cmd_PASS(sock2, 200, "ok");
-						isValidcmd = true;
 					}
-					else if(!strcmp(command, "AUTH"))
-					{
+					else if(!strncmp(buffer, "AUTH", 4)){
 						sendResponse = ftpResponseSender(sock2, 504, "AUTH not supported");
-						isValidcmd = true;
 					}
-					else if(!strcmp(command, "BYE") || !strcmp(command, "QUIT"))
-					{
+					else if(!strncmp(buffer, "BYE", 3) || !strncmp(buffer, "QUIT", 4)){
 						printf("FTP server quitting.. ");
 						int i = 1;
 						sendResponse = send(sock2, &i, sizeof(int), 0);
-						isValidcmd = true;
 					}
-					
-					else if(!strcmp(command, "STOR")){
+					else if(!strncmp(buffer, "STOR", 4)){
 						sendResponse = ftp_cmd_STOR(sock2, 0, buffer);
-						isValidcmd = true;
 					}
-					
-					else if(!strcmp(command, "RETR")){
+					else if(!strncmp(buffer, "RETR", 4)){
 						sendResponse = ftp_cmd_RETR(sock2, 0, buffer);
-						isValidcmd = true;
 					}
 					//default unsupported, accordingly by: https://tools.ietf.org/html/rfc2389
-					else if(!strcmp(command, "FEAT")){
+					else if(!strncmp(buffer, "FEAT", 4)){
 						sendResponse = ftp_cmd_FEAT(sock2, 211, "no-features");
-						isValidcmd = true;
 					}
 					//default unsupported, accordingly by: https://cr.yp.to/ftp/syst.html
-					else if(!strcmp(command, "SYST")){
+					else if(!strncmp(buffer, "SYST", 4)){
 						sendResponse = ftp_cmd_SYST(sock2, 215, "UNIX Type: L8");
-						isValidcmd = true;
 					}
 					//TYPE: I binary data by default
-					else if(!strcmp(command, "TYPE")){
+					else if(!strncmp(buffer, "TYPE", 4)){
 						sendResponse = ftp_cmd_TYPE(sock2, 200, "Switching to Binary mode.");
-						isValidcmd = true;
 					}
-					
-					else if(!strcmp(command, "CDUP"))
-					{
+					else if(!strncmp(buffer, "CDUP", 4)){
 						ftp_cmd_CDUP(sock2, 0, "");
-						isValidcmd = true;
 					}
-					
-					else if(!strcmp(command, "PORT"))
-					{
+					else if(!strncmp(buffer, "PORT", 4)){
 						//Connect to Client IP/Port here (DS is Client @ Client Data Port)
 						char clientIP[MAX_TGDSFILENAME_LENGTH] = {0};
 						char *theIpAndPort;
@@ -192,13 +162,10 @@ int FTPServerService(){
 						strcpy(client_datasocketIP , clientIP);
 						
 						sendResponse = ftp_cmd_USER(sock2, 200, "PORT command successful.");
-						isValidcmd = true;
 					}
-					
 					//PASV: mode that opens a data port aside the current server port, so binary data can be transfered through it.
-					else if(!strcmp(command, "PASV")){
+					else if(!strncmp(buffer, "PASV", 4)){
 						FTPActiveMode = false;	//enter FTP passive mode
-						
 						//printf("PASV > set data transfer port @ %d", FTP_SERVER_SERVICE_DATAPORT);
 						char buf[MAX_TGDSFILENAME_LENGTH] = {0};
 						int currentIP = (int)Wifi_GetIP();
@@ -208,41 +175,30 @@ int FTPServerService(){
 						if(buggedOctet0 < 0){
 							buggedOctet0 +=256;
 						}
-						
 						int buggedOctet1 = (int)((currentIP>>8)&0xFF);
 						if(buggedOctet1 < 0){
 							buggedOctet1 +=256;
 						}
-						
 						int buggedOctet2 = (int)(((currentIP>>16)&0xFF));
 						if(buggedOctet2 < 0){
 							buggedOctet2 +=256;
 						}
-						
 						int buggedOctet3 = (int)(currentIP>>24);
 						if(buggedOctet3 < 0){
 							buggedOctet3 +=256;
 						}
-						
 						sprintf(buf, "Entering Passive Mode (%d,%d,%d,%d,%d,%d).", (int)buggedOctet0, (int)buggedOctet1, (int)buggedOctet2, (int)buggedOctet3, (int)(dataPort>>8), (int)(dataPort&0xFF));
 						sendResponse = ftp_cmd_PASV(sock2, 227, buf);
-						isValidcmd = true;
 					}
-					
-					else if(!strcmp(command, "LIST")){
+					else if(!strncmp(buffer, "LIST", 4)){
 						sendResponse = ftp_cmd_LIST(sock2, 0, buffer);
-						isValidcmd = true;
 					}
-					
-					
-					else if(!strcmp(command, "DELE")){
-						char * fname = getFtpCommandArg("DELE", buffer, 0);  
-						
+					else if(!strncmp(buffer, "DELE", 4)){
+						char * fname = getFtpCommandArg("DELE", buffer, 0);
 						char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
 						strcpy(tmpBuf, fname);
 						parsefileNameTGDS(tmpBuf);
 						string fnameRemote = (string(tmpBuf));
-						
 						int retVal = remove(fnameRemote.c_str());
 						if(retVal==0){
 							sendResponse = ftpResponseSender(sock2, 250, "Delete Command successful.");
@@ -250,130 +206,97 @@ int FTPServerService(){
 						else{
 							sendResponse = ftpResponseSender(sock2, 450, "Delete Command error.");
 						}
-						
 						printf("trying DELE: [%s] ret:[%d]", fnameRemote.c_str(),retVal);
-						
-						isValidcmd = true;
 					}
-					
-					if(isValidcmd == false){
-						//three or less cmds
-						command[3] = '\0';
-						
-						if(!strcmp(command,"GET"))
+					else if(!strncmp(buffer,"GET", 3)){
+						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
+						/*
+						sscanf(buf, "%s%s", filename, filename);
+						stat(filename, &obj);
+						filehandle = open(filename, O_RDONLY);
+						size = obj.st_size;
+						if(filehandle == -1)
+							size = 0;
+						sendResponse = send(sock2, &size, sizeof(int), 0);
+						if(size){
+							sendfile(sock2, filehandle, NULL, size);
+						}
+						*/
+					}
+					else if(!strncmp(buffer, "PUT", 3)){
+						printf("put command! ");
+						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
+						/*
+						int c = 0;
+						char *f;
+						sscanf(buf+strlen(command), "%s", filename);
+						recv(sock2, &size, sizeof(int), 0);
+						int i = 1;
+						while(1)
 						{
-							printf("get command!");
-							sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
-							/*
-							sscanf(buf, "%s%s", filename, filename);
-							stat(filename, &obj);
-							filehandle = open(filename, O_RDONLY);
-							size = obj.st_size;
+							filehandle = open(filename, O_CREAT | O_EXCL | O_WRONLY, 0666);
 							if(filehandle == -1)
-								size = 0;
-							sendResponse = send(sock2, &size, sizeof(int), 0);
-							if(size){
-								sendfile(sock2, filehandle, NULL, size);
-							}
-							*/
-							isValidcmd = true;
-						}
-						else if(!strcmp(command, "PUT"))
-						{
-							printf("put command! ");
-							sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
-							/*
-							int c = 0;
-							char *f;
-							sscanf(buf+strlen(command), "%s", filename);
-							recv(sock2, &size, sizeof(int), 0);
-							int i = 1;
-							while(1)
 							{
-								filehandle = open(filename, O_CREAT | O_EXCL | O_WRONLY, 0666);
-								if(filehandle == -1)
-								{
-									sprintf(filename + strlen(filename), "%d", i);
-								}
-								else
-									break;
+								sprintf(filename + strlen(filename), "%d", i);
 							}
-							f = TGDSARM9Malloc(size);
-							recv(sock2, f, size, 0);
-							c = write(filehandle, f, size);
-							close(filehandle);
-							sendResponse = send(sock2, &c, sizeof(int), 0);
-							*/
-							isValidcmd = true;
+							else
+								break;
 						}
-						else if(!strcmp(command, "CWD")){
-							
-							char * CurrentWorkingDirectory = (char*)CWDFTP;
-							char *pathToEnter;
-							pathToEnter = getFtpCommandArg("CWD", buffer, 0);
-							
-							if(chdir((char*)pathToEnter) != 0) {
-								printf(" CWD fail => %s ", pathToEnter);
-								return ftpResponseSender(sock2, 550, "Error changing directory");
-							}
-							else{
-								printf("1 CWD OK => %s ", pathToEnter);
-								strcpy(CurrentWorkingDirectory, pathToEnter);
-								return ftpResponseSender(sock2, 250, "Directory successfully changed.");
-							}
-							
-							isValidcmd = true;
+						f = TGDSARM9Malloc(size);
+						recv(sock2, f, size, 0);
+						c = write(filehandle, f, size);
+						close(filehandle);
+						sendResponse = send(sock2, &c, sizeof(int), 0);
+						*/
+					}
+					else if(!strncmp(buffer, "CWD", 3)){
+						char * CurrentWorkingDirectory = (char*)CWDFTP;
+						char *pathToEnter;
+						pathToEnter = getFtpCommandArg("CWD", buffer, 0);
+						if(chdir((char*)pathToEnter) != 0) {
+							printf(" CWD fail => %s ", pathToEnter);
+							return ftpResponseSender(sock2, 550, "Error changing directory");
 						}
-						
-						//print working directory
-						else if(!strcmp(command, "PWD")){
-							char * CurrentWorkingDirectory = (char*)CWDFTP;
-							sendResponse = ftp_cmd_PWD(sock2, 257, CurrentWorkingDirectory);
-							isValidcmd = true;
-						}
-						else if(!strcmp(command, "MKD")){
-							sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
-							isValidcmd = true;
-						}
-						else if(!strcmp(command, "RMD")){
-							sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
-							isValidcmd = true;
+						else{
+							printf("1 CWD OK => %s ", pathToEnter);
+							strcpy(CurrentWorkingDirectory, pathToEnter);
+							return ftpResponseSender(sock2, 250, "Directory successfully changed.");
 						}
 					}
-					
-					if(isValidcmd == false){
-						//two or less cmds
-						command[2] = '\0';
-						
-						if(!strcmp(command, "LS"))
-						{
-							printf("ls command!");
-							/*
-							system("ls >temps.txt");
-							stat("temps.txt",&obj);
-							size = obj.st_size;
-							sendResponse = send(sock2, &size, sizeof(int),0);
-							filehandle = open("temps.txt", O_RDONLY);
-							//sendfile(sock2,filehandle,NULL,size);
-							*/
-							sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
-							isValidcmd = true;
-						}
-						else if(!strcmp(command, "CD"))
-						{
-							if(chdir((buffer+3)) == 0){
-								c = 1;
-							}
-							else{
-								c = 0;
-							}
-							sendResponse = send(sock2, &c, sizeof(int), 0);
-							isValidcmd = true;
-						}
+					//print working directory
+					else if(!strncmp(buffer, "PWD", 3)){
+						char * CurrentWorkingDirectory = (char*)CWDFTP;
+						sendResponse = ftp_cmd_PWD(sock2, 257, CurrentWorkingDirectory);
 					}
-					
-					if(isValidcmd == false){
-						printf("unhandled command: [%s]",Debugcommand);
+					else if(!strncmp(buffer, "MKD", 3)){
+						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
+					}
+					else if(!strncmp(buffer, "RMD", 3)){
+						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
+					}
+					else if(!strncmp(buffer, "LS", 2)){
+						printf("ls command!");
+						/*
+						system("ls >temps.txt");
+						stat("temps.txt",&obj);
+						size = obj.st_size;
+						sendResponse = send(sock2, &size, sizeof(int),0);
+						filehandle = open("temps.txt", O_RDONLY);
+						//sendfile(sock2,filehandle,NULL,size);
+						*/
+						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
+					}
+					else if(!strncmp(buffer, "CD", 2)){
+						if(chdir((buffer+3)) == 0){
+							c = 1;
+						}
+						else{
+							c = 0;
+						}
+						sendResponse = send(sock2, &c, sizeof(int), 0);
+					}
+					else{
+						printf("unhandled command: [%s]",buffer);
 						sendResponse = ftpResponseSender(sock2, 502, "invalid command");
 					}
 				}
