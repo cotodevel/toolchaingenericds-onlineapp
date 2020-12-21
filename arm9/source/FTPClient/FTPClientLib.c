@@ -207,7 +207,7 @@ static int readline(char *buf,int max,struct NetBuf *ctl)
     int eof = 0;
 
     if((ctl->dir != FTPLIB_CONTROL) && (ctl->dir != FTPLIB_READ)) {
-		printf("ctl->dir != _CONTROL && != _READ\n");
+		printf("ctl->dir != _CONTROL && != _READ");
 		return -1;
     }
     if(max == 0)
@@ -259,7 +259,7 @@ static int readline(char *buf,int max,struct NetBuf *ctl)
 		}
 		if(!socket_wait(ctl))
 		{
-			printf("retval set and returning\n");
+			printf("retval set and returning");
 			return retval;
 		}
     	
@@ -267,7 +267,7 @@ static int readline(char *buf,int max,struct NetBuf *ctl)
 		{
 			// For some reason at the end of file -1 is returned instead of expected 0
 			//Seems to be erroring here
-			printf("retval set to -1\n");
+			printf("retval set to -1");
 			retval = -1;
 			break;
    		}
@@ -321,7 +321,7 @@ static int writeline(char *buf, int len, struct NetBuf *nData)
 			w = net_write(nData->handle, nbp, FTPLIB_BUFSIZ);
 			if (w != FTPLIB_BUFSIZ)
 			{
-				printf("net_write(2) returned %d\n", w);
+				printf("net_write(2) returned %d", w);
 				return(-1);
 			}
 			nb = 0;
@@ -335,7 +335,7 @@ static int writeline(char *buf, int len, struct NetBuf *nData)
 		w = net_write(nData->handle, nbp, nb);
 		if (w != nb)
 		{
-			printf("net_write(3) returned %d\n", w);
+			printf("net_write(3) returned %d", w);
 			return(-1);
 		}
     }
@@ -354,7 +354,7 @@ static int readresp(char c, struct NetBuf *nControl)
     if (readline(nControl->response,256,nControl) == -1)
     {	
 		//this is where it fails
-		printf("readline#1 returned -1\n");
+		printf("readline#1 returned -1");
 		return 0;
     }
 	if (nControl->response[3] == '-')
@@ -366,7 +366,7 @@ static int readresp(char c, struct NetBuf *nControl)
 		{
 			if (readline(nControl->response,256,nControl) == -1)
 			{
-				printf("readline#2 returned -1\n");
+				printf("readline#2 returned -1");
 				return 0;
 			}
 		} while(strncmp(nControl->response,match,4));
@@ -375,8 +375,8 @@ static int readresp(char c, struct NetBuf *nControl)
     {
 		return 1;
     }
-	printf("failed to match some things that should have been matched\n");
-	printf("response: %s\n", nControl->response);
+	printf("failed to match some things that should have been matched");
+	printf("response: %s", nControl->response);
     return 0;
 }
 
@@ -495,7 +495,7 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
 		free(ctrl);
 		return 0;
     }
-	printf("Getting ready to set options on ctrl\n");
+	printf("Getting ready to set options on ctrl");
     ctrl->handle = sControl;
     ctrl->dir = FTPLIB_CONTROL;
     ctrl->ctrl = NULL;
@@ -576,7 +576,7 @@ static int FtpSendCmd(const char *cmd, char expresp, struct NetBuf *nControl)
     sprintf(buf,"%s\r\n",cmd);
     if(net_write(nControl->handle,buf,strlen(buf)) <= 0)
     {
-		printf("write error in FtpSendCmd\n");
+		printf("write error in FtpSendCmd");
 		return 0;
     }
     return readresp(expresp, nControl);
@@ -705,13 +705,13 @@ static int FtpOpenPort(struct NetBuf *nControl, struct NetBuf **nData, int mode,
 */  sData = socket(PF_INET,SOCK_STREAM,0);
     if (sData == -1)
     {
-		printf("Socket error\n");
+		printf("Socket error");
 		return -1;
     }
     if (setsockopt(sData,SOL_SOCKET,SO_REUSEADDR,
 		   SETSOCKOPT_OPTVAL_TYPE &on,sizeof(on)) == -1)
     {
-		printf("setsockopt\n");
+		printf("setsockopt");
 		net_close(sData);
 		return -1;
     }
@@ -1006,17 +1006,17 @@ int FtpWrite(void *buf, int len, struct NetBuf *nData)
 	return 0;
     if (nData->buf)
 	{
-		printf("ndata->buf == true\n");
+		printf("ndata->buf == true");
     	i = writeline(buf, len, nData);
 	}
     else
     {
-		printf("ndata->buf == false\n");
-		printf("socket wait returned: %i\n", socket_wait(nData));
+		printf("ndata->buf == false");
+		printf("socket wait returned: %i", socket_wait(nData));
         i = net_write(nData->handle, buf, len);
     }
     nData->xfered += i;
-	printf("After net_write i= %i\n", i);
+	printf("After net_write i= %i", i);
     if (nData->idlecb && nData->cbbytes)
     {
         nData->xfered1 += i;
@@ -1231,7 +1231,7 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
 		local = fopen(localfile, ac);
 		if (local == NULL) {
 			//strncpy(nControl->response, strerror(errno),sizeof(nControl->response));
-			printf("failed to open file\n");
+			printf("failed to open file");
 			return 0;
 		}
     }
@@ -1248,7 +1248,7 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
     if (typ == FTPLIB_FILE_WRITE)
     {
 		while ((l = fread(dbuf, 1, FTPLIB_BUFSIZ, local)) > 0){
-			printf("attempting to write: %i\n",l);
+			printf("attempting to write: %i",l);
 			if (FtpWrite(dbuf, l, nData) < l)
 			{
 			    //Code to resend unsent bytes here 
@@ -1277,16 +1277,16 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
 					rvs = (char*)realloc(rvs, total*2 + 1);
 				}
 				strcat(rvs,dbuf);
-				//printf("From ftpxfer: %s\n",rvs);
+				//printf("From ftpxfer: %s",rvs);
 				//break;			
 			}
 			else if (fwrite(dbuf, 1, l, local) <= 0)
 			{
-				printf("localfile write error\n");
+				printf("localfile write error");
 				rv = 0;
 				break;
 			}
-			//printf("total is %i\n",total);
+			//printf("total is %i",total);
 			//free(rvstmp);
 			//free(rvs);			
     	}

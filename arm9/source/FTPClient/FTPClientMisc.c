@@ -67,7 +67,7 @@ fileinfo** get_dir(char* path){
 		dlist[i]->filename[dlist[i]->namesize] = 0; 
 		i++;
 		// st.st_mode & S_IFDIR indicates a directory
-		//printf ("%s: %s\n", (st.st_mode & S_IFDIR ? " DIR" : "FILE"), filename);
+		//printf ("%s: %s", (st.st_mode & S_IFDIR ? " DIR" : "FILE"), filename);
 	}
 	dirclose (dir);
 	}
