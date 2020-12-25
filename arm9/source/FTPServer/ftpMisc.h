@@ -104,6 +104,8 @@ extern int ftp_cmd_LIST(int s, int cmd, char* arg);
 //current working directory
 extern volatile char CWDFTP[MAX_TGDSFILENAME_LENGTH+1];
 
+extern int FtpLoginAsync(const char *user, const char *pass, int serverSocket);
+
 #ifdef __cplusplus
 }
 #endif

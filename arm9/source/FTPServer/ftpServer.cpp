@@ -332,12 +332,43 @@ int FTPServerService(){
 				disconnectAsync(server_datasocket);
 			}
 			
+			printf("[Waiting for Server...]");
+			memset(&client, 0, sizeof(struct sockaddr_in));
+			cli_len = sizeof(client);
+			
+			
 			char * FTPHostAddress = "ftp.byethost31.com";
 			char * FTPUser = "b31_27241871";
 			char * FTPPass = "Licantropo1";
+			sock1 = openAsyncConn(FTPHostAddress, 21, &client);
+			bool connStatus = connectAsync(sock1, &client);
 			
+			if((sock1 >= 0) && (connStatus == true)){
+				printf("Connected to server! ");
+			}
+			else{
+				printf("Could not connect. ");
+				curFTPStatus = FTP_CLIENT_CONNECTING;
+				return curFTPStatus;
+			}
+			
+			//one-way login
+			int ret = FtpLoginAsync(FTPUser, FTPPass, sock1);
+			
+			setFTPState(FTP_CLIENT_ACTIVE);
+			curFTPStatus = FTP_CLIENT_ACTIVE;
+		}
+		break;
+		
+		case(FTP_CLIENT_ACTIVE):{
+		
+			//Handle FTP Client session
+		
+			
+			
+			//must be rewritten as async sockets
+			/*
 			bool connected = false;
-			
 			if( !FtpConnect(FTPHostAddress,&conn))
 			{
 				connected = false;
@@ -370,13 +401,22 @@ int FTPServerService(){
 			{
 				printf("Error connecting to FTP Server....");
 			}
+			*/
 			
-			setFTPState(FTP_CLIENT_ACTIVE);
-			curFTPStatus = FTP_CLIENT_ACTIVE;
-		}
-		break;
-		
-		case(FTP_CLIENT_ACTIVE):{
+			
+			//Actual FTP Service			
+			char buffer[MAX_TGDSFILENAME_LENGTH] = {0};
+			int res = recv(sock1, buffer, sizeof(buffer), 0);
+			int sendResponse = 0;
+			if(res > 0){
+				int len = strlen(buffer);
+				if(len > 3){
+					printf("unhandled command: [%s]",buffer);
+					sendResponse = ftpResponseSender(sock1, 502, "invalid command");
+				}
+			}
+			
+			
 			curFTPStatus = FTP_CLIENT_ACTIVE;
 		}
 		break;

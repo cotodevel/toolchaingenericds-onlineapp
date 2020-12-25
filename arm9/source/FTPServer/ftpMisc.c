@@ -10,6 +10,24 @@
 #include "dswnifi_lib.h"
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
 
+
+
+int FtpLoginAsync(const char *user, const char *pass, int serverSocket)
+{
+    char tempbuf[64];
+
+    if (((strlen(user) + 7) > sizeof(tempbuf)) ||
+        ((strlen(pass) + 7) > sizeof(tempbuf)))
+        return 0;
+	
+	sprintf(tempbuf,"USER %s",user);
+	ftp_cmd_USER(serverSocket, 331, &tempbuf[0]);
+	
+    sprintf(tempbuf,"PASS %s",pass);
+    return ftp_cmd_PASS(serverSocket, 331, &tempbuf[0]);
+}
+
+
 //current working directory
 volatile char CWDFTP[MAX_TGDSFILENAME_LENGTH+1];
 

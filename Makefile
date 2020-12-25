@@ -135,10 +135,8 @@ endif
 	$(MAKE)	-R	-C	$(DIR_ARM9)/
 	$(MAKE)	-R	-C	$(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/
 $(EXECUTABLE_FNAME)	:	compile
-	-@echo 'ndstool begin'
 	$(NDSTOOL)	-v	-c $@	-7  $(CURDIR)/arm7/$(BINSTRIP_RULE_7)	-e7  0x03800000	-9 $(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/$(BINSTRIP_RULE_COMPRESSED_9) -e9  0x02000000	-b	icon.bmp "ToolchainGenericDS SDK;$(TGDSPROJECTNAME) NDS Binary; "
-	-@echo 'ndstool end: built: $@'
-	
+	dlditool	scsd_moon.dldi	$@
 #---------------------------------------------------------------------------------
 # Clean
 each_obj = $(foreach dirres,$(dir_read_arm9_files),$(dirres).)
