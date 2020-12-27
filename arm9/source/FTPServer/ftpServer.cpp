@@ -319,7 +319,6 @@ int FTPServerService(){
 		break;
 		
 		case(FTP_CLIENT_CONNECTING):{
-			
 			printf("FTP Client Start. Init WIFI.");
 			
 			//FTP start
@@ -332,58 +331,33 @@ int FTPServerService(){
 				disconnectAsync(server_datasocket);
 			}
 			
-			printf("[Waiting for Server...]");
-			memset(&client, 0, sizeof(struct sockaddr_in));
-			cli_len = sizeof(client);
-			
-			
 			char * FTPHostAddress = "ftp.byethost31.com";
 			char * FTPUser = "b31_27241871";
 			char * FTPPass = "Licantropo1";
-			sock1 = openAsyncConn(FTPHostAddress, 21, &client);
-			bool connStatus = connectAsync(sock1, &client);
 			
-			if((sock1 >= 0) && (connStatus == true)){
-				printf("Connected to server! ");
-			}
-			else{
-				printf("Could not connect. ");
-				curFTPStatus = FTP_CLIENT_CONNECTING;
-				return curFTPStatus;
-			}
-			
-			//one-way login
-			int ret = FtpLoginAsync(FTPUser, FTPPass, sock1);
-			
-			setFTPState(FTP_CLIENT_ACTIVE);
-			curFTPStatus = FTP_CLIENT_ACTIVE;
-		}
-		break;
-		
-		case(FTP_CLIENT_ACTIVE):{
-		
-			//Handle FTP Client session
-		
-			
-			
-			//must be rewritten as async sockets
-			/*
 			bool connected = false;
+			
 			if( !FtpConnect(FTPHostAddress,&conn))
 			{
 				connected = false;
 				//errorMsg += "ftpcon, ";
 			}
 			else connected = true;
-
+			printf("CONNECT OK");
+			
 			if(connected && !FtpLogin(FTPUser,FTPPass, conn))
 			{
+				printf("LOGIN FAIL. WRONG USER/PASS");
 				connected = false;
 				//errorMsg += "ftpLogin.";
 			}
+			else{
+				printf("LOGIN OK CTM");
+			}
+			
 			if( connected )
 			{
-				
+				printf("FTP Server connect OK!!");
 				//Getting the local file listing
 				localDir = get_dir("/");
 				//getFileListing(localDir, localFiles);
@@ -395,15 +369,20 @@ int FTPServerService(){
 				{
 					
 				}
-				printf("FTP Server connect OK!!");
+				
 			}
 			else
 			{
 				printf("Error connecting to FTP Server....");
 			}
-			*/
 			
-			
+			setFTPState(FTP_CLIENT_ACTIVE);
+			curFTPStatus = FTP_CLIENT_ACTIVE;
+		}
+		break;
+		
+		case(FTP_CLIENT_ACTIVE):{
+			/*
 			//Actual FTP Service			
 			char buffer[MAX_TGDSFILENAME_LENGTH] = {0};
 			int res = recv(sock1, buffer, sizeof(buffer), 0);
@@ -415,8 +394,7 @@ int FTPServerService(){
 					sendResponse = ftpResponseSender(sock1, 502, "invalid command");
 				}
 			}
-			
-			
+			*/
 			curFTPStatus = FTP_CLIENT_ACTIVE;
 		}
 		break;

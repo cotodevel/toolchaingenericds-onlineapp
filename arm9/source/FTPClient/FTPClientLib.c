@@ -452,9 +452,9 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
 //	    perror("gethostbyname");
 	    //return 0;
     //	}
-		//printf("connected to %s\n",phe->h_addr_list[0]);
+		//printf("connected to %s",phe->h_addr_list[0]);
 		phe = gethostbyname( host );
-		if(phe) printf("Got Host\n");
+		if(phe) printf("Got Host");
 		sControl = socket(PF_INET, SOCK_STREAM, 0);
 		
 		sin.sin_family = AF_INET;
@@ -465,23 +465,23 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
     
     if (sControl == -1)
     {
-		printf("Failed to create socket\n");
+		printf("Failed to create socket");
 		return 0;
     }
     if (setsockopt(sControl,SOL_SOCKET,SO_REUSEADDR,
 		   SETSOCKOPT_OPTVAL_TYPE &on, sizeof(on)) == -1)
     {
-		printf("Failed to set socket option\n");
+		printf("Failed to set socket option");
 		net_close(sControl);
 		return 0;
     }
     if(connect(sControl, (struct sockaddr *)&sin, sizeof(sin)) == -1)
     {
-		printf("Failed to connect\n");
+		printf("Failed to connect");
 		net_close(sControl);
 		return 0;
     }
-	printf("We should be connected\n");
+	printf("We should be connected");
     ctrl = calloc(1,sizeof(struct NetBuf));
     if (ctrl == NULL)
     {
