@@ -1,4 +1,5 @@
 /*
+
 			Copyright (C) 2017  Coto
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,14 +19,28 @@ USA
 */
 
 #include "main.h"
-#include "dsregs.h"
-#include "dsregs_asm.h"
 #include "typedefsTGDS.h"
-#include "gui_console_connector.h"
+#include "dsregs.h"
 #include "dswnifi_lib.h"
-#include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
+#include "dmaTGDS.h"
+#include "keypadTGDS.h"
 #include "TGDSLogoLZSSCompressed.h"
+#include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
+#include "biosTGDS.h"
 #include "ipcfifoTGDSUser.h"
+#include "dldi.h"
+#include "global_settings.h"
+#include "posixHandleTGDS.h"
+#include "TGDSMemoryAllocator.h"
+#include "consoleTGDS.h"
+#include "soundTGDS.h"
+#include "nds_cp15_misc.h"
+#include "fatfslayerTGDS.h"
+#include "utilsTGDS.h"
+#include "click_raw.h"
+#include "ima_adpcm.h"
+#include "ftpMisc.h"
+#include "ftpServer.h"
 #include "fatfslayerTGDS.h"
 #include "cartHeader.h"
 #include "ff.h"
@@ -40,17 +55,46 @@ USA
 #include "helloworld.h"
 
 bool GDBEnabled = false;
-char curChosenBrowseFile[MAX_TGDSFILENAME_LENGTH+1];
+char curChosenBrowseFile[256+1];
+char globalPath[MAX_TGDSFILENAME_LENGTH+1];
+static int curFileIndex = 0;
+static bool pendingPlay = false;
 
-void menuShow(){
+int internalCodecType = SRC_NONE;//Internal because WAV raw decompressed buffers are used if Uncompressed WAV or ADPCM
+static struct fd * _FileHandleVideo = NULL; 
+static struct fd * _FileHandleAudio = NULL;
+
+bool stopSoundStreamUser(){
+	return stopSoundStream(_FileHandleVideo, _FileHandleAudio, &internalCodecType);
+}
+
+void closeSoundUser(){
+	//Stubbed. Gets called when closing an audiostream of a custom audio decoder
+}
+
+static inline void menuShow(){
 	clrscr();
 	printf("     ");
 	printf("     ");
 	printf("ToolchainGenericDS-OnlineApp: ");
+	printf("Current file: %s ", curChosenBrowseFile);
 	printf("(Select): This menu. ");
-	printf("(Start): FileBrowser : (A) Run .zip/.nds file ");
-	printf("Available physical memory: %d >%d", getMaxRam(), TGDSPrintfColor_Yellow);
-	printf("Available User Memory: %d >%d", TGDSMallocFreeMemory9(), TGDSPrintfColor_Yellow);
+	printf("(Start): FileBrowser : (A) Play WAV/IMA-ADPCM (Intel) strm ");
+	printf("(D-PAD:UP/DOWN): Volume + / - ");
+	printf("(D-PAD:LEFT): GDB Debugging. >%d", TGDSPrintfColor_Green);
+	printf("(D-PAD:RIGHT): Demo Sound. >%d", TGDSPrintfColor_Yellow);
+	printf("(B): Stop WAV/IMA-ADPCM file. ");
+	printf("Current Volume: %d", (int)getVolume());
+	if(internalCodecType == SRC_WAVADPCM){
+		printf("ADPCM Play: %s >%d", curChosenBrowseFile, TGDSPrintfColor_Red);
+	}
+	else if(internalCodecType == SRC_WAV){	
+		printf("WAVPCM Play: %s >%d", curChosenBrowseFile, TGDSPrintfColor_Green);
+	}
+	else{
+		printf("Player Inactive");
+	}
+	printf("Available heap memory: %d >%d", getMaxRam(), TGDSPrintfColor_Cyan);
 	printarm7DebugBuffer();
 }
 
@@ -267,27 +311,23 @@ bool fillNDSLoaderContext(char * filename){
 	}
 	return false;
 }
-
-bool RenderWoopsiUI = false;
-
-__attribute__((section(".itcm")))
 int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	
 	/*			TGDS 1.6 Standard ARM9 Init code start	*/
 	bool isTGDSCustomConsole = false;	//set default console or custom console: default console
 	GUI_init(isTGDSCustomConsole);
 	GUI_clear();
+	
+	printf("              ");
+	printf("              ");
+	
 	bool isCustomTGDSMalloc = true;
 	setTGDSMemoryAllocator(getProjectSpecificMemoryAllocatorSetup(TGDS_ARM7_MALLOCSTART, TGDS_ARM7_MALLOCSIZE, isCustomTGDSMalloc));
 	sint32 fwlanguage = (sint32)getLanguage();
 	
-	printf("     ");
-	printf("     ");
-	
 	#ifdef ARM7_DLDI
 	setDLDIARM7Address((u32 *)TGDSDLDI_ARM7_ADDRESS);	//Required by ARM7DLDI!
 	#endif
-	
 	int ret=FS_init();
 	if (ret == 0)
 	{
@@ -304,33 +344,61 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	/*			TGDS 1.6 Standard ARM9 Init code end	*/
 	
 	initNDSLoader();	//set up NDSLoader
-	
-	//load TGDS Logo (NDS BMP Image)
-	//VRAM A Used by console
-	//VRAM C Keyboard and/or TGDS Logo
-	
 	//Show logo
 	RenderTGDSLogoMainEngine((uint8*)&TGDSLogoLZSSCompressed[0], TGDSLogoLZSSCompressed_size);
 	
-	//Remove logo and restore Main Engine registers
-	//restoreFBModeMainEngine();
+	//bool isFTPServer = false;
+	//ftpInit(isFTPServer);
+	//fillNDSLoaderContext((char*)"0:/TGDS-Woopsi-template.nds");
 	
-	menuShow();
-	
+	REG_IME = 1;
+	REG_IE |= (IRQ_VCOUNT | IRQ_VBLANK | IRQ_HBLANK);
 	//Woopsi: Create the Hello World application
-	//HelloWorld app;
-	//RenderWoopsiUI = true;
-	//REG_IE |= IRQ_VBLANK;
-	//return app.main(argc, argv);
+	HelloWorld app;
+	return app.main(argc, argv);
 	
-	fillNDSLoaderContext((char*)"0:/TGDS-Woopsi-template.nds");
-	
-	bool isFTPServer = false;
-	ftpInit(isFTPServer);
-	
-	while (1){
+	while(1) {
+		switch(FTPServerService()){
+			
+			//FTP Server cases
+			case(FTP_SERVER_ACTIVE):{
+				
+			}
+			break;
+			//Server Disconnected/Idle!
+			case(FTP_SERVER_CLIENT_DISCONNECTED):{				
+				/*
+				closeFTPDataPort(sock1);
+				setFTPState(FTP_SERVER_IDLE);
+				printf("Client disconnected!. Press A to retry.");
+				switch_dswnifi_mode(dswifi_idlemode);
+				scanKeys();
+				while(!(keysDown() & KEY_A)){
+					scanKeys();
+					IRQVBlankWait();
+				}
+				main(argc, argv);
+				*/
+			}
+			break;
+			
+			
+			//FTP Client cases
+			case(FTP_CLIENT_ACTIVE):{
+				
+			}
+			break;
+			
+			case(FTP_CLIENT_DISCONNECTED_FROM_SERVER):{
+				
+			}
+			break;
+			
+		}
+		
 		handleARM9SVC();	/* Do not remove, handles TGDS services */
 		IRQWait(IRQ_HBLANK);
 	}
-}
 
+	return 0;
+}

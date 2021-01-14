@@ -23,9 +23,9 @@ USA
 
 #include "typedefsTGDS.h"
 #include "dsregs.h"
+#include "fatfslayerTGDS.h"
 #include "utilsTGDS.h"
-#include "limitsTGDS.h"
-#include "dldi.h"
+#include "utilsTGDS.h"
 
 #endif
 
@@ -35,13 +35,14 @@ extern "C" {
 #endif
 
 extern int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]);
-extern char curChosenBrowseFile[MAX_TGDSFILENAME_LENGTH+1];
+//TGDS Dir API: Directory Iterator(s)
+extern char curChosenBrowseFile[256+1];
+extern char globalPath[MAX_TGDSFILENAME_LENGTH+1];
+extern int internalCodecType;//Internal because WAV raw decompressed buffers are used if Uncompressed WAV or ADPCM
 extern bool fillNDSLoaderContext(char * filename);
-extern bool GDBEnabled;
 extern struct FileClassList * thisFileList;
 extern void initNDSLoader();
-extern bool RenderWoopsiUI;
-
+extern bool GDBEnabled;
 #ifdef __cplusplus
 }
 #endif

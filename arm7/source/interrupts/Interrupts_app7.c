@@ -18,20 +18,19 @@ USA
 
 */
 
-#include "typedefsTGDS.h"
+#include "ipcfifoTGDSUser.h"
 #include "dsregs.h"
 #include "dsregs_asm.h"
-#include "interrupts.h"
-#include "biosTGDS.h"
-#include "ipcfifoTGDSUser.h"
-#include "spifwTGDS.h"
-#include "wifi_arm7.h"
 
+#include "InterruptsARMCores_h.h"
+#include "interrupts.h"
+#include "wifi_arm7.h"
+#include "main.h"
 //User Handler Definitions
+
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void IpcSynchandlerUser(uint8 ipcByte){
 	switch(ipcByte){
 		default:{
@@ -44,7 +43,6 @@ void IpcSynchandlerUser(uint8 ipcByte){
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void Timer0handlerUser(){
 
 }
@@ -52,57 +50,50 @@ void Timer0handlerUser(){
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void Timer1handlerUser(){
+
 }
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void Timer2handlerUser(){
+
 }
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void Timer3handlerUser(){
+
 }
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void HblankUser(){
+
 }
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void VblankUser(){
-	struct sIPCSharedTGDSSpecific* TGDSUSERIPC = getsIPCSharedTGDSSpecific();
-	if(TGDSUSERIPC->frameCounter7 < 60){
-		TGDSUSERIPC->frameCounter7++;
-	}
-	else{
-		TGDSUSERIPC->frameCounter7 = 0;
-	}
+	
+
 }
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void VcounterUser(){
+
 }
 
 //Note: this event is hardware triggered from ARM7, on ARM9 a signal is raised through the FIFO hardware
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void screenLidHasOpenedhandlerUser(){
 	TurnOnScreens();
 }
@@ -111,7 +102,6 @@ void screenLidHasOpenedhandlerUser(){
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void screenLidHasClosedhandlerUser(){
 	TurnOffScreens();
 }

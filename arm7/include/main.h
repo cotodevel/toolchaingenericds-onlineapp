@@ -23,7 +23,7 @@ USA
 
 #include "typedefsTGDS.h"
 #include "dsregs.h"
-#include "soundTGDS.h"
+
 #endif
 
 

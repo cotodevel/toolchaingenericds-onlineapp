@@ -38,10 +38,9 @@ d_objs_arm9:=	${file_arm9_src_c:.c=.d}	${file_arm9_src_s:.s=.d}	${file_arm9_src_
 
 #ARM9 specific definitions.	-fno-common so we force initialized data to rodata
 MAPFILE = $(DIR_ARM9).map
-SHARED_FLAGS	=	-march=armv5te	-mthumb-interwork
-AS_ASFLAGS		=	$(SPECIFIC_AS_COMPILER_FLAGS_9)		$(GLOBAL_AS_COMPILER_FLAGS)
-CC_ASFLAGS		=	$(SHARED_FLAGS)	-Wall	-DNDS -DARM9	-marm	-O2 -ffast-math -fomit-frame-pointer -fno-exceptions	-MMD -MP	-nostdinc	-Dappver='$(EXECUTABLE_VERSION)'
-CPP_FLAGS		=	$(SHARED_FLAGS)	$(CC_ASFLAGS)
+AS_ASFLAGS		=	$(GLOBAL_SHARED_FLAGS_9)	$(SPECIFIC_AS_COMPILER_FLAGS_9)		$(GLOBAL_AS_COMPILER_FLAGS)
+CC_ASFLAGS		=	$(GLOBAL_SHARED_FLAGS_9)	$(SPECIFIC_CC_COMPILER_FLAGS_9)		$(GLOBAL_CC_COMPILER_FLAGS)		-shared
+CPP_FLAGS		=	$(GLOBAL_SHARED_FLAGS_9)	$(SPECIFIC_CXX_COMPILER_FLAGS_9)	$(GLOBAL_CXX_COMPILER_FLAGS)	-shared
 BUILD			= 	$(BUILD_ARM9)
 DIR_SRC			=	$(DIRS_ARM9_SRC)
 
@@ -109,7 +108,7 @@ $(TARGET_LIBRARY_CRT0_FILE_9).o:	$(TARGET_LIBRARY_LINKER_FILE_9)
 #Linkage. 
 $(OBJPROG): $(addprefix $(OBJDIR)/, $(OBJECTS))
 	-@echo 'Entering Linking phase'
-	$(CC) $^	$(LDFLAGS)	$(DIRLIBS_HDR)	$(DIRLIBS_SRC)	$(DIRLIBS_SHARED)	-L	$(TARGET_LIBRARY_PATH)/	-L	$(TOOLCHAIN_PATH)/		$(LIBRARIES)	-L	$(TARGET_LIBRARY_LINKER_PATH_LD)	-o $@
+	$(CC) $^	$(LDFLAGS)	$(DIRLIBS_HDR)	$(DIRLIBS_SRC)	$(DIRLIBS_SHARED)	-L	$(TARGET_LIBRARY_PATH)/	-L	$(TOOLCHAIN_PATH)/		$(LIBRARIES)	-L	$(TARGET_LIBRARY_LINKER_PATH_LD)	-L	../../../libwoopsi/lib	-o $@
 	-@echo 'Leaving Linking phase. Output: $@'
 
 #xxxx-nonstripped.elf -> xxxx.elf STRIP operation
@@ -126,4 +125,4 @@ $(BINSTRIP_RULE_9): $(ELF_ARM9)
 
 clean:
 	-@echo 'cleanup $(DIR_ARM9)'
-	-@rm -fr $(BINSTRIP_RULE_9)	$(MAPFILE) $(OBJDIR)
+	-@rm -fr $(BINSTRIP_RULE_9)	$(MAPFILE)	

@@ -172,7 +172,7 @@ int ftp_cmd_STOR(int s, int cmd, char* arg){
 			
 			//Boot .NDS file! (homebrew only)
 			if(strncmp(ext,".nds", 4) == 0){
-				fillNDSLoaderContext((char*)tmpBuf);
+				//fillNDSLoaderContext((char*)tmpBuf);
 			}
 			
 			TGDSARM9Free(client_reply);

@@ -18,13 +18,13 @@
 
 #TGDS1.6 compatible Makefile
 
-#ToolchainGenericDS specific: 
-#Non FPIC Code: Use Makefiles from either TGDS, or custom
+#ToolchainGenericDS specific: Use Makefiles from either TGDS, or custom
+#Note: Woopsi template mostly targets ARM9 SDK. Thus the default ARM7 template is used
 export SOURCE_MAKEFILE7 = custom
 export SOURCE_MAKEFILE9 = custom
 
+#Non FPIC Code: Use Makefiles from either TGDS, or custom
 #FPIC code is always default TGDS Makefile
-
 
 #Shared
 include $(DEFAULT_GCC_PATH)Makefile.basenewlib
@@ -37,6 +37,7 @@ export EXECUTABLE_VERSION_HEADER =	0.1
 export EXECUTABLE_VERSION =	"$(EXECUTABLE_VERSION_HEADER)"
 
 #The ndstool I use requires to have the elf section removed, so these rules create elf headerless- binaries.
+
 export DIR_ARM7 = arm7
 export BUILD_ARM7	=	build
 export DIR_ARM9 = arm9
@@ -52,11 +53,9 @@ export BINSTRIP_RULE_7 :=	$(DIR_ARM7).bin
 export BINSTRIP_RULE_arm7bootldr =	arm7bootldr.bin
 export BINSTRIP_RULE_9 :=	$(DIR_ARM9).bin
 export BINSTRIP_RULE_COMPRESSED_9 :=	$(DECOMPRESSOR_BOOTCODE_9).bin
-
 export TARGET_LIBRARY_CRT0_FILE_7 = nds_arm_ld_crt0
 export TARGET_LIBRARY_CRT0_FILE_9 = nds_arm_ld_crt0
 export TARGET_LIBRARY_CRT0_FILE_COMPRESSED_9 = nds_arm_ld_crt0
-
 export TARGET_LIBRARY_LINKER_FILE_7 = $(TARGET_LIBRARY_PATH)$(TARGET_LIBRARY_LINKER_SRC)/$(TARGET_LIBRARY_CRT0_FILE_7).S
 export TARGET_LIBRARY_LINKER_FILE_9 = $(TARGET_LIBRARY_PATH)$(TARGET_LIBRARY_LINKER_SRC)/$(TARGET_LIBRARY_CRT0_FILE_9).S
 export TARGET_LIBRARY_LINKER_FILE_COMPRESSED_9 = $(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/$(TARGET_LIBRARY_CRT0_FILE_COMPRESSED_9).S
@@ -95,7 +94,6 @@ export DIRS_ARM9_SRC = data/	\
 			source/FTPServer/	\
 			source/FTPClient/
 			
-			
 export DIRS_ARM9_HEADER = data/	\
 			build/	\
 			include/	\
@@ -128,7 +126,6 @@ endif
 	$(MAKE)	-R	-C	$(DIR_ARM7)/
 	$(MAKE)	-R	-C	arm7bootldr/
 	-mv arm7bootldr/arm7bootldr.bin	arm9/data
-	
 ifeq ($(SOURCE_MAKEFILE9),default)
 	cp	-r	$(TARGET_LIBRARY_MAKEFILES_SRC9_NOFPIC)	$(CURDIR)/$(DIR_ARM9)
 endif
@@ -136,7 +133,7 @@ endif
 	$(MAKE)	-R	-C	$(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/
 $(EXECUTABLE_FNAME)	:	compile
 	$(NDSTOOL)	-v	-c $@	-7  $(CURDIR)/arm7/$(BINSTRIP_RULE_7)	-e7  0x03800000	-9 $(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/$(BINSTRIP_RULE_COMPRESSED_9) -e9  0x02000000	-b	icon.bmp "ToolchainGenericDS SDK;$(TGDSPROJECTNAME) NDS Binary; "
-	dlditool	scsd_moon.dldi	$@
+	
 #---------------------------------------------------------------------------------
 # Clean
 each_obj = $(foreach dirres,$(dir_read_arm9_files),$(dirres).)
@@ -148,7 +145,7 @@ clean:
 ifeq ($(SOURCE_MAKEFILE7),default)
 	-@rm -rf $(CURDIR)/$(DIR_ARM7)/Makefile
 endif
-#--------------------------------------------------------------------	
+#--------------------------------------------------------------------
 	$(MAKE) clean	-C	$(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/
 	$(MAKE)	clean	-C	$(DIR_ARM9)/
 	$(MAKE) clean	-C	$(PosIndCodeDIR_FILENAME)/$(DIR_ARM9)/
