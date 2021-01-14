@@ -30,6 +30,8 @@ __attribute__((optimize("O0")))
 __attribute__ ((noinline))
 int main(int _argc, sint8 **_argv) {
 	
+	swiDelay(8888);
+	
 	u32 * dest = 0x02000000;
 	int arm9_payload_addr = (int)dest[0];
 	int arm9_size = (int)dest[1];
@@ -48,7 +50,7 @@ int main(int _argc, sint8 **_argv) {
 	//Copy ARGV
 	memcpy(((u8*)0x06820000 - (16*1024) - 48 - 0x200), (u32*)0x02FFFE70, (int)0x200);
 	
-	u32 arm9_payload_addr_phys = (u32)0x02300000;
+	u32 arm9_payload_addr_phys = (u32)0x022A0000;
 	memcpy((u32*)arm9_payload_addr_phys, (u32*)arm9_payload_addr, arm9_size);
 	
 	//Restore ARGV
@@ -63,9 +65,13 @@ int main(int _argc, sint8 **_argv) {
 	coherent_user_range((u8*)&TGDSIPC->DSFWHEADERInst.stub[0], (u8*)&TGDSIPC->DSFWHEADERInst.stub[0] + 512);
 	memcpy((u8*)&TGDSIPC->DSFWHEADERInst.stub[0], (u8*)flashMem, sizeof(TGDSIPC->DSFWHEADERInst.stub));
 	
+	swiDelay(8888);
+	
 	typedef void (*t_bootAddr)();
 	t_bootAddr bootARM9Payload = (t_bootAddr)arm9_payload_addr_phys;
 	bootARM9Payload();
+	
+	swiDelay(8888);
 	
 	return 0;
 }

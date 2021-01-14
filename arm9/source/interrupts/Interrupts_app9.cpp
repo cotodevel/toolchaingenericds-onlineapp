@@ -28,6 +28,7 @@ USA
 #include "spifwTGDS.h"
 
 //User Handler Definitions
+#include "woopsifuncs.h"
 
 #ifdef ARM9
 __attribute__((section(".itcm")))
@@ -85,14 +86,9 @@ void HblankUser(){
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-inline __attribute__((always_inline)) 
 void VblankUser(){
-	struct sIPCSharedTGDSSpecific* TGDSUSERIPC = getsIPCSharedTGDSSpecific();
-	if(TGDSUSERIPC->frameCounter9 < 60){
-		TGDSUSERIPC->frameCounter9++;
-	}
-	else{
-		TGDSUSERIPC->frameCounter9 = 0;
+	if(RenderWoopsiUI == true){
+		woopsiVblFunc();
 	}
 }
 

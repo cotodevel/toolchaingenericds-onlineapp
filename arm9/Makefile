@@ -21,7 +21,7 @@
 RELATIVE_PATH =	
 
 #Prepare ARM9 dirs
-DIRLIBS_HDR = $(foreach dirres,$(DIRS_ARM9_HEADER),-I "$(CURDIR)/$(RELATIVE_PATH)$(dirres)" )	$(DIRLIBS_ALLOWED)	$(TARGET_LIBRARY_HEADERS_9_INC)
+DIRLIBS_HDR = $(foreach dirres,$(DIRS_ARM9_HEADER),-I "$(CURDIR)/$(RELATIVE_PATH)$(dirres)" )	$(DIRLIBS_ALLOWED)	$(TARGET_LIBRARY_HEADERS_9_INC)	-I	$(TARGET_LIBRARY_PATH)/includeWoopsi/	-I	$(TARGET_LIBRARY_PATH)/includeWoopsi/fonts
 DIRLIBS_SRC = $(foreach dirres,$(DIRS_ARM9_SRC),-I "$(CURDIR)/$(RELATIVE_PATH)$(dirres)" )
 
 file_arm9_src_c=  $(foreach dir,$(DIRS_ARM9_SRC), $(subst $(CURDIR)/$(RELATIVE_PATH)/$(dir)/,,$(wildcard $(CURDIR)/$(RELATIVE_PATH)/$(dir)/*.c))  )
@@ -38,16 +38,17 @@ d_objs_arm9:=	${file_arm9_src_c:.c=.d}	${file_arm9_src_s:.s=.d}	${file_arm9_src_
 
 #ARM9 specific definitions.	-fno-common so we force initialized data to rodata
 MAPFILE = $(DIR_ARM9).map
+SHARED_FLAGS	=	-march=armv5te	-mthumb-interwork
 AS_ASFLAGS		=	$(SPECIFIC_AS_COMPILER_FLAGS_9)		$(GLOBAL_AS_COMPILER_FLAGS)
-CC_ASFLAGS		=	$(SPECIFIC_CC_COMPILER_FLAGS_9)		$(GLOBAL_CC_COMPILER_FLAGS)		-shared
-CPP_FLAGS		=	$(SPECIFIC_CXX_COMPILER_FLAGS_9)	$(GLOBAL_CXX_COMPILER_FLAGS)	-shared
+CC_ASFLAGS		=	$(SHARED_FLAGS)	-Wall	-DNDS -DARM9	-marm	-O2 -ffast-math -fomit-frame-pointer -fno-exceptions	-MMD -MP	-nostdinc	-Dappver='$(EXECUTABLE_VERSION)'
+CPP_FLAGS		=	$(SHARED_FLAGS)	$(CC_ASFLAGS)
 BUILD			= 	$(BUILD_ARM9)
 DIR_SRC			=	$(DIRS_ARM9_SRC)
 
 #--gc-sections: allows relocatable sections linked (already) to be included, otherwise unused sections are discarded.
 #check arm9.map "Discarded input sections" to see --gc-sections in action.
 LDFLAGS	=	-specs=$(TARGET_LIBRARY_LINKER_PATH_LD)/nds_arm9_ld.specs	-Wl,--no-gc-sections,-Map,$(MAPFILE),-z,defs
-LIBRARIES =	-l$(TARGET_LIBRARY_NAME_9)	-lstdc++	-lcnano9	-lgcc
+LIBRARIES =	-l$(TARGET_LIBRARY_NAME_9)	-lwoopsi	-lstdc++	-lcnano9	-lgcc
 
 ################################################################################################
 

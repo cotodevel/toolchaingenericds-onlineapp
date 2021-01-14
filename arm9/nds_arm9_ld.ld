@@ -25,7 +25,7 @@ MEMORY
 	VECTORS : ORIGIN = 0x01FFC000, LENGTH = 256	
 	ITCM : ORIGIN = 0x01FF8000, LENGTH = 32K
 	GBAROM : ORIGIN = 0x08000000, LENGTH = 32M
-	EWRAM : ORIGIN = 0x02300000, LENGTH = 4M
+	EWRAM : ORIGIN = 0x022A0000, LENGTH = 4M
 }
 
 _itcm_start = ORIGIN(ITCM);
@@ -48,12 +48,12 @@ _arm9_irqcheckbits = ORIGIN(DTCM) + 0x3FF8;	/* __irq_flags */
 _arm9_irqhandler = ORIGIN(DTCM) + 0x3FFC;	/* __irq_vector */
 
 /* ARM ABI says stacks are full decreasing */
-sp_SVC	= _dtcm_end  - 0x200;	/* reset, swi exception*/
-sp_IRQ	= sp_SVC - 0x200;	/*irq exception*/
-sp_FIQ	= sp_IRQ - 0x200;	/* fiq exception */
-sp_ABT	= sp_FIQ - 0x200;	/* prefetch / data aborts exception */
-sp_UND	= sp_ABT - 0x200;	/* undefined exception */
-sp_USR	= sp_UND - 0x200;	/* usr / sys stacks */
+sp_SVC	= _dtcm_end  - 0x300;	/* reset, swi exception*/
+sp_IRQ	= sp_SVC - 0x300;	/*irq exception*/
+sp_FIQ	= sp_IRQ - 0x300;	/* fiq exception */
+sp_ABT	= sp_FIQ - 0x300;	/* prefetch / data aborts exception */
+sp_UND	= sp_ABT - 0x300;	/* undefined exception */
+sp_USR	= sp_UND - 0x300;	/* usr / sys stacks */
 sp_SYS = sp_USR;
 
 OUTPUT_FORMAT("elf32-littlearm", "elf32-bigarm","elf32-littlearm")
@@ -61,19 +61,19 @@ OUTPUT_ARCH(arm)
 ENTRY(_start)
 SECTIONS
 {
-	. = ALIGN(4);
-	.init      :	SUBALIGN(4)
+	.init      :	
 	{
 		__init_start__ = .;
 		KEEP(*(.init))
+		. = ALIGN(4);
 	} > EWRAM = 0xFF
 	__init_end__ = .;
-	.dldiSection : SUBALIGN(4) { 
+	.dldiSection : { 
 		. += (0x300 - 0x180);	/* 0x02300300                _io_dldi_stub */
 		KEEP(*(.dldiSection*));	/* DLDI section is always at this address so it's detected by DLDI patchers */
 		. = ALIGN(4);
 	} > EWRAM = 0xff
-	.text      :	SUBALIGN(4)
+	.text      : 
 	{
 		*(.stub)
 		/* .gnu.warning sections are handled specially by elf32.em.  */
@@ -83,71 +83,79 @@ SECTIONS
 		KEEP(*(COMMON))
 		KEEP(*(.text))
 		KEEP(*(.text.*))
+		. = ALIGN(4);
 	} > EWRAM = 0xFF
 	
-	.data : SUBALIGN(4) {				/* used by TGDS-Newlib C/C++ code */
+	.data : {				/* used by TGDS-Newlib C/C++ code */
 		PROVIDE (__data_start__ = ABSOLUTE(.));
 		*(.data)
 		*(.data.*)
 		*(.gnu.linkonce.d*)
 		*(.gnu.linkonce.t*)
 		PROVIDE (__data_end__ = ABSOLUTE(.));
+		. = ALIGN(4);
 	} > EWRAM = 0xff
 	
-	.rodata : SUBALIGN(4) {			/* used by TGDS-Newlib C/C++ code */
+	.rodata : {			/* used by TGDS-Newlib C/C++ code */
 		PROVIDE (__rodata_start__ = ABSOLUTE(.));
 		*(.rdata)
 		*(.rodata)
 		*(.rodata.*)
     	*(.gnu.linkonce.r.*)
 		PROVIDE (__rodata_end__ = ABSOLUTE(.));
+		. = ALIGN(4);
 	} > EWRAM = 0xff
 	
-	.bss (NOLOAD):	SUBALIGN(4) {				/* used by TGDS-Newlib C/C++ code */
+	.bss (NOLOAD): {				/* used by TGDS-Newlib C/C++ code */
 		PROVIDE (__bss_vma_start = ABSOLUTE(.));
 		*(.dynbss*)
 		*(.bss*)
 		*(.bss)
 		*(.gnu.linkonce.b*.)
 		PROVIDE (__bss_vma_end = ABSOLUTE(.));
+		. = ALIGN(4);
 	} > EWRAM
 	
-	.ARM.exidx : SUBALIGN(4) {			/* not used at all, but some code rely on ARM debugging symbols */
+	.ARM.exidx : {			/* not used at all, but some code rely on ARM debugging symbols */
 		PROVIDE (__exidx_start = ABSOLUTE(.));
 		*(.ARM.exidx)
 		*(.ARM.exidx*)
 		*(.gnu.linkonce.armexidx.)
 		*(.gnu.linkonce.armexidx.*)
 		PROVIDE (__exidx_end = ABSOLUTE(.));
+		. = ALIGN(4);
 	} > EWRAM = 0xff
 	
 	__itcm_vma_start = .;
-	.itcm      : SUBALIGN(4)
+	.itcm      : 
 	{
 		KEEP (*(.itcm*))
+		. = ALIGN(4);
 	} > ITCM AT > EWRAM
 	__itcm_vma_end__ = .;
 	
 	__vectors_vma_start = .;
-	.vectors : SUBALIGN(4) {
+	.vectors : {
 		KEEP (*(.vectors*))
 		. = ALIGN(4);
 	} > VECTORS AT > EWRAM
 	__vectors_vma_end__ = .;
 
 	__dtcm_vma_start = .;
-	.dtcm      : SUBALIGN(4)
+	.dtcm      : 
 	{
 		KEEP (*(.dtcm*))
+		. = ALIGN(4);
 	} > DTCM AT > EWRAM
 	__dtcm_vma_end__ = .;
 	
-	.fini : SUBALIGN(4) {				/* used by TGDS-Newlib C/C++ code */
+	.fini :  {				/* used by TGDS-Newlib C/C++ code */
 		PROVIDE (__fini_start__ = ABSOLUTE(.));
 		*(.fini)
 		*(.fini*)
 		PROVIDE (__fini_end__ = ABSOLUTE(.));
 		FILL(0x40);
+		. = ALIGN(4);
 	} > EWRAM = 0xff
 	
 	PROVIDE (__lib__end__ = __fini_end__);

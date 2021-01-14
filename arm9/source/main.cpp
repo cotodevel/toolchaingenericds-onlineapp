@@ -36,6 +36,9 @@ USA
 #include "ftpServer.h"
 #include "xenofunzip.h"
 
+// Includes
+#include "helloworld.h"
+
 bool GDBEnabled = false;
 char curChosenBrowseFile[MAX_TGDSFILENAME_LENGTH+1];
 
@@ -51,9 +54,10 @@ void menuShow(){
 	printarm7DebugBuffer();
 }
 
-static inline void initNDSLoader(){
-	coherent_user_range_by_size((uint32)(0x02000000), (0x02400000 - 0x02300000));
-	dmaFillHalfWord(0, 0, (uint32)(0x02000000), (0x02400000 - 0x02300000));
+__attribute__((section(".itcm")))
+void initNDSLoader(){
+	coherent_user_range_by_size((uint32)(0x02000000), (0x02400000 - 0x022A0000));
+	dmaFillHalfWord(0, 0, (uint32)(0x02000000), (0x02400000 - 0x022A0000));
 	
 	coherent_user_range_by_size((uint32)NDS_LOADER_DLDISECTION_CACHED, (48*1024) + (96*1024) + (64*1024) + (16*1024));
 	dmaFillHalfWord(0, 0, (uint32)NDS_LOADER_DLDISECTION_CACHED, (48*1024) + (96*1024) + (64*1024) + (16*1024));
@@ -61,18 +65,23 @@ static inline void initNDSLoader(){
 	//copy loader code (arm7bootldr.bin) to ARM7's EWRAM portion while preventing Cache issues
 	coherent_user_range_by_size((uint32)&arm7bootldr[0], (int)arm7bootldr_size);					
 	memcpy ((void *)NDS_LOADER_IPC_BOOTSTUBARM7_CACHED, (u32*)&arm7bootldr[0], arm7bootldr_size); 	//memcpy ( void * destination, const void * source, size_t num );	//memset(void *str, int c, size_t n)
-
+	
+	swiDelay(8888);
 	setNDSLoaderInitStatus(NDSLOADER_INIT_OK);
+	
+	swiDelay(8888);
 }
 
 static u8 * outBuf7 = NULL;
 static u8 * outBuf9 = NULL;
 
 //generates a table of sectors out of a given file. It has the ARM7 binary and ARM9 binary
+__attribute__((section(".itcm")))
 bool fillNDSLoaderContext(char * filename){
 	
 	FILE * fh = fopen(filename, "r");
 	if(fh != NULL){
+		swiDelay(8888);
 		
 		int headerSize = sizeof(struct sDSCARTHEADER);
 		u8 * NDSHeader = (u8 *)malloc(headerSize*sizeof(u8));
@@ -214,6 +223,8 @@ bool fillNDSLoaderContext(char * filename){
 			cur_clustersector = (u32)NDS_LOADER_IPC_CTX_UNCACHED->sectorTableBootCode[data_read];
 		}
 		
+		swiDelay(8888);
+		
 		printf("ARM7 %d bytes. [Addr: %x]", arm7BootCodeSize, (outBuf7 - 0x400000));
 		printf("ARM9 %d bytes. [Addr: %x]", arm9BootCodeSize, (outBuf9 - 0x400000));
 		
@@ -227,7 +238,12 @@ bool fillNDSLoaderContext(char * filename){
 		fclose(fh);
 		int ret=FS_deinit();
 		
+		swiDelay(8888);
 		asm("mcr	p15, 0, r0, c7, c10, 4");
+		
+		//Shut down MPU
+		MProtectionDisable();
+		
 		WRAM_CR = WRAM_0KARM9_32KARM7;	//96K ARM7 : 0x037f8000 ~ 0x03810000
 		flush_icache_all();
 		flush_dcache_all();
@@ -237,9 +253,13 @@ bool fillNDSLoaderContext(char * filename){
 			printf("DLDI Patch failed. APP does not support DLDI format.");
 		}
 		
+		swiDelay(8888);
+		
 		runBootstrapARM7();	//ARM9 Side						/	
 		setNDSLoaderInitStatus(NDSLOADER_LOAD_OK);	//		|	Wait until ARM7.bin is copied back to IWRAM's target address
 		waitWhileNotSetStatus(NDSLOADER_START);		//		\
+		
+		swiDelay(8888);
 		
 		//reload ARM9.bin
 		coherent_user_range_by_size((uint32)NDS_LOADER_IPC_CTX_UNCACHED->arm9EntryAddress, (u32)arm9BootCodeSize);
@@ -248,13 +268,16 @@ bool fillNDSLoaderContext(char * filename){
 	return false;
 }
 
+bool RenderWoopsiUI = false;
+
+__attribute__((section(".itcm")))
 int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	
 	/*			TGDS 1.6 Standard ARM9 Init code start	*/
 	bool isTGDSCustomConsole = false;	//set default console or custom console: default console
 	GUI_init(isTGDSCustomConsole);
 	GUI_clear();
-	bool isCustomTGDSMalloc = false;
+	bool isCustomTGDSMalloc = true;
 	setTGDSMemoryAllocator(getProjectSpecificMemoryAllocatorSetup(TGDS_ARM7_MALLOCSTART, TGDS_ARM7_MALLOCSIZE, isCustomTGDSMalloc));
 	sint32 fwlanguage = (sint32)getLanguage();
 	
@@ -293,117 +316,21 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	//restoreFBModeMainEngine();
 	
 	menuShow();
+	
+	//Woopsi: Create the Hello World application
+	//HelloWorld app;
+	//RenderWoopsiUI = true;
+	//REG_IE |= IRQ_VBLANK;
+	//return app.main(argc, argv);
+	
+	fillNDSLoaderContext((char*)"0:/TGDS-Woopsi-template.nds");
+	
 	bool isFTPServer = false;
 	ftpInit(isFTPServer);
-	//fillNDSLoaderContext((char*)"0:/ToolchainGenericDS-multiboot.nds");
 	
 	while (1){
-		switch(FTPServerService()){
-			
-			//FTP Server cases
-			case(FTP_SERVER_ACTIVE):{
-				
-			}
-			break;
-			//Server Disconnected/Idle!
-			case(FTP_SERVER_CLIENT_DISCONNECTED):{				
-				/*
-				closeFTPDataPort(sock1);
-				setFTPState(FTP_SERVER_IDLE);
-				printf("Client disconnected!. Press A to retry.");
-				switch_dswnifi_mode(dswifi_idlemode);
-				scanKeys();
-				while(!(keysDown() & KEY_A)){
-					scanKeys();
-					IRQVBlankWait();
-				}
-				main(argc, argv);
-				*/
-			}
-			break;
-			
-			
-			//FTP Client cases
-			case(FTP_CLIENT_ACTIVE):{
-				
-			}
-			break;
-			
-			case(FTP_CLIENT_DISCONNECTED_FROM_SERVER):{
-				
-			}
-			break;
-			
-		}
-		
-		scanKeys();
-		if (keysDown() & KEY_START){
-			char startPath[MAX_TGDSFILENAME_LENGTH+1];
-			strcpy(startPath,"/");
-			while( ShowBrowser((char *)startPath, (char *)&curChosenBrowseFile[0]) == true ){	//as long you keep using directories ShowBrowser will be true
-				
-			}
-			
-			scanKeys();
-			while((keysDown() & KEY_A) || (keysDown() & KEY_START)){
-				scanKeys();
-			}
-			
-			//Send args
-			printf("[Booting %s]", curChosenBrowseFile);
-			printf("Want to send argument?");
-			printf("(A) Yes: (Start) Choose arg.");
-			printf("(B) No. ");
-			
-			while(1==1){
-				scanKeys();
-				if(keysDown()&KEY_A){
-					scanKeys();
-					while(keysDown() & KEY_A){
-						scanKeys();
-					}
-					
-					char argv0[MAX_TGDSFILENAME_LENGTH+1];
-					memset(argv0, 0, sizeof(argv0));
-					
-					while( ShowBrowser((char *)startPath, (char *)&argv0[0]) == true ){	//as long you keep using directories ShowBrowser will be true
-						
-					}
-					
-					char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
-					memset(thisArgv, 0, sizeof(thisArgv));
-					strcpy(&thisArgv[0][0], curChosenBrowseFile);	//Arg0:	NDS Binary loaded
-					strcpy(&thisArgv[1][0], argv0);					//Arg1: ARGV0
-					addARGV(2, (char*)&thisArgv);
-					break;
-				}
-				else if(keysDown()&KEY_B){
-					
-					char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
-					memset(thisArgv, 0, sizeof(thisArgv));
-					strcpy(&thisArgv[0][0], "");	//Arg0:	
-					strcpy(&thisArgv[1][0], "");	//Arg1: 
-					strcpy(&thisArgv[2][0], "");	//Arg2:
-					addARGV(3, (char*)&thisArgv);
-					break;
-				}
-			}
-			
-			//Compressed .NDS file? Decompress it first
-			char tmpName[256+1];
-			char ext[256+1];
-			strcpy(tmpName, curChosenBrowseFile);
-			separateExtension(tmpName, ext);
-			strlwr(ext);
-			if(strncmp(ext,".zip", 4) == 0){
-				char unzippedFile[MAX_TGDSFILENAME_LENGTH+1];
-				load_gz((char*)curChosenBrowseFile, (char*)unzippedFile);
-				strcpy(curChosenBrowseFile, unzippedFile);
-			}
-			
-			fillNDSLoaderContext(curChosenBrowseFile);
-		}
-		
+		handleARM9SVC();	/* Do not remove, handles TGDS services */
+		IRQWait(IRQ_HBLANK);
 	}
 }
 
