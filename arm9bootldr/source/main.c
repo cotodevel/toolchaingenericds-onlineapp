@@ -25,6 +25,12 @@ USA
 #include "dmaTGDS.h"
 #include "utilsTGDS.h"
 
+void HandleFifoEmptyWeakRef(uint32 cmd1,uint32 cmd2){
+}
+
+void HandleFifoNotEmptyWeakRef(uint32 cmd1,uint32 cmd2){
+}
+
 //This payload has all the ARM9 core hardware, TGDS Services, so SWI/SVC can work here.
 __attribute__((optimize("O0")))
 __attribute__ ((noinline))

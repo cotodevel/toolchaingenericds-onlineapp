@@ -311,7 +311,7 @@ bool fillNDSLoaderContext(char * filename){
 	}
 	return false;
 }
-int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
+int main(int argc, char **argv) {
 	
 	/*			TGDS 1.6 Standard ARM9 Init code start	*/
 	bool isTGDSCustomConsole = false;	//set default console or custom console: default console
@@ -358,43 +358,7 @@ int main(int argc, char argv[argvItems][MAX_TGDSFILENAME_LENGTH]) {
 	return app.main(argc, argv);
 	
 	while(1) {
-		switch(FTPServerService()){
-			
-			//FTP Server cases
-			case(FTP_SERVER_ACTIVE):{
-				
-			}
-			break;
-			//Server Disconnected/Idle!
-			case(FTP_SERVER_CLIENT_DISCONNECTED):{				
-				/*
-				closeFTPDataPort(sock1);
-				setFTPState(FTP_SERVER_IDLE);
-				printf("Client disconnected!. Press A to retry.");
-				switch_dswnifi_mode(dswifi_idlemode);
-				scanKeys();
-				while(!(keysDown() & KEY_A)){
-					scanKeys();
-					IRQVBlankWait();
-				}
-				main(argc, argv);
-				*/
-			}
-			break;
-			
-			
-			//FTP Client cases
-			case(FTP_CLIENT_ACTIVE):{
-				
-			}
-			break;
-			
-			case(FTP_CLIENT_DISCONNECTED_FROM_SERVER):{
-				
-			}
-			break;
-			
-		}
+		
 		
 		handleARM9SVC();	/* Do not remove, handles TGDS services */
 		IRQWait(IRQ_HBLANK);
