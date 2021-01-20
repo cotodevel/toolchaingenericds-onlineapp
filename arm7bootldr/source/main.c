@@ -22,12 +22,13 @@ USA
 #include "busTGDS.h"
 #include "dmaTGDS.h"
 #include "spifwTGDS.h"
+#include "wifi_arm7.h"
 
-static inline void enterGDBFromARM7(void){
+void enterGDBFromARM7(void){
 	SendFIFOWords(NDSLOADER_ENTERGDB_FROM_ARM7, 0);
 }
 
-int main(int _argc, sint8 **_argv) {
+int main(int argc, char **argv) {
 	/*			TGDS 1.6 Standard ARM7 Init code start	*/
 	installWifiFIFO();		
 	/*			TGDS 1.6 Standard ARM7 Init code end	*/

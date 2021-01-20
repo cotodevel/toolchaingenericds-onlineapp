@@ -74,16 +74,20 @@ bool TGDSRecvHandlerUser(struct frameBlock * frameBlockRecv, int DSWnifiMode){
 		
 		//NIFI local
 		case(dswifi_localnifimode):{
+			#ifdef ARM9
 			clrscr();
 			GUI_printf("DSWNIFIStatus:LocalNifi!");
+			#endif
 			return true;
 		}
 		break;
 		
 		//UDP NIFI
 		case(dswifi_udpnifimode):{
+			#ifdef ARM9
 			clrscr();
 			GUI_printf("DSWNIFIStatus:UDPNifi!");
+			#endif
 			return true;
 		}
 		break;
