@@ -23,11 +23,14 @@
 export SOURCE_MAKEFILE7 = custom
 export SOURCE_MAKEFILE9 = custom
 
-#Non FPIC Code: Use Makefiles from either TGDS, or custom
-#FPIC code is always default TGDS Makefile
+#Translate paths to windows with forward slashes
+cpath := $(shell pwd)
+ifeq ($(shell uname -o), Cygwin)
+    CURDIR := '$(shell cygpath -w -p ${cpath})'
+endif
 
 #Shared
-include $(DEFAULT_GCC_PATH)Makefile.basenewlib
+include $(DEFAULT_GCC_PATH_WIN)/Makefile.basenewlib
 
 #Custom
 # Project Specific
@@ -58,7 +61,7 @@ export TARGET_LIBRARY_CRT0_FILE_9 = nds_arm_ld_crt0
 export TARGET_LIBRARY_CRT0_FILE_COMPRESSED_9 = nds_arm_ld_crt0
 export TARGET_LIBRARY_LINKER_FILE_7 = $(TARGET_LIBRARY_PATH)$(TARGET_LIBRARY_LINKER_SRC)/$(TARGET_LIBRARY_CRT0_FILE_7).S
 export TARGET_LIBRARY_LINKER_FILE_9 = $(TARGET_LIBRARY_PATH)$(TARGET_LIBRARY_LINKER_SRC)/$(TARGET_LIBRARY_CRT0_FILE_9).S
-export TARGET_LIBRARY_LINKER_FILE_COMPRESSED_9 = $(CURDIR)/$(DECOMPRESSOR_BOOTCODE_9)/$(TARGET_LIBRARY_CRT0_FILE_COMPRESSED_9).S
+export TARGET_LIBRARY_LINKER_FILE_COMPRESSED_9 = ../$(DECOMPRESSOR_BOOTCODE_9)/$(TARGET_LIBRARY_CRT0_FILE_COMPRESSED_9).S
 
 export TARGET_LIBRARY_NAME_7 = toolchaingen7
 export TARGET_LIBRARY_NAME_9 = toolchaingen9
