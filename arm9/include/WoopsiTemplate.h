@@ -9,13 +9,24 @@
 #include "textbox.h"
 #include "soundTGDS.h"
 #include "button.h"
+#include "scrollinglistbox.h"
+#include "fatfslayerTGDS.h"
 
 #include <string>
 using namespace std;
-
 using namespace WoopsiUI;
 
 #define TGDSPROJECTNAME ((char*) "ToolchainGenericDS-OnlineApp")
+
+typedef struct fileinfo {
+	char* filename;
+	//will we need a pointer to the entire path?
+	//char* fsize;
+	FILE* fpointer;
+	int namesize;
+	long int filesize;
+	bool isdir;
+} fileinfo;
 
 class WoopsiTemplate : public Woopsi, public GadgetEventHandler {
 public:
@@ -24,6 +35,7 @@ public:
 	void handleValueChangeEvent(const GadgetEventArgs& e);	//Handles UI events if they change
 	void handleClickEvent(const GadgetEventArgs& e);	//Handles UI events when they take click action
 	void waitForAOrTouchScreenButtonMessage(MultiLineTextBox* thisLineTextBox, const WoopsiString& thisText);
+	void getFileListing(fileinfo** output, ScrollingListBox* box);
 	void handleLidClosed();
 	void handleLidOpen();
 	void ApplicationMainLoop();
@@ -38,6 +50,11 @@ public:
 	Button* _stop;
 	Button* _upVolume;
 	Button* _downVolume;
+	
+	fileinfo** remoteDir;
+	ScrollingListBox* remoteFiles;
+	char remoteDirPath[256+1];
+	
 private:
 	Alert* _alert;
 };

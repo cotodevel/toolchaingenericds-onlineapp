@@ -14,8 +14,12 @@
 #include "main.h"
 #include "posixHandleTGDS.h"
 #include "keypadTGDS.h"
+
 #include "ftpMisc.h"
 #include "ftpServer.h"
+#include "FTPClientLib.h"
+#include "FTPClientMisc.h"
+#include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
 
 __attribute__((section(".itcm")))
 WoopsiTemplate * WoopsiTemplateProc = NULL;
@@ -35,7 +39,7 @@ void WoopsiTemplate::startup(int argc, char **argv) {
 	delete gfx;
 
 	// Create screens
-	AmigaScreen* newScreen = new AmigaScreen(TGDSPROJECTNAME, Gadget::GADGET_DRAGGABLE, AmigaScreen::AMIGA_SCREEN_SHOW_DEPTH | AmigaScreen::AMIGA_SCREEN_SHOW_FLIP);
+	AmigaScreen* newScreen = new AmigaScreen(TGDSPROJECTNAME, Gadget::GADGET_DRAGGABLE, AmigaScreen::AMIGA_SCREEN_SHOW_DEPTH);
 	woopsiApplication->addGadget(newScreen);
 	newScreen->setPermeable(true);
 
@@ -92,9 +96,15 @@ void WoopsiTemplate::startup(int argc, char **argv) {
 	// Create FileRequester
 	_fileReq = new FileRequester(10, 10, 150, 150, "Files", "/", GADGET_DRAGGABLE | GADGET_DOUBLE_CLICKABLE);
 	_fileReq->setRefcon(1);
-	_fileScreen->addGadget(_fileReq);
+	newScreen->addGadget(_fileReq);
 	_fileReq->addGadgetEventHandler(this);
 	currentFileRequesterIndex = 0;
+	
+	// Create listboxes
+	remoteFiles = new ScrollingListBox(131, 30, 125, 160);
+	remoteFiles->setRefcon(9);
+	newScreen->addGadget(remoteFiles);
+	remoteFiles->addGadgetEventHandler(this);
 	
 	_MultiLineTextBoxLogger = NULL;	//destroyable TextBox
 	
@@ -204,6 +214,23 @@ void WoopsiTemplate::handleLidOpen() {
 	}
 }
 
+void WoopsiTemplate::getFileListing(fileinfo** output, ScrollingListBox* box)
+{
+	int i = 0;
+	while(output[i])
+	{
+		if( output[i]->isdir )
+		{
+			box->addOption(output[i]->filename, i, box->getShineColour(), box->getBackColour(), box->getShineColour(), box->getHighlightColour());
+		}
+		else
+		{
+			box->addOption(output[i]->filename, i);
+		}
+		i++;
+	}
+}
+
 void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((optnone)) {
 	switch (e.getSource()->getRefcon()) {
 		//_Index Event
@@ -272,6 +299,111 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((
 			struct XYTscPos touch;
 			XYReadScrPosUser(&touch);
 			volumeDown(touch.touchXpx, touch.touchYpx);
+		}	
+		break;
+		
+		//remoteFiles Event
+		case 9:{
+			char arrBuild[256+1];
+			int index = 0;
+			while((index = remoteFiles->getSelectedIndex()) >= 0)
+			{
+				if( remoteDir[index]->isdir )
+				{
+					char curPth[256+1];
+					char newPth[256+1];
+					memset(curPth, 0, sizeof(curPth));
+					memset(newPth, 0, sizeof(newPth));
+					
+					remoteFiles->getSelectedOption()->getText().copyToCharArray(newPth);
+					
+					WoopsiUI::WoopsiString curPath = (WoopsiUI::WoopsiString)WoopsiString(remoteDirPath);
+					curPath.copyToCharArray(curPth);
+					
+					int compare = remoteFiles->getSelectedOption()->getText().compareTo("..");
+					if (compare == 0){
+						//Leaving dir
+						leaveDir(curPth);
+						WoopsiString newPath;
+						newPath.setText((const char*)curPth);
+						newPath.copyToCharArray(remoteDirPath);
+						//FtpCDUp(conn)
+					}
+					else{
+						// Enter a new directory
+						strcat(curPth, (char*)newPth);
+						char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
+						memset(tmpBuf, 0, sizeof(tmpBuf));
+						strcpy(tmpBuf, curPth);
+						parseDirNameTGDS(tmpBuf);
+						memset(curPth, 0, sizeof(curPth));
+						strcpy(curPth, tmpBuf);
+						WoopsiString newPath;
+						newPath.setText((const char*)&curPth[1]);
+						newPath.copyToCharArray(remoteDirPath);
+					}
+					
+					//strcat(remoteDirPath, "/");
+					
+					sprintf(arrBuild, "CWD: Entering Directory: %s\n", remoteDirPath);
+					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					
+					//Getting the remote file listing
+					if((FtpChdir(WoopsiTemplateProc->remoteDirPath, conn) == 1) && FtpPwd(WoopsiTemplateProc->remoteDirPath, 256, conn) )
+					{
+						WoopsiTemplateProc->remoteDir = get_remote_dir(remoteDirPath, conn);
+						WoopsiTemplateProc->getFileListing(WoopsiTemplateProc->remoteDir, WoopsiTemplateProc->remoteFiles);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: OK.\n"));
+					}
+					else{
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
+					}
+						
+				}
+				else
+				{
+					/*
+					popup = new Alert(50, 50, 200, 80, "Downloading file:", remoteFiles->getOption(index)->text);
+					connectScreen->addGadget( popup );
+					//Progress bar doesnt work right yet....
+					//progress = new ProgressBar(5, 20, 200, 20);
+					//fileScreen->addGadget(progress);
+					//progress->setMaximumValue(remoteDir[index]->filesize %100);
+					//progress->setMinimumValue(0);
+					//progress->setFillColour(woopsiRGB(102, 255, 255));
+					//progress->setShineColour(woopsiRGB(102, 255, 255));
+					//progress->setValue(0);
+					
+					fileScreen->hide();
+					string localPath(curLocalText->getText());
+					localPath += remoteFiles->getOption(index)->text + NULL;
+					char size[1024];
+					sprintf(size, "%d", remoteDir[index]->filesize);
+					transferLbl->setText(size);
+					transferScreen->flipToBottomScreen();
+					transferScreen->show();
+					draw();
+					if(!FtpGet(localPath.c_str(),remoteFiles->getOption(index)->text,'I',conn)){
+						popup->close();
+						popup = new Alert(50, 50, 200, 80, "Failed to get file", remoteFiles->getOption(index)->text);
+						connectScreen->addGadget( popup );
+					}
+					else
+					{
+						popup->close();
+					}
+					popup = new Alert(50, 50, 200, 80, "Download Complete", remoteFiles->getOption(index)->text);
+					fileScreen->addGadget(popup);
+					//progress->close();
+					localFiles->removeAllOptions();
+					//Freeing memory
+					free_fileinfo(localDir);
+					localDir = get_dir((char*)curLocalText->getText());
+					getFileListing(localDir, localFiles);
+					*/
+				}
+				remoteFiles->deselectOption(index);
+			}
 		}	
 		break;
 		

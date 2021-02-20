@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
 #include "posixHandleTGDS.h"
+#include "WoopsiTemplate.h"
 
 /* Takes a list of fileinfo structs and frees all the space
 *   Has no return value, as free has no return value
@@ -118,9 +119,7 @@ fileinfo** get_remote_dir(char *path, struct NetBuf *nControl){
 */
 
 fileinfo** localDir;
-fileinfo** remoteDir;
 char* curLocal;
-char* curRemote;
 
 //TGDS Version
 // Takes a path,"/" for the root
@@ -145,7 +144,7 @@ fileinfo** get_dir(char* path){
 	while(fileClassInst != NULL){
 		if(i >= cursize - 3){
 			cursize *= 2;
-			dlist = TGDSARM9Realloc(dlist,cursize);
+			dlist = (fileinfo **)TGDSARM9Realloc(dlist,cursize);
 		}
 		//directory?
 		if(fileClassInst->type == FT_DIR){
@@ -163,10 +162,10 @@ fileinfo** get_dir(char* path){
 			strcpy(fileClassInst->fd_namefullPath, tmpBuf);
 			dlist[i]->isdir = 0;
 		}
-		dlist[i] = TGDSARM9Malloc(sizeof(fileinfo));
+		dlist[i] = (fileinfo *)TGDSARM9Malloc(sizeof(fileinfo));
 		dlist[i]->filesize = FS_getFileSize((char*)fileClassInst->fd_namefullPath);
 		dlist[i]->namesize = strlen(fileClassInst->fd_namefullPath);
-		dlist[i]->filename = TGDSARM9Calloc(1,sizeof(char)*dlist[i]->namesize + 1);
+		dlist[i]->filename = (char*)TGDSARM9Calloc(1,sizeof(char)*dlist[i]->namesize + 1);
 		strncpy(dlist[i]->filename, fileClassInst->fd_namefullPath, dlist[i]->namesize);
 		dlist[i]->fpointer = 0;
 		dlist[i]->filename[dlist[i]->namesize] = 0; 
@@ -202,12 +201,12 @@ fileinfo** get_remote_dir(char *path, struct NetBuf *nControl){
        sscanf(offset, "%s%*s%*s%*s%ld%*s%*s%*s %255[^\n]", permissions, &_filesize, filename);
 	   	if(i >= cursize - 3){
 			cursize *= 2;
-			dlist = TGDSARM9Realloc(dlist,cursize);
+			dlist = (fileinfo **)TGDSARM9Realloc(dlist,cursize);
 		}
-	   	dlist[i] = TGDSARM9Malloc(sizeof(fileinfo));
+	   	dlist[i] = (fileinfo *)TGDSARM9Malloc(sizeof(fileinfo));
 		dlist[i]->namesize = strlen(filename);
 		dlist[i]->filesize = _filesize;
-		dlist[i]->filename = TGDSARM9Calloc(1,sizeof(char)*dlist[i]->namesize + 2);
+		dlist[i]->filename = (char*)TGDSARM9Calloc(1,sizeof(char)*dlist[i]->namesize + 2);
 		strncpy(dlist[i]->filename,filename,dlist[i]->namesize);
 		
 		if(permissions[0] == 'd') dlist[i]->isdir = 1;

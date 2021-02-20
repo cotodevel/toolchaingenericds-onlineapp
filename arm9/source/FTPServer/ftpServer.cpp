@@ -363,19 +363,18 @@ u32 FTPServerService(){
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content.\n"));
 			
+			strcpy(WoopsiTemplateProc->remoteDirPath, "/");
 			if( connected )
 			{
-				//printf("FTP Server connect OK!!");
-				//Getting the local file listing
-				localDir = get_dir("/");
-				//getFileListing(localDir, localFiles);
-
 				//Getting the remote file listing
-				remoteDir = get_remote_dir(NULL, conn);
-				//getFileListing(remoteDir, remoteFiles);
-				if( FtpPwd(curRemote, 256, conn) )
+				WoopsiTemplateProc->remoteDir = get_remote_dir(WoopsiTemplateProc->remoteDirPath, conn);
+				WoopsiTemplateProc->getFileListing(WoopsiTemplateProc->remoteDir, WoopsiTemplateProc->remoteFiles);
+				if((FtpChdir(WoopsiTemplateProc->remoteDirPath, conn) == 1) && FtpPwd(WoopsiTemplateProc->remoteDirPath, 256, conn) )
 				{
-					
+					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: OK.\n"));
+				}
+				else{
+					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
 				}
 				
 			}
@@ -384,13 +383,14 @@ u32 FTPServerService(){
 				//printf("Error connecting to FTP Server....");
 			}
 			
+			/*
 			WoopsiTemplateProc->waitForAOrTouchScreenButtonMessage(WoopsiTemplateProc->_MultiLineTextBoxLogger, "Press (A) or tap touchscreen to continue. \n");
 			
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->invalidateVisibleRectCache();
 			WoopsiTemplateProc->_fileScreen->eraseGadget(WoopsiTemplateProc->_MultiLineTextBoxLogger);
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->destroy();	//same as delete _MultiLineTextBoxLogger;
 			//Destroyable Textbox implementation end
-			
+			*/
 			
 			setFTPState(FTP_CLIENT_ACTIVE);
 			curFTPStatus = FTP_CLIENT_ACTIVE;
