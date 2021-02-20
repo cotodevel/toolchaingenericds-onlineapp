@@ -1,17 +1,16 @@
-#include "ftpServer.h"
-
 #include "typedefsTGDS.h"
 #include "dsregs.h"
 #include "dsregs_asm.h"
-
 #include <in.h>
 #include "ftpMisc.h"
 #include "dswnifi_lib.h"
-
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
-
+#include "ftpServer.h"
 #include "FTPClientLib.h"
 #include "FTPClientMisc.h"
+
+// Includes
+#include "WoopsiTemplate.h"
 
 bool FTPActiveMode = false;
 
@@ -71,15 +70,15 @@ u32 FTPServerService(){
 			globaldatasocketEnabled = false;
 			sock1 = openServerSyncConn(FTP_SERVER_SERVICE_PORT, &server);	//DS Server: listens at port FTP_SERVER_SERVICE_PORT now. Further access() through this port will come from a client.
 			char IP[16];
-			printf("[FTP Server:%s:%d]", print_ip((uint32)Wifi_GetIP(), IP), FTP_SERVER_SERVICE_PORT);
-			printf("Waiting for connection:");
+			//printf("[FTP Server:%s:%d]", print_ip((uint32)Wifi_GetIP(), IP), FTP_SERVER_SERVICE_PORT);
+			//printf("Waiting for connection:");
 			setFTPState(FTP_SERVER_CONNECTING);
 			curFTPStatus = FTP_SERVER_ACTIVE;
 		}
 		break;
 	
 		case(FTP_SERVER_CONNECTING):{
-			printf("[Waiting for client...]");
+			//printf("[Waiting for client...]");
 			memset(&client, 0, sizeof(struct sockaddr_in));
 			cli_len = sizeof(client);
 			sock2 = accept(sock1,(struct sockaddr*)&client, &cli_len);
@@ -92,7 +91,7 @@ u32 FTPServerService(){
 			//ioctl(sock1, FIONBIO,&j); // Server socket is non blocking
 			
 			//Wait for client: FTP Server -> FTP Client Init session.
-			printf("[Client Connected:%s:%d]",inet_ntoa(client.sin_addr), ntohs(client.sin_port));
+			//printf("[Client Connected:%s:%d]",inet_ntoa(client.sin_addr), ntohs(client.sin_port));
 			
 			ftpResponseSender(sock2, 200, "hello");
 			setFTPState(FTP_SERVER_ACTIVE);
@@ -117,7 +116,7 @@ u32 FTPServerService(){
 						sendResponse = ftpResponseSender(sock2, 504, "AUTH not supported");
 					}
 					else if(!strncmp(buffer, "BYE", 3) || !strncmp(buffer, "QUIT", 4)){
-						printf("FTP server quitting.. ");
+						//printf("FTP server quitting.. ");
 						int i = 1;
 						sendResponse = send(sock2, &i, sizeof(int), 0);
 					}
@@ -204,7 +203,7 @@ u32 FTPServerService(){
 						else{
 							sendResponse = ftpResponseSender(sock2, 450, "Delete Command error.");
 						}
-						printf("trying DELE: [%s] ret:[%d]", fnameRemote.c_str(),retVal);
+						//printf("trying DELE: [%s] ret:[%d]", fnameRemote.c_str(),retVal);
 					}
 					else if(!strncmp(buffer,"GET", 3)){
 						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
@@ -222,7 +221,7 @@ u32 FTPServerService(){
 						*/
 					}
 					else if(!strncmp(buffer, "PUT", 3)){
-						printf("put command! ");
+						//printf("put command! ");
 						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
 						/*
 						int c = 0;
@@ -252,11 +251,11 @@ u32 FTPServerService(){
 						char *pathToEnter;
 						pathToEnter = getFtpCommandArg("CWD", buffer, 0);
 						if(chdir((char*)pathToEnter) != 0) {
-							printf(" CWD fail => %s ", pathToEnter);
+							//printf(" CWD fail => %s ", pathToEnter);
 							return ftpResponseSender(sock2, 550, "Error changing directory");
 						}
 						else{
-							printf("1 CWD OK => %s ", pathToEnter);
+							//printf("1 CWD OK => %s ", pathToEnter);
 							strcpy(CurrentWorkingDirectory, pathToEnter);
 							return ftpResponseSender(sock2, 250, "Directory successfully changed.");
 						}
@@ -273,7 +272,7 @@ u32 FTPServerService(){
 						sendResponse = ftpResponseSender(sock2, 502, "invalid command");//todo
 					}
 					else if(!strncmp(buffer, "LS", 2)){
-						printf("ls command!");
+						//printf("ls command!");
 						/*
 						system("ls >temps.txt");
 						stat("temps.txt",&obj);
@@ -294,7 +293,7 @@ u32 FTPServerService(){
 						sendResponse = send(sock2, &c, sizeof(int), 0);
 					}
 					else{
-						printf("unhandled command: [%s]",buffer);
+						//printf("unhandled command: [%s]",buffer);
 						sendResponse = ftpResponseSender(sock2, 502, "invalid command");
 					}
 				}
@@ -317,7 +316,7 @@ u32 FTPServerService(){
 		break;
 		
 		case(FTP_CLIENT_CONNECTING):{
-			printf("FTP Client Start. Init WIFI.");
+			//printf("FTP Client Start. Init WIFI.");
 			
 			//FTP start
 			switch_dswnifi_mode(dswifi_idlemode);
@@ -333,29 +332,40 @@ u32 FTPServerService(){
 			char * FTPUser = "b7_27976645";
 			char * FTPPass = "Lica8989";
 			
-			bool connected = false;
+			//Destroyable Textbox implementation init
+			Rect rect;
+			WoopsiTemplateProc->_fileScreen->getClientRect(rect);
+			WoopsiTemplateProc->_MultiLineTextBoxLogger = new MultiLineTextBox(rect.x, rect.y, 262, 170, "Loading\n...", Gadget::GADGET_DRAGGABLE, 5);
+			WoopsiTemplateProc->_fileScreen->addGadget(WoopsiTemplateProc->_MultiLineTextBoxLogger);
 			
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->removeText(0);
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->moveCursorToPosition(0);
+			char arrBuild[256+1];
+			bool connected = false;
 			if( !FtpConnect(FTPHostAddress,&conn))
 			{
 				connected = false;
 				//errorMsg += "ftpcon, ";
+				sprintf(arrBuild, "Couldn't Connect: %s\n", FTPHostAddress);
+				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 			}
 			else connected = true;
-			printf("CONNECT OK");
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Server Connection OK.\n"));
 			
 			if(connected && !FtpLogin(FTPUser,FTPPass, conn))
 			{
-				printf("LOGIN FAIL. WRONG USER/PASS");
+				sprintf(arrBuild, "Login Failure: User:%s Pass:%s\n", FTPUser, FTPPass);
+				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 				connected = false;
 				//errorMsg += "ftpLogin.";
 			}
-			else{
-				printf("LOGIN OK CTM");
-			}
+			sprintf(arrBuild, "Login OK: User:%s Pass:%s\n", FTPUser, FTPPass);
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content.\n"));
 			
 			if( connected )
 			{
-				printf("FTP Server connect OK!!");
+				//printf("FTP Server connect OK!!");
 				//Getting the local file listing
 				localDir = get_dir("/");
 				//getFileListing(localDir, localFiles);
@@ -371,8 +381,16 @@ u32 FTPServerService(){
 			}
 			else
 			{
-				printf("Error connecting to FTP Server....");
+				//printf("Error connecting to FTP Server....");
 			}
+			
+			WoopsiTemplateProc->waitForAOrTouchScreenButtonMessage(WoopsiTemplateProc->_MultiLineTextBoxLogger, "Press (A) or tap touchscreen to continue. \n");
+			
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->invalidateVisibleRectCache();
+			WoopsiTemplateProc->_fileScreen->eraseGadget(WoopsiTemplateProc->_MultiLineTextBoxLogger);
+			WoopsiTemplateProc->_MultiLineTextBoxLogger->destroy();	//same as delete _MultiLineTextBoxLogger;
+			//Destroyable Textbox implementation end
+			
 			
 			setFTPState(FTP_CLIENT_ACTIVE);
 			curFTPStatus = FTP_CLIENT_ACTIVE;

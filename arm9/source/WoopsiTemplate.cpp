@@ -14,6 +14,8 @@
 #include "main.h"
 #include "posixHandleTGDS.h"
 #include "keypadTGDS.h"
+#include "ftpMisc.h"
+#include "ftpServer.h"
 
 __attribute__((section(".itcm")))
 WoopsiTemplate * WoopsiTemplateProc = NULL;
@@ -96,10 +98,13 @@ void WoopsiTemplate::startup(int argc, char **argv) {
 	
 	_MultiLineTextBoxLogger = NULL;	//destroyable TextBox
 	
-	//FTP init must go here once it works on real hardware
-	
 	enableDrawing();	// Ensure Woopsi can now draw itself
 	redraw();			// Draw initial state
+	
+	//FTP init must go here once it works on real hardware
+	bool isFTPServer = false;
+	ftpInit(isFTPServer);
+	
 }
 
 void WoopsiTemplate::shutdown() {
@@ -285,7 +290,41 @@ void Woopsi::ApplicationMainLoop(){
 	
 	//Handle TGDS stuff...
 	
-	
+	switch(FTPServerService()){		
+		//FTP Server cases
+		case(FTP_SERVER_ACTIVE):{
+			
+		}
+		break;
+		//Server Disconnected/Idle!
+		case(FTP_SERVER_CLIENT_DISCONNECTED):{				
+			/*
+			closeFTPDataPort(sock1);
+			setFTPState(FTP_SERVER_IDLE);
+			printf("Client disconnected!. Press A to retry.");
+			switch_dswnifi_mode(dswifi_idlemode);
+			scanKeys();
+			while(!(keysPressed() & KEY_A)){
+				scanKeys();
+				IRQVBlankWait();
+			}
+			main(argc, argv);
+			*/
+		}
+		break;
+		
+		
+		//FTP Client cases
+		case(FTP_CLIENT_ACTIVE):{
+			
+		}
+		break;
+		
+		case(FTP_CLIENT_DISCONNECTED_FROM_SERVER):{
+			
+		}
+		break;
+	}
 	
 	switch(pendPlay){
 		case(1):{
