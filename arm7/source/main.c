@@ -28,15 +28,8 @@ USA
 #include "timerTGDS.h"
 #include "biosTGDS.h"
 #include "CPUARMTGDS.h"
+#include "eventsTGDS.h"
 
-#include "loader.h"
-#include "spifwTGDS.h"
-#include "posixHandleTGDS.h"
-
-
-void initDLDIARM7(u32 srcDLDIAddr){	//stubbed
-	
-}
 //---------------------------------------------------------------------------------
 int main(int argc, char **argv) {
 //---------------------------------------------------------------------------------
@@ -54,12 +47,7 @@ int main(int argc, char **argv) {
 	
 	/*			TGDS 1.6 Standard ARM7 Init code end	*/
 	
-	waitWhileNotSetStatus(NDSLOADER_INIT_OK);	//wait for init NDSLoader code 
-	
-	REG_IE |= (IRQ_VCOUNT | IRQ_VBLANK | IRQ_HBLANK);
-	
     while (1) {
-		//up to this point, is free to reload the EWRAM code
 		handleARM7SVC();	/* Do not remove, handles TGDS services */
 		IRQWait(IRQ_HBLANK);
 	}

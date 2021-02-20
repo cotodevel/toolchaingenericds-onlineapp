@@ -54,10 +54,8 @@ void ftpInit(bool isFTPServer){
 	}
 }
 
-int FTPServerService(){
-	int curFTPStatus = 0;
-	
-	
+u32 FTPServerService(){
+	u32 curFTPStatus = 0;
 	switch(getFTPState()){
 		
 		//FTP Server handshake 
@@ -331,9 +329,9 @@ int FTPServerService(){
 				disconnectAsync(server_datasocket);
 			}
 			
-			char * FTPHostAddress = "ftp.byethost31.com";
-			char * FTPUser = "b31_27241871";
-			char * FTPPass = "Licantropo1";
+			char * FTPHostAddress = "ftp.byethost7.com";
+			char * FTPUser = "b7_27976645";
+			char * FTPPass = "Lica8989";
 			
 			bool connected = false;
 			

@@ -35,6 +35,7 @@
  * ============================================================================
 */
 #include "typedefsTGDS.h"
+#include "posixHandleTGDS.h"
 #include "dsregs.h"
 #include "dsregs_asm.h"
 //#include "gui.h"
@@ -150,7 +151,7 @@ void *memccpy(void *dest, const void *src, int c, size_t n)
 char *strdup(const char *src)
 {
     int l = strlen(src) + 1;
-    char *dst = malloc(l);
+    char *dst = TGDSARM9Malloc(l);
     if (dst)
         strcpy(dst,src);
     return dst;
@@ -461,7 +462,7 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
 		sin.sin_port = htons(21);
 		sin.sin_addr.s_addr = *( (unsigned long *)(phe->h_addr_list[0]) );
     	// memcpy((char *)&sin.sin_addr, phe->h_addr, phe->h_length);
-    //free(lhost);
+    //TGDSARM9Free(lhost);
     
     if (sControl == -1)
     {
@@ -482,17 +483,17 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
 		return 0;
     }
 	printf("We should be connected");
-    ctrl = calloc(1,sizeof(struct NetBuf));
+    ctrl = TGDSARM9Calloc(1,sizeof(struct NetBuf));
     if (ctrl == NULL)
     {
 		net_close(sControl);
 		return 0;
     }
-    ctrl->buf = malloc(FTPLIB_BUFSIZ);
+    ctrl->buf = TGDSARM9Malloc(FTPLIB_BUFSIZ);
     if (ctrl->buf == NULL)
     {
 		net_close(sControl);
-		free(ctrl);
+		TGDSARM9Free(ctrl);
 		return 0;
     }
 	printf("Getting ready to set options on ctrl");
@@ -510,8 +511,8 @@ int FtpConnect(const char *host, struct NetBuf **nControl)
     {
 		printf("read response returned null, apparently that means fail?");
 		net_close(sControl);
-		free(ctrl->buf);
-		free(ctrl);
+		TGDSARM9Free(ctrl->buf);
+		TGDSARM9Free(ctrl);
 		return 0;
     }
     *nControl = ctrl;
@@ -778,16 +779,16 @@ static int FtpOpenPort(struct NetBuf *nControl, struct NetBuf **nData, int mode,
 	}
     }
 */
-    ctrl = calloc(1,sizeof(struct NetBuf));
+    ctrl = TGDSARM9Calloc(1,sizeof(struct NetBuf));
     if (ctrl == NULL)
     {
 		net_close(sData);
 		return -1;
     }
-    if ((mode == 'A') && ((ctrl->buf = malloc(FTPLIB_BUFSIZ)) == NULL))
+    if ((mode == 'A') && ((ctrl->buf = TGDSARM9Malloc(FTPLIB_BUFSIZ)) == NULL))
     {
 		net_close(sData);
-		free(ctrl);
+		TGDSARM9Free(ctrl);
 		return -1;
     }
     ctrl->handle = sData;
@@ -1046,11 +1047,11 @@ int FtpClose(struct NetBuf *nData)
 			writeline(NULL, 0, nData);
 	  case FTPLIB_READ:
 		if (nData->buf)
-			free(nData->buf);
+			TGDSARM9Free(nData->buf);
 		shutdown(nData->handle,2);
 		net_close(nData->handle);
 		ctrl = nData->ctrl;
-		free(nData);
+		TGDSARM9Free(nData);
 		if (ctrl)
 		{
 		    ctrl->data = NULL;
@@ -1064,7 +1065,7 @@ int FtpClose(struct NetBuf *nData)
 		    FtpClose(nData);
 		}
 		net_close(nData->handle);
-		free(nData);
+		TGDSARM9Free(nData);
 		return 0;
 	}
     return 1;
@@ -1244,7 +1245,7 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
 		return 0;
 	}
     
-	dbuf = calloc(1,FTPLIB_BUFSIZ + 1);
+	dbuf = TGDSARM9Calloc(1,FTPLIB_BUFSIZ + 1);
     if (typ == FTPLIB_FILE_WRITE)
     {
 		while ((l = fread(dbuf, 1, FTPLIB_BUFSIZ, local)) > 0){
@@ -1259,8 +1260,8 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
     else
     {
     	int total = 0;
-		if(rvsused){ free(rvs); }
-		rvs = (char*)calloc(1,FTPLIB_BUFSIZ + 1);
+		if(rvsused){ TGDSARM9Free(rvs); }
+		rvs = (char*)TGDSARM9Calloc(1,FTPLIB_BUFSIZ + 1);
 		rvsused = 1;
 		while ((l = FtpRead(dbuf, FTPLIB_BUFSIZ, nData)) > 0)
     	{
@@ -1274,7 +1275,7 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
 			if(local == stdout){
 				if( total > FTPLIB_BUFSIZ )
 				{
-					rvs = (char*)realloc(rvs, total*2 + 1);
+					rvs = (char*)TGDSARM9Realloc(rvs, total*2 + 1);
 				}
 				strcat(rvs,dbuf);
 				//printf("From ftpxfer: %s",rvs);
@@ -1287,12 +1288,12 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
 				break;
 			}
 			//printf("total is %i",total);
-			//free(rvstmp);
-			//free(rvs);			
+			//TGDSARM9Free(rvstmp);
+			//TGDSARM9Free(rvs);			
     	}
     }
-    free(dbuf);
-    //free(rvstmp);
+    TGDSARM9Free(dbuf);
+    //TGDSARM9Free(rvstmp);
     fflush(local);
     if(localfile != NULL)
 		fclose(local);
@@ -1456,6 +1457,6 @@ void FtpQuit(struct NetBuf *nControl)
 
     FtpSendCmd("QUIT",'2',nControl);
     net_close(nControl->handle);
-    free(nControl->buf);
-    free(nControl);
+    TGDSARM9Free(nControl->buf);
+    TGDSARM9Free(nControl);
 }

@@ -1,13 +1,22 @@
 ![ToolchainGenericDS](img/TGDS-Logo.png)
 
-This is the ToolchainGenericDS-OnlineApp project:
+This is the ToolchainGenericDS Woopsi OnlineApp project:
 
-Compile Toolchain: To compile this project you will need to follow the steps at https://bitbucket.org/Coto88/toolchaingenericds : Then simply extract the project somewhere.
-Compile this project: Open msys, through msys commands head to the directory your extracted this project. Then write: make clean make
-After compiling, run the example in NDS.
+1.	Compile Toolchain:
+To compile this project you will need to follow the steps at https://bitbucket.org/Coto88/toolchaingenericds :
+Then simply extract the project somewhere.
 
-Project Specific description: 
+2.	Compile this project: 
+Open msys, through msys commands head to the directory your extracted this project.
+Then write:
+make clean <enter>
+make <enter>
 
-Online TGDS Catalog. Allows to download content and run it!
+After compiling, run the example in NDS. 
+
+Project Specific description:
+A Woopsi UI + TGDS SDK project. 
+
+Online TGDS Catalog. Lists and downloads TGDS content!
 
 Coto

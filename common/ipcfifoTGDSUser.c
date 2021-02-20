@@ -30,9 +30,7 @@ USA
 #include "dsregs.h"
 #include "dsregs_asm.h"
 #include "InterruptsARMCores_h.h"
-#include "biosTGDS.h"
-#include "loader.h"
-#include "dmaTGDS.h"
+
 #ifdef ARM7
 #include <string.h>
 
@@ -47,8 +45,7 @@ USA
 #include <stdbool.h>
 #include "main.h"
 #include "wifi_arm9.h"
-#include "nds_cp15_misc.h"
-#include "dldi.h"
+
 #endif
 
 #ifdef ARM9
@@ -63,29 +60,16 @@ struct sIPCSharedTGDSSpecific* getsIPCSharedTGDSSpecific(){
 #ifdef ARM9
 __attribute__((section(".itcm")))
 #endif
-void HandleFifoNotEmptyWeakRef(uint32 cmd1,uint32 cmd2){
-	
+void HandleFifoNotEmptyWeakRef(volatile u32 cmd1){
 	switch (cmd1) {
-		//NDS7: 
 		#ifdef ARM7
-		case(ARM7COMMAND_RELOADNDS):{
-			runBootstrapARM7();	//ARM7 Side
-		}
-		break;
+		
 		#endif
 		
-		//NDS9: 
 		#ifdef ARM9
-		case(NDSLOADER_ENTERGDB_FROM_ARM7):{
-			EWRAMPrioToARM9();
-			GDBEnabled = true;
-		}
-		break;
-		#endif
 		
-		break;
+		#endif
 	}
-	
 }
 
 #ifdef ARM9
@@ -95,16 +79,6 @@ void HandleFifoEmptyWeakRef(uint32 cmd1,uint32 cmd2){
 }
 
 //project specific stuff
-
-void EWRAMPrioToARM7(){
-	//give EWRAM to ARM7
-	*(u16*)0x04000204 = (  (*(u16*)0x04000204 & ~(1<<15)) | (1<<15));
-}
-
-void EWRAMPrioToARM9(){
-	//give EWRAM to ARM9
-	*(u16*)0x04000204 = (  (*(u16*)0x04000204 & ~(1<<15)) | (0<<15));
-}
 
 #ifdef ARM9
 

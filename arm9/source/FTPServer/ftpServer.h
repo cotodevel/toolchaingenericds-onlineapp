@@ -15,7 +15,7 @@
 extern "C" {
 #endif
 
-extern int FTPServerService();
+extern u32 FTPServerService();
 extern bool globaldatasocketEnabled;
 
 //server ctx for sock1

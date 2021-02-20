@@ -9,8 +9,7 @@
 #include "biosTGDS.h"
 #include "dswnifi_lib.h"
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
-
-
+#include "posixHandleTGDS.h"
 
 int FtpLoginAsync(const char *user, const char *pass, int serverSocket)
 {
