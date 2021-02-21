@@ -19,4 +19,17 @@ A Woopsi UI + TGDS SDK project.
 
 Online TGDS Catalog. Lists and downloads TGDS content!
 
+Shop Theme: 
+Dan Truman - Instrumental Piano Music
+Chill Instrumental Music [Short] FEEL GOOD JAZZ
+
+Copy /release/arm9dldi-ntr folder contents in SD root. Enjoy the app!
+
+History:
+20/February/2021: 0.1 Alpha release
+
+
+Known issues:
+Background music while downloading a file will break connection. This is a bug in the DSWIFI code as interrupts seem to get in the way of wifi receive buffers.
+
 Coto

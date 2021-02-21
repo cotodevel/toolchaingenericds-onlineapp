@@ -42,7 +42,7 @@ USA
 // Includes
 #include "WoopsiTemplate.h"
 
-#include "tgds_multiboot_payload.h" 
+//#include "tgds_multiboot_payload.h" 
 #include "dmaTGDS.h"
 #include "nds_cp15_misc.h"
 #include "fatfslayerTGDS.h"
@@ -87,25 +87,35 @@ static inline void menuShow(){
 
 //NTR Bootcode:
 void TGDSMultibootRunNDSPayload(char * filename) __attribute__ ((optnone)) {
+	
+	switch_dswnifi_mode(dswifi_idlemode);
+	asm("mcr	p15, 0, r0, c7, c10, 4");
+	flush_icache_all();
+	flush_dcache_all();
+	
 	strcpy((char*)(0x02280000 - (MAX_TGDSFILENAME_LENGTH+1)), filename);	//Arg0:	
-	coherent_user_range_by_size((uint32)&tgds_multiboot_payload[0], (int)tgds_multiboot_payload_size);
-	dmaTransferHalfWord(0, (uint32)&tgds_multiboot_payload[0], (u32)0x02280000, (uint32)tgds_multiboot_payload_size);
-	int ret=FS_deinit();
-	//Copy and relocate current TGDS DLDI section into target ARM9 binary
-	coherent_user_range_by_size((uint32)tgds_multiboot_payload_size, (int)tgds_multiboot_payload_size);
 	
-	bool stat = dldiPatchLoader((data_t *)0x02280000, (u32)tgds_multiboot_payload_size, (u32)&_io_dldi_stub);
-	if(stat == false){
-		//printf("DLDI Patch failed. APP does not support DLDI format.");
+	FILE * tgdsPayloadFh = fopen("0:/tgds_multiboot_payload.bin", "r");
+	if(tgdsPayloadFh != NULL){
+		fseek(tgdsPayloadFh, 0, SEEK_SET);
+		int	tgds_multiboot_payload_size = FS_getFileSizeFromOpenHandle(tgdsPayloadFh);
+		fread((u32*)0x02280000, 1, tgds_multiboot_payload_size, tgdsPayloadFh);
+		coherent_user_range_by_size(0x02280000, (int)tgds_multiboot_payload_size);
+		fclose(tgdsPayloadFh);
+		int ret=FS_deinit();
+		//Copy and relocate current TGDS DLDI section into target ARM9 binary
+		bool stat = dldiPatchLoader((data_t *)0x02280000, (u32)tgds_multiboot_payload_size, (u32)&_io_dldi_stub);
+		if(stat == false){
+			//printf("DLDI Patch failed. APP does not support DLDI format.");
+		}
+		REG_IME = 0;
+		typedef void (*t_bootAddr)();
+		t_bootAddr bootARM9Payload = (t_bootAddr)0x02280000;
+		bootARM9Payload();
 	}
-	
-	REG_IME = 0;
-	typedef void (*t_bootAddr)();
-	t_bootAddr bootARM9Payload = (t_bootAddr)0x02280000;
-	bootARM9Payload();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) __attribute__ ((optnone)) {
 	
 	/*			TGDS 1.6 Standard ARM9 Init code start	*/
 	bool isTGDSCustomConsole = false;	//set default console or custom console: default console
@@ -139,6 +149,8 @@ int main(int argc, char **argv) {
 	
 	//Show logo
 	RenderTGDSLogoMainEngine((uint8*)&TGDSLogoLZSSCompressed[0], TGDSLogoLZSSCompressed_size);
+	
+	//TGDSMultibootRunNDSPayload("0:/ToolchainGenericDS-template.nds");
 	
 	// Create Woopsi UI
 	WoopsiTemplate WoopsiTemplateApp;

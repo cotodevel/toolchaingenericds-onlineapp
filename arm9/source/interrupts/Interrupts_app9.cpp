@@ -73,7 +73,7 @@ void Timer3handlerUser(){
 __attribute__((section(".itcm")))
 #endif
 void HblankUser(){
-
+	handleARM9SVC();	/* Do not remove, handles TGDS services ---- required for continuous ADPCM playback*/
 }
 
 #ifdef ARM9

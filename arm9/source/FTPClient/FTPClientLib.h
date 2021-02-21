@@ -89,25 +89,8 @@
 extern "C" {
 #endif
 
-typedef int (*FtpCallback)(/*struct NetBuf * */ void *nControl, int xfered, void *arg);
-struct NetBuf {
-    char *cput,*cget;
-    int handle;
-    int cavail,cleft;
-    char *buf;
-    int dir;
-    void *ctrl;	//struct NetBuf *
-    void *data; //struct NetBuf *
-    int cmode;
-    struct timeval idletime;
-    FtpCallback idlecb;
-    void *idlearg;
-    int xfered;
-    int cbbytes;
-    int xfered1;
-    char response[256];
-};
-static struct NetBuf *conn;
+
+
 
 static char *rvs = "0";
 static int rvsused = 0;

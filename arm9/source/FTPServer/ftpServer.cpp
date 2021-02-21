@@ -33,13 +33,15 @@ int client_datasocket = -1;
 int client_datasocketPortNumber = -1;
 char client_datasocketIP[MAX_TGDSFILENAME_LENGTH+1];
 
-
-char buf[100], command[5], filename[20];
+volatile char buf[128*1024];
+char command[5], filename[20];
 int k, size, srv_len, cli_len = 0, c;
 int filehandle;
 bool globaldatasocketEnabled = false;
 
-void ftpInit(bool isFTPServer){
+void ftpInit(bool isFTPServer) __attribute__ ((optnone)) {
+	buf[0] = 0;
+	
 	//FTP Server mode
 	if(isFTPServer == true){
 		strcpy((char*)CWDFTP,TGDSDirectorySeparator);
@@ -53,7 +55,7 @@ void ftpInit(bool isFTPServer){
 	}
 }
 
-u32 FTPServerService(){
+u32 FTPServerService() __attribute__ ((optnone)) {
 	u32 curFTPStatus = 0;
 	switch(getFTPState()){
 		
@@ -342,7 +344,7 @@ u32 FTPServerService(){
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->moveCursorToPosition(0);
 			char arrBuild[256+1];
 			bool connected = false;
-			if( !FtpConnect(FTPHostAddress,&conn))
+			if( !FtpConnect(FTPHostAddress,&WoopsiTemplateProc->conn))
 			{
 				connected = false;
 				//errorMsg += "ftpcon, ";
@@ -352,7 +354,7 @@ u32 FTPServerService(){
 			else connected = true;
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Server Connection OK.\n"));
 			
-			if(connected && !FtpLogin(FTPUser,FTPPass, conn))
+			if(connected && !FtpLogin(FTPUser,FTPPass, WoopsiTemplateProc->conn))
 			{
 				sprintf(arrBuild, "Login Failure: User:%s Pass:%s\n", FTPUser, FTPPass);
 				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
@@ -363,24 +365,24 @@ u32 FTPServerService(){
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content.\n"));
 			
-			strcpy(WoopsiTemplateProc->remoteDirPath, "/");
 			if( connected )
 			{
 				//Getting the remote file listing
-				WoopsiTemplateProc->remoteDir = get_remote_dir(WoopsiTemplateProc->remoteDirPath, conn);
-				WoopsiTemplateProc->getFileListing(WoopsiTemplateProc->remoteDir, WoopsiTemplateProc->remoteFiles);
-				if((FtpChdir(WoopsiTemplateProc->remoteDirPath, conn) == 1) && FtpPwd(WoopsiTemplateProc->remoteDirPath, 256, conn) )
+				if((FtpChdir(WoopsiTemplateProc->remoteDirPath, WoopsiTemplateProc->conn) == 1) && FtpPwd(WoopsiTemplateProc->remoteDirPath, 256, WoopsiTemplateProc->conn) )
 				{
+					//Free remoteFiles context
+					WoopsiTemplateProc->remoteFiles->removeAllOptions();
+					free_fileinfo(WoopsiTemplateProc->remoteDir);
+					
+					WoopsiTemplateProc->remoteDir = get_remote_dir(WoopsiTemplateProc->remoteDirPath, WoopsiTemplateProc->conn);
+					WoopsiTemplateProc->getFileListing(WoopsiTemplateProc->remoteDir, WoopsiTemplateProc->remoteFiles);
 					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: OK.\n"));
+					
 				}
 				else{
 					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
 				}
 				
-			}
-			else
-			{
-				//printf("Error connecting to FTP Server....");
 			}
 			
 			/*
@@ -410,8 +412,9 @@ u32 FTPServerService(){
 					sendResponse = ftpResponseSender(sock1, 502, "invalid command");
 				}
 			}
-			*/
 			curFTPStatus = FTP_CLIENT_ACTIVE;
+			*/
+			
 		}
 		break;
 		

@@ -1,6 +1,26 @@
 #ifndef _DEMO_H_
 #define _DEMO_H_
 
+#include <time.h>
+typedef int (*FtpCallback)(/*struct NetBuf * */ void *nControl, int xfered, void *arg);
+struct NetBuf {
+    char *cput,*cget;
+    int handle;
+    int cavail,cleft;
+    char *buf;
+    int dir;
+    void *ctrl;	//struct NetBuf *
+    void *data; //struct NetBuf *
+    int cmode;
+    struct timeval idletime;
+    FtpCallback idlecb;
+    void *idlearg;
+    int xfered;
+    int cbbytes;
+    int xfered1;
+    char response[256];
+};
+
 #ifdef __cplusplus
 #include "alert.h"
 #include "woopsi.h"
@@ -11,6 +31,7 @@
 #include "button.h"
 #include "scrollinglistbox.h"
 #include "fatfslayerTGDS.h"
+#include "FTPClientLib.h"
 
 #include <string>
 using namespace std;
@@ -55,6 +76,10 @@ public:
 	ScrollingListBox* remoteFiles;
 	char remoteDirPath[256+1];
 	
+	struct NetBuf *conn;
+	
+	int handleFTPClientCommand = 0;	//1 do  ftp
+	
 private:
 	Alert* _alert;
 };
@@ -69,6 +94,7 @@ extern "C" {
 extern WoopsiTemplate * WoopsiTemplateProc;
 extern u32 pendPlay;
 extern char currentFileChosen[256+1];
+extern int readline(char *buf,int max,struct NetBuf *ctl);
 
 #ifdef __cplusplus
 }

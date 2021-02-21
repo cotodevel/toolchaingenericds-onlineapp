@@ -14,6 +14,7 @@
 #include "main.h"
 #include "posixHandleTGDS.h"
 #include "keypadTGDS.h"
+#include "dswnifi_lib.h"
 
 #include "ftpMisc.h"
 #include "ftpServer.h"
@@ -101,7 +102,7 @@ void WoopsiTemplate::startup(int argc, char **argv) {
 	currentFileRequesterIndex = 0;
 	
 	// Create listboxes
-	remoteFiles = new ScrollingListBox(131, 30, 125, 160);
+	remoteFiles = new ScrollingListBox(40, 15, 215, 170);
 	remoteFiles->setRefcon(9);
 	newScreen->addGadget(remoteFiles);
 	remoteFiles->addGadgetEventHandler(this);
@@ -114,7 +115,6 @@ void WoopsiTemplate::startup(int argc, char **argv) {
 	//FTP init must go here once it works on real hardware
 	bool isFTPServer = false;
 	ftpInit(isFTPServer);
-	
 }
 
 void WoopsiTemplate::shutdown() {
@@ -339,32 +339,30 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((
 						memset(curPth, 0, sizeof(curPth));
 						strcpy(curPth, tmpBuf);
 						WoopsiString newPath;
-						newPath.setText((const char*)&curPth[1]);
+						newPath.setText((const char*)&curPth[0]);
 						newPath.copyToCharArray(remoteDirPath);
 					}
 					
-					//strcat(remoteDirPath, "/");
-					
-					sprintf(arrBuild, "CWD: Entering Directory: %s\n", remoteDirPath);
-					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
-					
-					//Getting the remote file listing
-					if((FtpChdir(WoopsiTemplateProc->remoteDirPath, conn) == 1) && FtpPwd(WoopsiTemplateProc->remoteDirPath, 256, conn) )
+					if((FtpChdir(remoteDirPath, conn) == 1) && FtpPwd(remoteDirPath, 256, conn) )
 					{
-						WoopsiTemplateProc->remoteDir = get_remote_dir(remoteDirPath, conn);
-						WoopsiTemplateProc->getFileListing(WoopsiTemplateProc->remoteDir, WoopsiTemplateProc->remoteFiles);
-						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: OK.\n"));
+						//Free remoteFiles context
+						remoteFiles->removeAllOptions();
+						free_fileinfo(remoteDir);
+						
+						remoteDir = get_remote_dir(remoteDirPath, conn);
+						getFileListing(remoteDir, remoteFiles);
+						_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: OK.\n"));
 					}
 					else{
-						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
+						_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
 					}
-						
 				}
 				else
 				{
-					/*
-					popup = new Alert(50, 50, 200, 80, "Downloading file:", remoteFiles->getOption(index)->text);
-					connectScreen->addGadget( popup );
+					char newFile[256+1];
+					memset(newFile, 0, sizeof(newFile));
+					remoteFiles->getSelectedOption()->getText().copyToCharArray(newFile);
+					
 					//Progress bar doesnt work right yet....
 					//progress = new ProgressBar(5, 20, 200, 20);
 					//fileScreen->addGadget(progress);
@@ -374,33 +372,54 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((
 					//progress->setShineColour(woopsiRGB(102, 255, 255));
 					//progress->setValue(0);
 					
-					fileScreen->hide();
-					string localPath(curLocalText->getText());
-					localPath += remoteFiles->getOption(index)->text + NULL;
-					char size[1024];
-					sprintf(size, "%d", remoteDir[index]->filesize);
-					transferLbl->setText(size);
-					transferScreen->flipToBottomScreen();
-					transferScreen->show();
-					draw();
-					if(!FtpGet(localPath.c_str(),remoteFiles->getOption(index)->text,'I',conn)){
-						popup->close();
-						popup = new Alert(50, 50, 200, 80, "Failed to get file", remoteFiles->getOption(index)->text);
-						connectScreen->addGadget( popup );
+					//_fileScreen->hide();
+					//char size[1024];
+					//sprintf(size, "%d", remoteDir[index]->filesize);
+					
+					char newFilePath[256+1];
+					memset(newFilePath, 0, sizeof(newFilePath));
+					sprintf(newFilePath, "%s/%s", remoteDirPath, newFile);
+					
+					sprintf(arrBuild, "Downloading file:%s\n", newFilePath);
+					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					
+					if(mkdir((const sint8 *)remoteDirPath, 777)){
+						sprintf(arrBuild, "Dir :%s doesn't exists. Creating. \n", remoteDirPath);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 					}
-					else
-					{
-						popup->close();
+					else{
+						sprintf(arrBuild, "Dir :%s doesn't exists. Failed Creating. \n", remoteDirPath);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 					}
-					popup = new Alert(50, 50, 200, 80, "Download Complete", remoteFiles->getOption(index)->text);
-					fileScreen->addGadget(popup);
-					//progress->close();
-					localFiles->removeAllOptions();
-					//Freeing memory
-					free_fileinfo(localDir);
-					localDir = get_dir((char*)curLocalText->getText());
-					getFileListing(localDir, localFiles);
-					*/
+					
+					if(!FtpGet(newFilePath, newFile,'I',conn)){
+						sprintf(arrBuild, "Failed to get file:%s\n", newFile);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					}
+					
+					sprintf(arrBuild, "Download Complete:%s\n", newFile);
+					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					
+					//Boot .NDS file! (homebrew only)
+					char tmpName[256];
+					char ext[256];
+					strcpy(tmpName, newFile);
+					separateExtension(tmpName, ext);
+					strlwr(ext);
+					if(strncmp(ext,".nds", 4) == 0){
+						switch_dswnifi_mode(dswifi_idlemode);
+			
+						char fileBuf[256+1];
+						memset(fileBuf, 0, sizeof(fileBuf));
+						strcpy(fileBuf, "0:");
+						strcat(fileBuf, newFilePath);						
+						sprintf(arrBuild, "NDS Boot:%s\n", fileBuf);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					
+						TGDSMultibootRunNDSPayload(fileBuf);
+					}
+					
+					//Update local dir contents here maybe
 				}
 				remoteFiles->deselectOption(index);
 			}
@@ -476,4 +495,6 @@ void Woopsi::ApplicationMainLoop(){
 		}
 		break;
 	}
+	
+	
 }
