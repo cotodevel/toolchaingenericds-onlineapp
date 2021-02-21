@@ -330,9 +330,9 @@ u32 FTPServerService() __attribute__ ((optnone)) {
 				disconnectAsync(server_datasocket);
 			}
 			
-			char * FTPHostAddress = "ftp.byethost7.com";
-			char * FTPUser = "b7_27976645";
-			char * FTPPass = "Lica8989";
+			char * FTPHostAddress = TGDS_ONLINEAPP_FTP_HOST;
+			char * FTPUser = TGDS_ONLINEAPP_FTP_USER;
+			char * FTPPass = TGDS_ONLINEAPP_FTP_PASS;
 			
 			//Destroyable Textbox implementation init
 			Rect rect;
@@ -361,9 +361,11 @@ u32 FTPServerService() __attribute__ ((optnone)) {
 				connected = false;
 				//errorMsg += "ftpLogin.";
 			}
-			sprintf(arrBuild, "Login OK: User:%s Pass:%s\n", FTPUser, FTPPass);
-			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
-			WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content.\n"));
+			else{
+				sprintf(arrBuild, "Login OK: User:%s Pass:%s\n", FTPUser, FTPPass);
+				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content.\n"));
+			}
 			
 			if( connected )
 			{
@@ -383,6 +385,9 @@ u32 FTPServerService() __attribute__ ((optnone)) {
 					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Retrieving TGDS Content: ERROR.\n"));
 				}
 				
+			}
+			else{
+				WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Failure connecting.\n"));
 			}
 			
 			/*

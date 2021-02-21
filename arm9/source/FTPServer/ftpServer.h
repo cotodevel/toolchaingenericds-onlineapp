@@ -9,6 +9,13 @@
 #define FTP_SERVER_SERVICE_PORT 21
 #define FTP_SERVER_SERVICE_DATAPORT (sint32)(20)
 
+//FTP Creds
+#define TGDS_ONLINEAPP_FTP_HOST ((char*)"tgdsapp.zapto.org")
+#define TGDS_ONLINEAPP_FTP_USER ((char*)"tgdsapp")
+#define TGDS_ONLINEAPP_FTP_PASS ((char*)"tgdsapp")
+
+
+
 #endif
 
 #ifdef __cplusplus
