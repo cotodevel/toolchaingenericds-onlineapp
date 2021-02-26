@@ -33,7 +33,7 @@ int client_datasocket = -1;
 int client_datasocketPortNumber = -1;
 char client_datasocketIP[MAX_TGDSFILENAME_LENGTH+1];
 
-volatile char buf[128*1024];
+volatile char buf[64*1024];
 char command[5], filename[20];
 int k, size, srv_len, cli_len = 0, c;
 int filehandle;

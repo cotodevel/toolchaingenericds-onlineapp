@@ -34,8 +34,14 @@ USA
 extern "C" {
 #endif
 
+//Untar code
+extern char args[8][MAX_TGDSFILENAME_LENGTH];
+extern char *argvs[8];
+
 extern int main(int argc, char **argv);
 extern void ApplicationMainLoop();
+
+extern int GUI_getConfigInt(sint8 *objname, sint8 *field, int val);
 
 //TGDS Soundstreaming API
 extern int internalCodecType;

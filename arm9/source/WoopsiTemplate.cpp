@@ -15,12 +15,14 @@
 #include "posixHandleTGDS.h"
 #include "keypadTGDS.h"
 #include "dswnifi_lib.h"
-
+#include "conf.h"
 #include "ftpMisc.h"
 #include "ftpServer.h"
 #include "FTPClientLib.h"
 #include "FTPClientMisc.h"
 #include "fileBrowse.h"	//generic template functions from TGDS: maintain 1 source, whose changes are globally accepted by all TGDS Projects.
+#include "xenofunzip.h"
+#include "cartHeader.h"
 
 __attribute__((section(".itcm")))
 WoopsiTemplate * WoopsiTemplateProc = NULL;
@@ -400,23 +402,64 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((
 					sprintf(arrBuild, "Download Complete:%s\n", newFile);
 					WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 					
-					//Boot .NDS file! (homebrew only)
-					char tmpName[256];
-					char ext[256];
-					strcpy(tmpName, newFile);
-					separateExtension(tmpName, ext);
-					strlwr(ext);
-					if(strncmp(ext,".nds", 4) == 0){
-						switch_dswnifi_mode(dswifi_idlemode);
-			
-						char fileBuf[256+1];
-						memset(fileBuf, 0, sizeof(fileBuf));
-						strcpy(fileBuf, "0:");
-						strcat(fileBuf, newFilePath);						
-						sprintf(arrBuild, "NDS Boot:%s\n", fileBuf);
-						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+					//Handle Package
+					int argCount = 2;
+					char fileBuf[256+1];
+					memset(fileBuf, 0, sizeof(fileBuf));
+					strcpy(fileBuf, "0:");
+					strcat(fileBuf, newFilePath);						
+					strcpy(&args[0][0], "-l");	//Arg0
+					strcpy(&args[1][0], fileBuf);	//Arg1
+					strcpy(&args[2][0], "d /");	//Arg2
 					
-						TGDSMultibootRunNDSPayload(fileBuf);
+					int i = 0;
+					for(i = 0; i < argCount; i++){	
+						argvs[i] = (char*)&args[i][0];
+					}
+					
+					switch_dswnifi_mode(dswifi_idlemode);
+					
+					extern int untgzmain(int argc,char **argv);
+					if(untgzmain(argCount, argvs) == 0){
+						sprintf(arrBuild, "Unpack OK:%s\n", fileBuf);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+						//Descriptor is always at root SD path: 0:/descriptor.txt
+						set_config_file("0:/descriptor.txt");
+						char * baseTargetPath = get_config_string("Global", "baseTargetPath", "");
+						char * mainApp = get_config_string("Global", "mainApp", "");
+						int mainAppCRC32 = get_config_hex("Global", "mainAppCRC32", 0);
+						int TGDSSdkCrc32 = get_config_hex("Global", "TGDSSdkCrc32", 0);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString("Package decompressed correctly:"));
+						
+						//sprintf(arrBuild, "[%s][%s]\n", baseTargetPath, mainApp);
+						//WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+						
+						//sprintf(arrBuild, "TGDSSDK:CRC32:%x\n", TGDSSdkCrc32);
+						//WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+						
+						//Boot .NDS file! (homebrew only)
+						char tmpName[256];
+						char ext[256];
+						strcpy(tmpName, mainApp);
+						separateExtension(tmpName, ext);
+						strlwr(ext);
+						if(strncmp(ext,".nds", 4) == 0){
+							memset(fileBuf, 0, sizeof(fileBuf));
+							strcpy(fileBuf, "0:/");
+							strcat(fileBuf, baseTargetPath);
+							strcat(fileBuf, mainApp);
+							sprintf(arrBuild, "Boot:\n[%s]\n[CRC32:%x]\n", fileBuf, mainAppCRC32);
+							WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+							TGDSMultibootRunNDSPayload(fileBuf);
+						}
+						else{
+							sprintf(arrBuild, "TGDS App not found:\n[%s]\n[CRC32:%x]\n", mainApp, mainAppCRC32);
+							WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+						}	
+					}
+					else{
+						sprintf(arrBuild, "Couldn't unpack TGDSPackage.:%s\n", newFile);
+						WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 					}
 					
 					//Update local dir contents here maybe

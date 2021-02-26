@@ -38,6 +38,7 @@ USA
 #include "utilsTGDS.h"
 #include "click_raw.h"
 #include "ima_adpcm.h"
+#include "conf.h"
 
 // Includes
 #include "WoopsiTemplate.h"
@@ -86,13 +87,9 @@ static inline void menuShow(){
 }
 
 //NTR Bootcode:
+__attribute__((section(".itcm")))
 void TGDSMultibootRunNDSPayload(char * filename) __attribute__ ((optnone)) {
-	
 	switch_dswnifi_mode(dswifi_idlemode);
-	asm("mcr	p15, 0, r0, c7, c10, 4");
-	flush_icache_all();
-	flush_dcache_all();
-	
 	strcpy((char*)(0x02280000 - (MAX_TGDSFILENAME_LENGTH+1)), filename);	//Arg0:	
 	
 	FILE * tgdsPayloadFh = fopen("0:/tgds_multiboot_payload.bin", "r");
@@ -113,6 +110,18 @@ void TGDSMultibootRunNDSPayload(char * filename) __attribute__ ((optnone)) {
 		t_bootAddr bootARM9Payload = (t_bootAddr)0x02280000;
 		bootARM9Payload();
 	}
+}
+
+//Untar code
+char args[8][MAX_TGDSFILENAME_LENGTH];
+char *argvs[8];
+
+int GUI_getConfigInt(sint8 *objname, sint8 *field, int val)
+{
+	sint8 name[32];
+	strcpy(name, "GUI::");
+	strcat(name, objname);
+	return get_config_int(name, field, val);
 }
 
 int main(int argc, char **argv) __attribute__ ((optnone)) {
