@@ -196,7 +196,20 @@ fileinfo** get_remote_dir(char *path, struct NetBuf *nControl){
 	dlist = (fileinfo **)TGDSARM9Calloc(cursize, sizeof(fileinfo*));
 	stringdir = FtpDir(NULL,path,nControl);
 	offset = strtok(stringdir,"\n");
-
+	
+	// add ".." dir
+	{
+		char * goBackDir = "..";
+		dlist[i] = (fileinfo *)TGDSARM9Malloc(sizeof(fileinfo));
+		dlist[i]->namesize = strlen(goBackDir) + 1;
+		dlist[i]->filesize = dlist[i]->namesize;
+		dlist[i]->filename = (char*)TGDSARM9Calloc(1,sizeof(char)*dlist[i]->namesize + 2);
+		strncpy(dlist[i]->filename, goBackDir, dlist[i]->namesize);
+		dlist[i]->isdir = 1;
+		dlist[i]->filename[dlist[i]->namesize] = 0;
+		i++;
+	}
+	
     while(offset) {
        sscanf(offset, "%s%*s%*s%*s%ld%*s%*s%*s %255[^\n]", permissions, &_filesize, filename);
 	   	if(i >= cursize - 3){
