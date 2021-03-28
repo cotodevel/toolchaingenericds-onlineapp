@@ -23,7 +23,7 @@ Shop Theme:
 Dan Truman - Instrumental Piano Music
 Chill Instrumental Music [Short] FEEL GOOD JAZZ
 
-Copy /release/arm9dldi-ntr folder contents in SD root. Enjoy the app!
+Copy /release/arm7dldi-ntr folder contents in SD root. Enjoy the app!
 
 History:
 20/February/2021: 0.1 Alpha release
