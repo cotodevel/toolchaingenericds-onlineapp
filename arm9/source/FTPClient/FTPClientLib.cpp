@@ -130,7 +130,15 @@ int ftplib_debug = 0;
 /*
  * VAX C does not supply a memccpy routine so I provide my own
  */
-void *memccpy(void *dest, const void *src, int c, size_t n) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void *memccpy(void *dest, const void *src, int c, size_t n) 
 {
     int i=0;
     const unsigned char *ip=(const unsigned char *)src;
@@ -167,7 +175,15 @@ char *strdup(const char *src)
  * return 1 if no user callback, otherwise, return value returned by
  * user callback
  */
-static int socket_wait(struct NetBuf *ctl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int socket_wait(struct NetBuf *ctl) 
 {
     fd_set fd,*rfd = NULL,*wfd = NULL;
     struct timeval tv;
@@ -204,7 +220,15 @@ static int socket_wait(struct NetBuf *ctl) __attribute__ ((optnone))
  *
  * return -1 on error or bytecount
  */
-int readline(char *buf,int max,struct NetBuf *ctl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int readline(char *buf,int max,struct NetBuf *ctl) 
 {
     int x,retval = 0;
     char *end,*bp=buf;
@@ -292,7 +316,15 @@ int readline(char *buf,int max,struct NetBuf *ctl) __attribute__ ((optnone))
  *
  * return -1 on error or bytecount
  */
-static int writeline(char *buf, int len, struct NetBuf *nData) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int writeline(char *buf, int len, struct NetBuf *nData) 
 {
     int x, nb=0, w;
     char *ubp = buf, *nbp;
@@ -352,7 +384,15 @@ static int writeline(char *buf, int len, struct NetBuf *nData) __attribute__ ((o
  * return 0 if first char doesn't match
  * return 1 if first char matches
  */
-static int readresp(char c, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int readresp(char c, struct NetBuf *nControl) 
 {
     char match[5];
     if (readline(nControl->response,256,nControl) == -1)
@@ -402,7 +442,15 @@ char *FtpLastResponse(struct NetBuf *nControl)
  */
 /* This original code is commented out due to the conversion changes */
 //GLOBALDEF int FtpConnect(const char *host, struct NetBuf **nControl)
-int FtpConnect(const char *host, struct NetBuf **nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpConnect(const char *host, struct NetBuf **nControl) 
 {
     int sControl;
     struct sockaddr_in sin;
@@ -527,7 +575,15 @@ int FtpConnect(const char *host, struct NetBuf **nControl) __attribute__ ((optno
  *
  * returns 1 if successful, 0 on error
  */
-int FtpOptions(int opt, long val, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpOptions(int opt, long val, struct NetBuf *nControl) 
 {
     int v,rv=0;
     switch (opt)
@@ -567,7 +623,15 @@ int FtpOptions(int opt, long val, struct NetBuf *nControl) __attribute__ ((optno
  *
  * return 1 if proper response received, 0 otherwise
  */
-static int FtpSendCmd(const char *cmd, char expresp, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int FtpSendCmd(const char *cmd, char expresp, struct NetBuf *nControl) 
 {
     char buf[256];
     if(nControl->dir != FTPLIB_CONTROL)
@@ -593,7 +657,15 @@ static int FtpSendCmd(const char *cmd, char expresp, struct NetBuf *nControl) __
  */
 /* This original code is commented out due to the conversion changes */
 //GLOBALDEF int FtpLogin(const char *user, const char *pass, struct NetBuf *nControl)
-int FtpLogin(const char *user, const char *pass, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpLogin(const char *user, const char *pass, struct NetBuf *nControl) 
 {
     char tempbuf[64];
 
@@ -617,7 +689,15 @@ int FtpLogin(const char *user, const char *pass, struct NetBuf *nControl) __attr
  *
  * return 1 if successful, 0 otherwise
  */
-static int FtpOpenPort(struct NetBuf *nControl, struct NetBuf **nData, int mode, int dir) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int FtpOpenPort(struct NetBuf *nControl, struct NetBuf **nData, int mode, int dir) 
 {
     int sData;
 
@@ -814,7 +894,15 @@ static int FtpOpenPort(struct NetBuf *nControl, struct NetBuf **nData, int mode,
  *
  * return 1 if successful, 0 otherwise
  */
-static int FtpAcceptConnection(struct NetBuf *nData, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int FtpAcceptConnection(struct NetBuf *nData, struct NetBuf *nControl) 
 {
     int sData;
     struct sockaddr addr;
@@ -884,7 +972,15 @@ static int FtpAcceptConnection(struct NetBuf *nData, struct NetBuf *nControl) __
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpAccess(const char *path, int typ, int mode, struct NetBuf *nControl, struct NetBuf **nData) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpAccess(const char *path, int typ, int mode, struct NetBuf *nControl, struct NetBuf **nData) 
 {
     char buf[256];
     int dir;
@@ -959,7 +1055,15 @@ int FtpAccess(const char *path, int typ, int mode, struct NetBuf *nControl, stru
 /*
  * FtpRead - read from a data connection
  */
-int FtpRead(void *buf, int max, struct NetBuf *nData) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpRead(void *buf, int max, struct NetBuf *nData) 
 {
     int i;
     if (nData->dir != FTPLIB_READ)
@@ -1002,7 +1106,15 @@ int FtpRead(void *buf, int max, struct NetBuf *nData) __attribute__ ((optnone))
 /*
  * FtpWrite - write to a data connection
  */
-int FtpWrite(void *buf, int len, struct NetBuf *nData) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpWrite(void *buf, int len, struct NetBuf *nData) 
 {
 	
    int i;
@@ -1039,7 +1151,15 @@ int FtpWrite(void *buf, int len, struct NetBuf *nData) __attribute__ ((optnone))
 /*
  * FtpClose - close a data connection
  */
-int FtpClose(struct NetBuf *nData) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpClose(struct NetBuf *nData) 
 {
     struct NetBuf *ctrl;
     switch (nData->dir)
@@ -1079,7 +1199,15 @@ int FtpClose(struct NetBuf *nData) __attribute__ ((optnone))
  *
  * return 1 if command successful, 0 otherwise
  */
-int FtpSite(const char *cmd, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpSite(const char *cmd, struct NetBuf *nControl) 
 {
     char buf[256];
     
@@ -1101,7 +1229,15 @@ int FtpSite(const char *cmd, struct NetBuf *nControl) __attribute__ ((optnone))
  *
  * return 1 if command successful, 0 otherwise
  */
-int FtpSysType(char *buf, int max, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpSysType(char *buf, int max, struct NetBuf *nControl) 
 {
     int l = max;
     char *b = buf;
@@ -1122,7 +1258,15 @@ int FtpSysType(char *buf, int max, struct NetBuf *nControl) __attribute__ ((optn
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpMkdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpMkdir(const char *path, struct NetBuf *nControl) 
 {
     char buf[256];
 
@@ -1140,7 +1284,15 @@ int FtpMkdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpChdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpChdir(const char *path, struct NetBuf *nControl) 
 {
     char buf[256];
 
@@ -1158,7 +1310,15 @@ int FtpChdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpCDUp(struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpCDUp(struct NetBuf *nControl) 
 {
     if (!FtpSendCmd("CDUP",'2',nControl))
 		return 0;
@@ -1170,7 +1330,14 @@ int FtpCDUp(struct NetBuf *nControl) __attribute__ ((optnone))
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpRmdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)) 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpRmdir(const char *path, struct NetBuf *nControl) 
 {
     char buf[256];
 
@@ -1189,7 +1356,15 @@ int FtpRmdir(const char *path, struct NetBuf *nControl) __attribute__ ((optnone)
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpPwd(char *path, int max, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpPwd(char *path, int max, struct NetBuf *nControl) 
 {
     int l = max;
     char *b = path;
@@ -1217,7 +1392,14 @@ int FtpPwd(char *path, int max, struct NetBuf *nControl) __attribute__ ((optnone
  *
  * return 1 if successful, 0 otherwise
  */
-static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nControl, int typ, int mode)  __attribute__ ((optnone)) 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nControl, int typ, int mode) 
 {
 	WoopsiTemplateProc->_MultiLineTextBoxLogger->removeText(0);
 	WoopsiTemplateProc->_MultiLineTextBoxLogger->moveCursorToPosition(0);
@@ -1335,7 +1517,15 @@ static int FtpXfer(const char *localfile, const char *path,struct NetBuf *nContr
  *
  * return 1 if successful, 0 otherwise
  */
-char* FtpNlst(const char *outputfile, const char *path,	struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char* FtpNlst(const char *outputfile, const char *path,	struct NetBuf *nControl) 
 {
 /* This original code is commented out due to the conversion changes */
 //  return FtpXfer(outputfile, path, nControl, FTPLIB_DIR, FTPLIB_ASCII);
@@ -1349,7 +1539,15 @@ char* FtpNlst(const char *outputfile, const char *path,	struct NetBuf *nControl)
  * return 1 if successful, 0 otherwise
  *err, no it doesn't, it returns a char* !
  */
-char* FtpDir(const char *outputfile, const char *path, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char* FtpDir(const char *outputfile, const char *path, struct NetBuf *nControl) 
 {
 /* This original code is commented out due to the conversion changes */
 //  return FtpXfer(outputfile, path, nControl, FTPLIB_DIR_VERBOSE, FTPLIB_ASCII);
@@ -1362,7 +1560,15 @@ char* FtpDir(const char *outputfile, const char *path, struct NetBuf *nControl) 
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpSize(const char *path, int *size, char mode, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpSize(const char *path, int *size, char mode, struct NetBuf *nControl) 
 {
     char cmd[256];
     int resp,sz,rv=1;
@@ -1390,7 +1596,15 @@ int FtpSize(const char *path, int *size, char mode, struct NetBuf *nControl) __a
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpModDate(const char *path, char *dt, int max, struct NetBuf *nControl) __attribute__ ((optnone)) 
+ 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpModDate(const char *path, char *dt, int max, struct NetBuf *nControl) 
 {
     char buf[256];
     int rv = 1;
@@ -1411,7 +1625,15 @@ int FtpModDate(const char *path, char *dt, int max, struct NetBuf *nControl) __a
  *
  * return 1 if successful, 0 otherwise
  */
-char* FtpGet(const char *outputfile, const char *path, char mode, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char* FtpGet(const char *outputfile, const char *path, char mode, struct NetBuf *nControl) 
 {
 /* This original code is commented out due to the conversion changes */
 //  return FtpXfer(outputfile, path, nControl, FTPLIB_FILE_READ, mode);
@@ -1424,7 +1646,15 @@ char* FtpGet(const char *outputfile, const char *path, char mode, struct NetBuf 
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpPut(const char *inputfile, const char *path, char mode, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpPut(const char *inputfile, const char *path, char mode, struct NetBuf *nControl) 
 {
 /* This original code is commented out due to the conversion changes */
 //  return FtpXfer(inputfile, path, nControl, FTPLIB_FILE_WRITE, mode);
@@ -1436,7 +1666,15 @@ int FtpPut(const char *inputfile, const char *path, char mode, struct NetBuf *nC
  *
  * return 1 if successful, 0 otherwise
  */
-int FtpRename(const char *src, const char *dst, struct NetBuf *nControl) __attribute__ ((optnone))  {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int FtpRename(const char *src, const char *dst, struct NetBuf *nControl) {
     char cmd[256];
 
     if (((strlen(src) + 7) > sizeof(cmd)) ||
@@ -1459,7 +1697,15 @@ int FtpRename(const char *src, const char *dst, struct NetBuf *nControl) __attri
  *
  * return 1 if successful, 0 otherwise
  */
-char* FtpDelete(const char *fnm, struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char* FtpDelete(const char *fnm, struct NetBuf *nControl) 
 {
     char cmd[256];
 
@@ -1477,7 +1723,15 @@ char* FtpDelete(const char *fnm, struct NetBuf *nControl) __attribute__ ((optnon
  *
  * return 1 if successful, 0 otherwise
  */
-void FtpQuit(struct NetBuf *nControl) __attribute__ ((optnone)) 
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void FtpQuit(struct NetBuf *nControl) 
 {
     if (nControl->dir != FTPLIB_CONTROL)
 		return;

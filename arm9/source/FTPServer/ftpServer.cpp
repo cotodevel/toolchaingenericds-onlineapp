@@ -39,7 +39,14 @@ int k, size, srv_len, cli_len = 0, c;
 int filehandle;
 bool globaldatasocketEnabled = false;
 
-void ftpInit(bool isFTPServer) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void ftpInit(bool isFTPServer) {
 	buf[0] = 0;
 	
 	//FTP Server mode
@@ -55,7 +62,14 @@ void ftpInit(bool isFTPServer) __attribute__ ((optnone)) {
 	}
 }
 
-u32 FTPServerService() __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+u32 FTPServerService() {
 	u32 curFTPStatus = 0;
 	switch(getFTPState()){
 		

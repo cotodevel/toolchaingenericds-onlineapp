@@ -96,11 +96,25 @@ static int config_installed = FALSE;
 #define MIN(a, b) (((a) < (b))?(a):(b))
 #define AL_ID(a,b,c,d)	    0
 
-long file_size(char *filename) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+long file_size(char *filename) {
 	return FS_getFileSize(filename);
 }
 
-static void save_config(CONFIG *cfg) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void save_config(CONFIG *cfg) {
    CONFIG_ENTRY *pos;
 
    if (cfg) {
@@ -133,7 +147,15 @@ static void save_config(CONFIG *cfg) __attribute__ ((optnone)) {
    }
 }
 
-void save_config_file() __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void save_config_file() {
 	save_config(config[0]);
 }
 
@@ -142,7 +164,14 @@ void save_config_file() __attribute__ ((optnone)) {
  *  Destroys a config structure, writing it out to disk if the contents
  *  have changed.
  */
-static void destroy_config(CONFIG *cfg) __attribute__ ((optnone)) {
+ #if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void destroy_config(CONFIG *cfg) {
    CONFIG_ENTRY *pos, *prev;
 
    if (cfg) {
@@ -178,7 +207,15 @@ static void destroy_config(CONFIG *cfg) __attribute__ ((optnone)) {
  *  Called at shutdown time to free memory being used by the config routines,
  *  and write any changed data out to disk.
  */
-static void config_cleanup() __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void config_cleanup() {
    CONFIG_HOOK *hook, *nexthook;
    int i;
 
@@ -230,7 +267,15 @@ static void config_cleanup() __attribute__ ((optnone)) {
  *  default config file if the loaddata flag is set and no other config
  *  file is in memory.
  */
-static void init_config(int loaddata) __attribute__ ((optnone)) {
+ 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void init_config(int loaddata) {
    if (!config_installed) {
 //      _add_exit_func(config_cleanup);
       config_installed = TRUE;
@@ -251,7 +296,15 @@ static void init_config(int loaddata) __attribute__ ((optnone)) {
 /* get_line: 
  *  Helper for splitting files up into individual lines.
  */
-static int get_line(char *data, int length, char *name, char *val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static int get_line(char *data, int length, char *name, char *val) {
    char buf[256], buf2[256];
    int pos, i, j;
 
@@ -325,8 +378,16 @@ static int get_line(char *data, int length, char *name, char *val) __attribute__
 /* set_config:
  *  Does the work of setting up a config structure.
  */
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
 #if 0
-static void set_config(CONFIG **config, char *data, int length, char *filename) __attribute__ ((optnone)) {
+static void set_config(CONFIG **config, char *data, int length, char *filename){
    char name[256];
    char val[256];
    CONFIG_SECTION **prev, *p;
@@ -423,7 +484,14 @@ static void set_config(CONFIG **config, char *data, int length, char *filename) 
    }
 }
 #else
-static void set_config(CONFIG **config, char *data, int length, char *filename) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void set_config(CONFIG **config, char *data, int length, char *filename) {
    char name[256];
    char val[256];
    CONFIG_ENTRY **prev, *p;
@@ -485,7 +553,14 @@ static void set_config(CONFIG **config, char *data, int length, char *filename) 
 /* load_config_file:
  *  Does the work of loading a config file.
  */
-static void load_config_file(CONFIG **config, char *filename, char *savefile) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void load_config_file(CONFIG **config, char *filename, char *savefile) {
 	int length;
 
 	if (*config)
@@ -526,7 +601,15 @@ static void load_config_file(CONFIG **config, char *filename, char *savefile) __
 /* set_config_file:
  *  Sets the file to be used for all future configuration operations.
  */
-void set_config_file(char *filename) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_file(char *filename) {
    load_config_file(&config[0], filename, filename);
 }
 
@@ -536,7 +619,15 @@ void set_config_file(char *filename) __attribute__ ((optnone)) {
  *  Sets the block of data to be used for all future configuration 
  *  operations.
  */
-void set_config_data(char *data, int length) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_data(char *data, int length) {
    set_config(&config[0], data, length, NULL);
 }
 
@@ -545,7 +636,14 @@ void set_config_data(char *data, int length) __attribute__ ((optnone)) {
 /* override_config_file:
  *  Sets the file that will override all future configuration operations.
  */
-void override_config_file(char *filename) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void override_config_file(char *filename) {
    load_config_file(&config_override, filename, NULL);
 }
 
@@ -555,7 +653,15 @@ void override_config_file(char *filename) __attribute__ ((optnone)) {
  *  Sets the block of data that will override all future configuration 
  *  operations.
  */
-void override_config_data(char *data, int length) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void override_config_data(char *data, int length) {
    set_config(&config_override, data, length, NULL);
 }
 
@@ -564,7 +670,14 @@ void override_config_data(char *data, int length) __attribute__ ((optnone)) {
 /* push_config_state:
  *  Pushes the current config state onto the stack.
  */
-void push_config_state() __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void push_config_state() {
    int i;
 
    if (config[MAX_CONFIGS-1])
@@ -581,9 +694,15 @@ void push_config_state() __attribute__ ((optnone)) {
 /* pop_config_state:
  *  Pops the current config state off the stack.
  */
-void pop_config_state() __attribute__ ((optnone)) {
-   int i;
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
 
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void pop_config_state() {
+   int i;
    if (config[0])
       destroy_config(config[0]);
 
@@ -598,7 +717,14 @@ void pop_config_state() __attribute__ ((optnone)) {
 /* prettify_section_name:
  *  Helper for ensuring that a section name is enclosed by [ ] braces.
  */
-static void prettify_section_name(char *in, char *out) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static void prettify_section_name(char *in, char *out) {
    if (in) {
       if (in[0] != '[')
 	 strcpy(out, "[");
@@ -621,7 +747,15 @@ static void prettify_section_name(char *in, char *out) __attribute__ ((optnone))
  *  override the normal table of values, and give the provider of the hooks 
  *  complete control over that section.
  */
-void hook_config_section(char *section, int (*intgetter)(char *, int), char *(*stringgetter)(char *, char *), void (*stringsetter)(char *,char *)) __attribute__ ((optnone)) {
+ 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void hook_config_section(char *section, int (*intgetter)(char *, int), char *(*stringgetter)(char *, char *), void (*stringsetter)(char *,char *)) {
    CONFIG_HOOK *hook, **prev;
    char section_name[256];
 
@@ -679,7 +813,15 @@ void hook_config_section(char *section, int (*intgetter)(char *, int), char *(*s
 /* is_config_hooked:
  *  Checks whether a specific section is hooked in any way.
  */
-int config_is_hooked(char *section) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int config_is_hooked(char *section) {
    CONFIG_HOOK *hook = config_hook;
    char section_name[256];
 
@@ -700,7 +842,15 @@ int config_is_hooked(char *section) __attribute__ ((optnone)) {
 /* find_config_string:
  *  Helper for finding an entry in the configuration file.
  */
-static CONFIG_ENTRY *find_config_string(CONFIG *config, char *section, char *name, CONFIG_ENTRY **prev) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static CONFIG_ENTRY *find_config_string(CONFIG *config, char *section, char *name, CONFIG_ENTRY **prev) {
    CONFIG_ENTRY *p;
    int in_section = TRUE;
 
@@ -736,7 +886,15 @@ static CONFIG_ENTRY *find_config_string(CONFIG *config, char *section, char *nam
 /* get_config_string:
  *  Reads a string from the configuration file.
  */
-char *get_config_string(char *section, char *name, char *def) __attribute__ ((optnone)) {
+ 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char *get_config_string(char *section, char *name, char *def) {
    char section_name[256];
    CONFIG_HOOK *hook;
    CONFIG_ENTRY *p;
@@ -779,7 +937,15 @@ char *get_config_string(char *section, char *name, char *def) __attribute__ ((op
 /* get_config_int:
  *  Reads an integer from the configuration file.
  */
-int get_config_int(char *section, char *name, int def) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int get_config_int(char *section, char *name, int def) {
    CONFIG_HOOK *hook;
    char section_name[256];
    char *s;
@@ -821,7 +987,15 @@ int get_config_int(char *section, char *name, int def) __attribute__ ((optnone))
 /* get_config_hex:
  *  Reads a hexadecimal integer from the configuration file.
  */
-int get_config_hex(char *section, char *name, int def) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int get_config_hex(char *section, char *name, int def) {
    char *s = get_config_string(section, name, NULL);
    int i;
 
@@ -839,7 +1013,15 @@ int get_config_hex(char *section, char *name, int def) __attribute__ ((optnone))
 /* get_config_oct:
  *  Reads a octal integer from the configuration file.
  */
-int get_config_oct(char *section, char *name, int def) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int get_config_oct(char *section, char *name, int def) {
    char *s = get_config_string(section, name, NULL);
    int i;
 
@@ -854,7 +1036,15 @@ int get_config_oct(char *section, char *name, int def) __attribute__ ((optnone))
 /* get_config_float:
  *  Reads a float from the configuration file.
  */
-float get_config_float(char *section, char *name, float def) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+float get_config_float(char *section, char *name, float def) {
    char *s = get_config_string(section, name, NULL);
 
    if ((s) && (*s))
@@ -867,7 +1057,15 @@ float get_config_float(char *section, char *name, float def) __attribute__ ((opt
 /* get_config_argv:
  *  Reads an argc/argv style token list from the configuration file.
  */
-char **get_config_argv(char *section, char *name, int *argc) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char **get_config_argv(char *section, char *name, int *argc) {
    #define MAX_ARGV  16
 
    static char buf[256];
@@ -909,7 +1107,15 @@ char **get_config_argv(char *section, char *name, int *argc) __attribute__ ((opt
 /* insert_variable:
  *  Helper for inserting a new variable into a configuration file.
  */
-static CONFIG_ENTRY *insert_variable(CONFIG *the_config, CONFIG_ENTRY *p, char *name, char *data) __attribute__ ((optnone)) {
+ 
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+static CONFIG_ENTRY *insert_variable(CONFIG *the_config, CONFIG_ENTRY *p, char *name, char *data){
    CONFIG_ENTRY *n = TGDSARM9Malloc(sizeof(CONFIG_ENTRY));
 
    if (!n)
@@ -948,7 +1154,15 @@ static CONFIG_ENTRY *insert_variable(CONFIG *the_config, CONFIG_ENTRY *p, char *
 /* set_config_string:
  *  Writes a string to the configuration file.
  */
-void set_config_string(char *section, char *name, char *val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_string(char *section, char *name, char *val) {
    CONFIG *the_config;
    CONFIG_HOOK *hook;
    CONFIG_ENTRY *p, *prev;
@@ -1049,7 +1263,15 @@ void set_config_string(char *section, char *name, char *val) __attribute__ ((opt
 /* set_config_int:
  *  Writes an integer to the configuration file.
  */
-void set_config_int(char *section, char *name, int val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_int(char *section, char *name, int val) {
    char buf[32];
    sprintf(buf, "%d", val);
    set_config_string(section, name, buf);
@@ -1060,7 +1282,15 @@ void set_config_int(char *section, char *name, int val) __attribute__ ((optnone)
 /* set_config_hex:
  *  Writes a hexadecimal integer to the configuration file.
  */
-void set_config_hex(char *section, char *name, int val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_hex(char *section, char *name, int val) {
    if (val >= 0) {
       char buf[32];
       sprintf(buf, "%X", val);
@@ -1074,7 +1304,15 @@ void set_config_hex(char *section, char *name, int val) __attribute__ ((optnone)
 /* set_config_oct:
  *  Writes a hexadecimal integer to the configuration file.
  */
-void set_config_oct(char *section, char *name, int size, int val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_oct(char *section, char *name, int size, int val) {
    if (val >= 0) {
       char buf[16];
       char fmt[8];
@@ -1091,7 +1329,15 @@ void set_config_oct(char *section, char *name, int size, int val) __attribute__ 
 /* set_config_float:
  *  Writes a float to the configuration file.
  */
-void set_config_float(char *section, char *name, float val) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void set_config_float(char *section, char *name, float val) {
    char buf[32];
    sprintf(buf, "%f", val);
    set_config_string(section, name, buf);
@@ -1121,7 +1367,14 @@ char * get_config_text(char *msg){
 }
 
 
-int	is_section_exists(char *section) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+int	is_section_exists(char *section) {
    CONFIG_ENTRY *p;
    CONFIG *cfg;
    char section_name[256];
@@ -1155,7 +1408,15 @@ static char	g_section[100];
 /* find_config_string:
  *  Helper for finding an entry in the configuration file.
  */
-char *find_config_section_with_hex(char *name, int hex) __attribute__ ((optnone)) {
+
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char *find_config_section_with_hex(char *name, int hex) {
    CONFIG_ENTRY *p;
    CONFIG   *cfg;
 
@@ -1192,7 +1453,14 @@ char *find_config_section_with_hex(char *name, int hex) __attribute__ ((optnone)
    return NULL;
 }
 
-char *find_config_section_with_string(char *name, char *str) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+char *find_config_section_with_string(char *name, char *str) {
    CONFIG_ENTRY *p;
    CONFIG   *cfg;
 

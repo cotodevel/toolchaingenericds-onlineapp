@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include "typedefsTGDS.h"
 #include "xmem.h"
 
@@ -69,8 +70,8 @@ void XmemInit(unsigned int mallocLinearMemoryStart, unsigned int mallocLinearMem
 	printf("***XMEM INIT COMPLETE*** ");
 	
 	xmem_table[0] = XMEM_STARTBLOCK | XMEM_ENDBLOCK | XMEM_USEDBLOCK; // reserved i suppose
-	
-	for (int i=1;(unsigned)i<XMEM_TABLESIZE;i++) {
+	int i=0;
+	for (i=1;(unsigned)i<XMEM_TABLESIZE;i++) {
 		xmem_table[i] = 0;
 	}
 }

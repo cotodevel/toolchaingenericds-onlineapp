@@ -24,7 +24,7 @@
 #include "xenofunzip.h"
 #include "cartHeader.h"
 
-__attribute__((section(".itcm")))
+__attribute__((section(".dtcm")))
 WoopsiTemplate * WoopsiTemplateProc = NULL;
 
 void WoopsiTemplate::startup(int argc, char **argv) {
@@ -233,7 +233,14 @@ void WoopsiTemplate::getFileListing(fileinfo** output, ScrollingListBox* box)
 	}
 }
 
-void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) __attribute__ ((optnone)) {
+#if (defined(__GNUC__) && !defined(__clang__))
+__attribute__((optimize("O0")))
+#endif
+
+#if (!defined(__GNUC__) && defined(__clang__))
+__attribute__ ((optnone))
+#endif
+void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 	switch (e.getSource()->getRefcon()) {
 		//_Index Event
 		case 2:{
