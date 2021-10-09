@@ -2,7 +2,7 @@
 
 NTR/TWL SDK: TGDS1.64
 
-master: Development branch. Use TGDS1.64Stable: branch for stable features.
+TGDS1.64Stable: branch for stable features.
 
 This is the ToolchainGenericDS Woopsi OnlineApp project:
 
