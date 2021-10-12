@@ -148,18 +148,10 @@ fileinfo** get_dir(char* path){
 		}
 		//directory?
 		if(fileClassInst->type == FT_DIR){
-			char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
-			strcpy(tmpBuf, fileClassInst->fd_namefullPath);
-			parseDirNameTGDS(tmpBuf);
-			strcpy(fileClassInst->fd_namefullPath, tmpBuf);
 			dlist[i]->isdir = 1;
 		}
 		//file?
 		else if(fileClassInst->type  == FT_FILE){
-			char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
-			strcpy(tmpBuf, fileClassInst->fd_namefullPath);
-			parsefileNameTGDS(tmpBuf);
-			strcpy(fileClassInst->fd_namefullPath, tmpBuf);
 			dlist[i]->isdir = 0;
 		}
 		dlist[i] = (fileinfo *)TGDSARM9Malloc(sizeof(fileinfo));

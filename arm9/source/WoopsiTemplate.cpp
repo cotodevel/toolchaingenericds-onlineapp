@@ -341,12 +341,6 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 					else{
 						// Enter a new directory
 						strcat(curPth, (char*)newPth);
-						char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
-						memset(tmpBuf, 0, sizeof(tmpBuf));
-						strcpy(tmpBuf, curPth);
-						parseDirNameTGDS(tmpBuf);
-						memset(curPth, 0, sizeof(curPth));
-						strcpy(curPth, tmpBuf);
 						WoopsiString newPath;
 						newPath.setText((const char*)&curPth[0]);
 						newPath.copyToCharArray(remoteDirPath);
