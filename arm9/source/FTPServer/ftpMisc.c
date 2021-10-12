@@ -66,7 +66,6 @@ int ftp_cmd_RETR(int s, int cmd, char* arg){
 	char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
 	memset(tmpBuf, 0, sizeof(tmpBuf));
 	strcpy(tmpBuf, fname);
-	parsefileNameTGDS(tmpBuf);
 	
 	//Prevent "/0:" bad filename parsing when using POSIX FS
 	if(
@@ -129,7 +128,6 @@ int ftp_cmd_STOR(int s, int cmd, char* arg){
 	char * fname = getFtpCommandArg("STOR", arg, 0); 
 	char tmpBuf[MAX_TGDSFILENAME_LENGTH+1];
 	sprintf(tmpBuf, "%s%s", "0:/", fname);
-	parsefileNameTGDS(tmpBuf);
 	printf("STOR cmd: %s",tmpBuf);
 	
 	swiDelay(8888);
@@ -386,10 +384,6 @@ int ftp_cmd_LIST(int s, int cmd, char* arg){
 		while(fileClassInst != NULL){
 			//directory?
 			if(fileClassInst->type == FT_DIR){
-				char tmpBuf[512];
-				strcpy(tmpBuf, fileClassInst->fd_namefullPath);
-				parseDirNameTGDS(tmpBuf);
-				strcpy(fileClassInst->fd_namefullPath, tmpBuf);
 				char buffOut[256+1] = {0};
 				int fSizeDir = strlen(fileClassInst->fd_namefullPath);
 				sprintf(buffOut, "drw-r--r-- 1 DS group          %d Feb  1  2009 %s \r\n", fSizeDir, fileClassInst->fd_namefullPath);
@@ -398,10 +392,6 @@ int ftp_cmd_LIST(int s, int cmd, char* arg){
 			}
 			//file?
 			else if(fileClassInst->type == FT_FILE){
-				char tmpBuf[512];
-				strcpy(tmpBuf, fileClassInst->fd_namefullPath);
-				parsefileNameTGDS(tmpBuf);
-				strcpy(fileClassInst->fd_namefullPath, tmpBuf);
 				char buffOut[256+1] = {0};
 				int fSizeFile = FS_getFileSize((char*)fileClassInst->fd_namefullPath);
 				sprintf(buffOut, "-rw-r--r-- 1 DS group          %d Feb  1  2009 %s \r\n", fSizeFile, fileClassInst->fd_namefullPath);
