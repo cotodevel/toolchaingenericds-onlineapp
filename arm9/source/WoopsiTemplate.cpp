@@ -155,6 +155,11 @@ void WoopsiTemplate::handleValueChangeEvent(const GadgetEventArgs& e) {
 			separateExtension(tmpName, ext);
 			strlwr(ext);
 			if(strncmp(ext,".nds", 4) == 0){
+				char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
+				memset(thisArgv, 0, sizeof(thisArgv));
+				strcpy(&thisArgv[0][0], currentFileChosen);	//Arg0:	NDS Binary loaded
+				strcpy(&thisArgv[1][0], "");				//Arg1: ARGV0
+				addARGV(2, (char*)&thisArgv);
 				TGDSMultibootRunNDSPayload(currentFileChosen);
 			}
 			
@@ -451,6 +456,11 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 							strcat(fileBuf, mainApp);
 							sprintf(arrBuild, "Boot:\n[%s]\n[CRC32:%x]\n", fileBuf, mainAppCRC32);
 							WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
+							char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
+							memset(thisArgv, 0, sizeof(thisArgv));
+							strcpy(&thisArgv[0][0], fileBuf);	//Arg0:	NDS Binary loaded
+							strcpy(&thisArgv[1][0], "");				//Arg1: ARGV0
+							addARGV(2, (char*)&thisArgv);							
 							TGDSMultibootRunNDSPayload(fileBuf);
 						}
 						else{
