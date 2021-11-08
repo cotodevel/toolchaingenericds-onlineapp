@@ -30,6 +30,7 @@ USA
 #include "dsregs.h"
 #include "dsregs_asm.h"
 #include "InterruptsARMCores_h.h"
+#include "libutilsShared.h"
 
 #ifdef ARM7
 #include <string.h>
@@ -91,3 +92,35 @@ void freeSoundCustomDecoder(u32 srcFrmt){
 }
 
 #endif
+
+//Libutils setup: TGDS project uses Soundstream, WIFI, ARM7 malloc, etc.
+void setupLibUtils(){
+	//libutils:
+	
+	//Stage 0
+	#ifdef ARM9
+	initializeLibUtils9(
+		(HandleFifoNotEmptyWeakRefLibUtils_fn)&libUtilsFIFONotEmpty, //ARM7 & ARM9
+		(timerWifiInterruptARM9LibUtils_fn)&Timer_50ms, //ARM9 
+		(SoundSampleContextEnableARM7LibUtils_fn)&EnableSoundSampleContext, // ARM7 & ARM9: void EnableSoundSampleContext(int SndSamplemode)
+		(SoundSampleContextDisableARM7LibUtils_fn)&DisableSoundSampleContext,	//ARM7 & ARM9: void DisableSoundSampleContext()
+		(SoundStreamStopSoundStreamARM9LibUtils_fn)&stopSoundStream,	//ARM9: bool stopSoundStream(struct fd * tgdsStructFD1, struct fd * tgdsStructFD2, int * internalCodecType)
+		(SoundStreamUpdateSoundStreamARM9LibUtils_fn)&updateStream //ARM9: void updateStream() 
+	);
+	#endif
+	
+	//Stage 1
+	#ifdef ARM7
+	initializeLibUtils7(
+		(HandleFifoNotEmptyWeakRefLibUtils_fn)&libUtilsFIFONotEmpty, //ARM7 & ARM9
+		(wifiUpdateVBLANKARM7LibUtils_fn)&Wifi_Update, //ARM7
+		(wifiInterruptARM7LibUtils_fn)&Wifi_Interrupt,  //ARM7
+		(SoundStreamTimerHandlerARM7LibUtils_fn)&TIMER1Handler, //ARM7: void TIMER1Handler()
+		(SoundStreamStopSoundARM7LibUtils_fn)&stopSound, 	//ARM7: void stopSound()
+		(SoundStreamSetupSoundARM7LibUtils_fn)&setupSound,	//ARM7: void setupSound()
+		(SoundSampleContextInitARM7LibUtils_fn)&initSoundSampleContext, //ARM7: initSoundSampleContext()
+		(SoundSampleContextEnableARM7LibUtils_fn)&EnableSoundSampleContext, // ARM7 & ARM9: void EnableSoundSampleContext(int SndSamplemode)
+		(SoundSampleContextDisableARM7LibUtils_fn)&DisableSoundSampleContext	//ARM7 & ARM9: void DisableSoundSampleContext()
+	);
+	#endif
+}
