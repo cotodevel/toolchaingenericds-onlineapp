@@ -301,18 +301,18 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 		
 		//_upVolume Event
 		case 7:{
-			struct XYTscPos touch;
+			struct touchPosition touch;
 			XYReadScrPosUser(&touch);
-			volumeUp(touch.touchXpx, touch.touchYpx);
+			volumeUp(touch.px, touch.py);
 			
 		}	
 		break;
 		
 		//_downVolume Event
 		case 8:{
-			struct XYTscPos touch;
+			struct touchPosition touch;
 			XYReadScrPosUser(&touch);
-			volumeDown(touch.touchXpx, touch.touchYpx);
+			volumeDown(touch.px, touch.py);
 		}	
 		break;
 		
