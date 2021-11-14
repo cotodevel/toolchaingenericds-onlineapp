@@ -1,8 +1,8 @@
 ![ToolchainGenericDS](img/TGDS-Logo.png)
 
-NTR/TWL SDK: TGDS1.64
+NTR/TWL SDK: TGDS1.65
 
-master: Development branch. Use TGDS1.64Stable: branch for stable features.
+master: Development branch. Use TGDS1.65: branch for stable features.
 
 This is the ToolchainGenericDS Woopsi OnlineApp project:
 
@@ -31,7 +31,7 @@ Copy /release/arm7dldi-ntr folder contents in SD root. Enjoy the app!
 
 /release folder has the latest binary precompiled for your convenience.
 
-Latest stable release: https://bitbucket.org/Coto88/ToolchainGenericDS-OnlineApp/get/TGDS1.64Stable.zip
+Latest stable release: https://bitbucket.org/Coto88/ToolchainGenericDS-OnlineApp/get/TGDS1.65.zip
 
 History:
 20/February/2021: 0.1 Alpha release
