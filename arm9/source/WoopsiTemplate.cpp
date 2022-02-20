@@ -157,9 +157,10 @@ void WoopsiTemplate::handleValueChangeEvent(const GadgetEventArgs& e) {
 			if(strncmp(ext,".nds", 4) == 0){
 				char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
 				memset(thisArgv, 0, sizeof(thisArgv));
-				strcpy(&thisArgv[0][0], currentFileChosen);	//Arg0:	NDS Binary loaded
-				strcpy(&thisArgv[1][0], "");				//Arg1: ARGV0
-				addARGV(2, (char*)&thisArgv);
+				strcpy(&thisArgv[0][0], TGDSPROJECTNAME);	//Arg0:	This Binary loaded
+				strcpy(&thisArgv[1][0], currentFileChosen);	//Arg1:	NDS Binary reloaded
+				strcpy(&thisArgv[2][0], "");					//Arg2: NDS Binary ARG0
+				addARGV(3, (char*)&thisArgv);
 				TGDSMultibootRunNDSPayload(currentFileChosen);
 			}
 			
@@ -458,9 +459,10 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 							WoopsiTemplateProc->_MultiLineTextBoxLogger->appendText(WoopsiString(arrBuild));
 							char thisArgv[3][MAX_TGDSFILENAME_LENGTH];
 							memset(thisArgv, 0, sizeof(thisArgv));
-							strcpy(&thisArgv[0][0], fileBuf);	//Arg0:	NDS Binary loaded
-							strcpy(&thisArgv[1][0], "");				//Arg1: ARGV0
-							addARGV(2, (char*)&thisArgv);							
+							strcpy(&thisArgv[0][0], TGDSPROJECTNAME);	//Arg0:	This Binary loaded
+							strcpy(&thisArgv[1][0], fileBuf);	//Arg1:	NDS Binary reloaded
+							strcpy(&thisArgv[2][0], "");					//Arg2: NDS Binary ARG0
+							addARGV(3, (char*)&thisArgv);
 							TGDSMultibootRunNDSPayload(fileBuf);
 						}
 						else{
