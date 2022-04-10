@@ -97,11 +97,6 @@ int GUI_getConfigInt(sint8 *objname, sint8 *field, int val)
 	return get_config_int(name, field, val);
 }
 
-//ToolchainGenericDS-LinkedModule User implementation: Called if TGDS-LinkedModule fails to reload ARM9.bin from DLDI.
-int TGDSProjectReturnFromLinkedModule() {
-	return -1;
-}
-
 #if (defined(__GNUC__) && !defined(__clang__))
 __attribute__((optimize("O0")))
 #endif
