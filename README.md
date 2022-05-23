@@ -37,6 +37,6 @@ History:
 20/February/2021: 0.1 Alpha release
 
 Notes/Bugs:
-Background music while downloading a file will break connection. This is a bug in the DSWIFI code as interrupts seem to get in the way of wifi receive buffers.
+Background music is disabled currently. Since if enabled while downloading a file will break connection. This is a bug in the DSWIFI code as interrupts seem to get in the way of wifi receive buffers.
 
 Coto
