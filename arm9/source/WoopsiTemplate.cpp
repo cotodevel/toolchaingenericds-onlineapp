@@ -450,7 +450,11 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 						strcpy(tmpName, mainApp);
 						separateExtension(tmpName, ext);
 						strlwr(ext);
-						if(strncmp(ext,".nds", 4) == 0){
+						if(
+						(strncmp(ext,".nds", 4) == 0)
+						||
+						(strncmp(ext,".srl", 4) == 0)
+						){
 							memset(fileBuf, 0, sizeof(fileBuf));
 							strcpy(fileBuf, "0:/");
 							strcat(fileBuf, baseTargetPath);

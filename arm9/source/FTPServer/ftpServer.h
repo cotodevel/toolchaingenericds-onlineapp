@@ -10,7 +10,7 @@
 #define FTP_SERVER_SERVICE_DATAPORT (sint32)(20)
 
 //FTP Creds
-#define TGDS_ONLINEAPP_FTP_HOST ((char*)"tgdsapp.zapto.org")
+#define TGDS_ONLINEAPP_FTP_HOST ((char*)"192.168.43.22") //mounted at local PC FTP Server
 #define TGDS_ONLINEAPP_FTP_USER ((char*)"tgdsapp")
 #define TGDS_ONLINEAPP_FTP_PASS ((char*)"tgdsapp")
 
