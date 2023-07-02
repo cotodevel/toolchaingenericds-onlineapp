@@ -37,8 +37,6 @@ struct NetBuf {
 using namespace std;
 using namespace WoopsiUI;
 
-#define TGDSPROJECTNAME ((char*) "ToolchainGenericDS-OnlineApp")
-
 typedef struct fileinfo {
 	char* filename;
 	//will we need a pointer to the entire path?
