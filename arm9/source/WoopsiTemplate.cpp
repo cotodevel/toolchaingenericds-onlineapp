@@ -162,8 +162,8 @@ void WoopsiTemplate::handleValueChangeEvent(const GadgetEventArgs& e) {
 				strcpy(&thisArgv[0][0], TGDSPROJECTNAME);	//Arg0:	This Binary loaded
 				strcpy(&thisArgv[1][0], currentFileChosen);	//Arg1:	NDS Binary reloaded
 				strcpy(&thisArgv[2][0], "");					//Arg2: NDS Binary ARG0
-				addARGV(3, (char*)&thisArgv);
-				TGDSMultibootRunNDSPayload(currentFileChosen);
+				u32 * payload = getTGDSMBV3ARM7Bootloader();
+				TGDSMultibootRunNDSPayload(currentFileChosen, (u8*)payload, 3, (char*)&thisArgv);
 			}
 			
 			pendPlay = 1;
@@ -468,8 +468,8 @@ void WoopsiTemplate::handleClickEvent(const GadgetEventArgs& e) {
 							strcpy(&thisArgv[0][0], TGDSPROJECTNAME);	//Arg0:	This Binary loaded
 							strcpy(&thisArgv[1][0], fileBuf);	//Arg1:	NDS Binary reloaded
 							strcpy(&thisArgv[2][0], "");					//Arg2: NDS Binary ARG0
-							addARGV(3, (char*)&thisArgv);
-							TGDSMultibootRunNDSPayload(fileBuf);
+							u32 * payload = getTGDSMBV3ARM7Bootloader();
+							TGDSMultibootRunNDSPayload(fileBuf, (u8*)payload, 3, (char*)&thisArgv);
 						}
 						else{
 							sprintf(arrBuild, "TGDS App not found:\n[%s]\n[CRC32:%x]\n", mainApp, mainAppCRC32);

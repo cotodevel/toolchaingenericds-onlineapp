@@ -33,6 +33,8 @@ USA
 extern "C" {
 #endif
 
+extern u32 * getTGDSMBV3ARM7Bootloader();
+
 //Untar code
 extern char args[8][MAX_TGDSFILENAME_LENGTH];
 extern char *argvs[8];
